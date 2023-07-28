@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "author": "Hoàng Đức Việt",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 86.01,
+      "left": -239.55,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -74.98,
+      "left": -266.2,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 14.97,
+      "left": 70.79,
+      "rotate": 90,
+      "attrs": { "temperature": "6.9", "humidity": "82" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 255.03,
+      "left": -416.65,
+      "rotate": 270,
+      "attrs": { "color": "cyan" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 269.26,
+      "left": -346.5,
+      "rotate": 180,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": 201.19, "left": 202.84, "attrs": {} },
+    {
+      "type": "wokwi-gnd",
+      "id": "gnd1",
+      "top": 219.29,
+      "left": 402.1,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 234.36,
+      "left": 217.68,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 231.29,
+      "left": 310.4,
+      "rotate": 180,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 199.5, "left": 49.51, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd2",
+      "top": 294.4,
+      "left": 24.8,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc4", "top": 306.75, "left": -58.96, "attrs": {} },
+    {
+      "type": "wokwi-gnd",
+      "id": "gnd4",
+      "top": 283.45,
+      "left": -28.93,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gnd5",
+      "top": 141.22,
+      "left": 15.82,
+      "rotate": 180,
+      "attrs": {}
+    },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 93.38, "left": 14.63, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 16.12, "left": 16.14, "attrs": {} },
+    {
+      "type": "wokwi-vcc",
+      "id": "vcc3",
+      "top": 17.01,
+      "left": -265.38,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gnd3",
+      "top": 9.34,
+      "left": -189.31,
+      "rotate": 270,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "r2:2", "led2:A", "red", [ "v0" ] ],
+    [ "relay1:COM", "vcc2:VCC", "red", [ "h0" ] ],
+    [ "esp:D23", "relay1:IN", "violet", [ "v0" ] ],
+    [ "relay1:NO", "r2:1", "red", [ "h0" ] ],
+    [ "led2:C", "gnd1:GND", "limegreen", [ "v0" ] ],
+    [ "esp:D15", "r1:1", "red", [ "v0" ] ],
+    [ "r1:2", "led1:A", "red", [ "v0" ] ],
+    [ "esp:GND.1", "led1:C", "limegreen", [ "v0" ] ],
+    [ "esp:D4", "lcd2:SDA", "violet", [ "v0" ] ],
+    [ "esp:D2", "lcd2:SCL", "violet", [ "v0" ] ],
+    [ "lcd2:VCC", "vcc4:VCC", "red", [ "h0" ] ],
+    [ "lcd2:GND", "gnd4:GND", "limegreen", [ "h0" ] ],
+    [ "relay1:VCC", "esp:VIN", "red", [ "h0" ] ],
+    [ "gnd5:GND", "relay1:GND", "limegreen", [ "v0" ] ],
+    [ "dht1:SDA", "esp:D12", "violet", [ "h0" ] ],
+    [ "dht1:GND", "gnd2:GND", "limegreen", [ "h0" ] ],
+    [ "dht1:VCC", "vcc1:VCC", "red", [ "h0" ] ],
+    [ "pir1:OUT", "esp:D13", "violet", [ "v0" ] ],
+    [ "pir1:VCC", "vcc3:VCC", "red", [ "v0" ] ],
+    [ "pir1:GND", "gnd3:GND", "limegreen", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
