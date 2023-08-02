@@ -41,7 +41,25 @@
     String humid = "";
 
 // 6. IR Transmitter (Replaced by LED)
+    // Simulate the way IR Transmitter works
+    // Src: https://www.instructables.com/How-to-control-your-TV-with-an-Arduino/
     const int ir_pin = 15;
+    const int tv_signal[2][2] = {{1, 203}, {200, 112}};
+    const int fan_signal[2][2] = {{1, 112}, {200, 141}};
+    const int ac_signal[2][2] = {{1, 141}, {200, 203}};
+
+    void UseIR(const int signal[2][2])
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            digitalWrite(ir_pin, LOW);
+            delay(signal[i][0]);
+            digitalWrite(ir_pin, HIGH);
+            delay(signal[i][1]);
+        }
+
+        digitalWrite(ir_pin, LOW);
+    }
 
 // 7. Relay
     const int relay_light_pin = 13;
