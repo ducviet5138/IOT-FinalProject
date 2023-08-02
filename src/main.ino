@@ -49,8 +49,17 @@
 
 // 8. LCD
     LiquidCrystal_I2C lcd(0x27, 16, 2);
-    const int lcd_sda_pin = 35;
-    const int lcd_scl_pin = 34;
+    void lcdOn()
+    {
+        lcd.backlight();
+        lcd.display();
+    }
+
+    void lcdOff()
+    {
+        lcd.noBacklight();
+        lcd.noDisplay();
+    }
 
 // 9. isSendMessage
     bool isSendMessage_on, isSendMessage_off = 0;
@@ -123,8 +132,6 @@ void setup()
     // LCD
     lcd.init();
     lcd.backlight();
-    lcd.setCursor(0, 0);
-    lcd.print("Hello!");
 
     // Server
     client.setServer(server, 1883);
