@@ -36,7 +36,7 @@
 
 // 5. DHT 22
     DHTesp dht;
-    const int dht_pin = 2;
+    const int dht_pin = 4;
     String temperature = "";
     String humid = "";
 
@@ -121,9 +121,10 @@ void setup()
     pinMode(ir_pin, OUTPUT);
 
     // LCD
-    //Wire.begin(lcd_scl_pin, lcd_sda_pin);
     lcd.init();
     lcd.backlight();
+    lcd.setCursor(0, 0);
+    lcd.print("Hello!");
 
     // Server
     client.setServer(server, 1883);
@@ -131,6 +132,7 @@ void setup()
 
     // Temperature and Humid
     temperature = humid = "";
+    Serial.println("Done");
 }
 // =======================================
 
