@@ -3,136 +3,193 @@
   "author": "Hoàng Đức Việt",
   "editor": "wokwi",
   "parts": [
-    {
-      "type": "wokwi-esp32-devkit-v1",
-      "id": "esp",
-      "top": 86.01,
-      "left": -239.55,
-      "rotate": 90,
-      "attrs": {}
-    },
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 383.44, "left": -382.45, "attrs": {} },
     {
       "type": "wokwi-pir-motion-sensor",
       "id": "pir1",
-      "top": -74.98,
-      "left": -266.2,
+      "top": 359.56,
+      "left": -169.3,
+      "rotate": 90,
       "attrs": {}
     },
     {
       "type": "wokwi-dht22",
       "id": "dht1",
-      "top": 14.97,
-      "left": 70.79,
+      "top": 458.24,
+      "left": -133.34,
       "rotate": 90,
       "attrs": { "temperature": "6.9", "humidity": "82" }
     },
     {
       "type": "wokwi-led",
       "id": "led1",
-      "top": 255.03,
-      "left": -416.65,
-      "rotate": 270,
+      "top": 682.77,
+      "left": -246.88,
+      "rotate": 180,
       "attrs": { "color": "cyan" }
     },
     {
       "type": "wokwi-resistor",
       "id": "r1",
-      "top": 269.26,
-      "left": -346.5,
-      "rotate": 180,
+      "top": 583.75,
+      "left": -266.77,
+      "rotate": 270,
       "attrs": { "value": "220" }
     },
-    { "type": "wokwi-vcc", "id": "vcc2", "top": 201.19, "left": 202.84, "attrs": {} },
     {
-      "type": "wokwi-gnd",
-      "id": "gnd1",
-      "top": 219.29,
-      "left": 402.1,
+      "type": "wokwi-relay-module",
+      "id": "relay1",
+      "top": 434.64,
+      "left": -663.25,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd2",
+      "top": 145.79,
+      "left": -470.84,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-vcc",
+      "id": "vcc4",
+      "top": 169.38,
+      "left": -563.89,
       "rotate": 270,
       "attrs": {}
     },
     {
-      "type": "wokwi-resistor",
-      "id": "r2",
-      "top": 234.36,
-      "left": 217.68,
-      "attrs": { "value": "1000" }
+      "type": "wokwi-gnd",
+      "id": "gnd4",
+      "top": 116.47,
+      "left": -515.85,
+      "rotate": 180,
+      "attrs": {}
+    },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 548.25, "left": -189.24, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 475.04, "left": -193.61, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc3", "top": 347.58, "left": -191.56, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd3", "top": 432.64, "left": -193.74, "attrs": {} },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay2",
+      "top": 502.1,
+      "left": -662.86,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gnd6",
+      "top": 618.58,
+      "left": -189.44,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": 686.22,
+      "left": -493.02,
+      "attrs": { "text": "Thay thế IR-Transmitter bằng Led" }
     },
     {
       "type": "wokwi-led",
-      "id": "led2",
-      "top": 231.29,
-      "left": 310.4,
-      "rotate": 180,
-      "attrs": { "color": "red" }
-    },
-    { "type": "wokwi-relay-module", "id": "relay1", "top": 199.5, "left": 49.51, "attrs": {} },
-    {
-      "type": "wokwi-lcd1602",
-      "id": "lcd2",
-      "top": 294.4,
-      "left": 24.8,
-      "attrs": { "pins": "i2c" }
-    },
-    { "type": "wokwi-vcc", "id": "vcc4", "top": 306.75, "left": -58.96, "attrs": {} },
-    {
-      "type": "wokwi-gnd",
-      "id": "gnd4",
-      "top": 283.45,
-      "left": -28.93,
-      "rotate": 180,
-      "attrs": {}
+      "id": "led3",
+      "top": 478.43,
+      "left": -780.19,
+      "attrs": { "color": "white" }
     },
     {
       "type": "wokwi-gnd",
       "id": "gnd5",
-      "top": 141.22,
-      "left": 15.82,
+      "top": 498.45,
+      "left": -821.45,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 514,
+      "left": -734.83,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 368.7,
+      "left": -764,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-vcc",
+      "id": "vcc2",
+      "top": 574.98,
+      "left": -708.91,
       "rotate": 180,
       "attrs": {}
     },
-    { "type": "wokwi-gnd", "id": "gnd2", "top": 93.38, "left": 14.63, "attrs": {} },
-    { "type": "wokwi-vcc", "id": "vcc1", "top": 16.12, "left": 16.14, "attrs": {} },
     {
-      "type": "wokwi-vcc",
-      "id": "vcc3",
-      "top": 17.01,
-      "left": -265.38,
-      "rotate": 270,
-      "attrs": {}
+      "type": "wokwi-text",
+      "id": "text2",
+      "top": 617.77,
+      "left": -771.28,
+      "attrs": { "text": "Điện tổng của phòng" }
     },
     {
       "type": "wokwi-gnd",
-      "id": "gnd3",
-      "top": 9.34,
-      "left": -189.31,
-      "rotate": 270,
+      "id": "gnd7",
+      "top": 430.99,
+      "left": -817.84,
+      "rotate": 90,
       "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text3",
+      "top": 341.08,
+      "left": -900.18,
+      "attrs": { "text": "Giả lập thiết bị sử dụng điện trong phòng" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text4",
+      "top": 485.14,
+      "left": -905.18,
+      "attrs": { "text": "Đèn trong phòng" }
     }
   ],
   "connections": [
     [ "esp:TX0", "$serialMonitor:RX", "", [] ],
     [ "esp:RX0", "$serialMonitor:TX", "", [] ],
-    [ "r2:2", "led2:A", "red", [ "v0" ] ],
-    [ "relay1:COM", "vcc2:VCC", "red", [ "h0" ] ],
-    [ "esp:D23", "relay1:IN", "violet", [ "v0" ] ],
-    [ "relay1:NO", "r2:1", "red", [ "h0" ] ],
-    [ "led2:C", "gnd1:GND", "limegreen", [ "v0" ] ],
-    [ "esp:D15", "r1:1", "red", [ "v0" ] ],
-    [ "r1:2", "led1:A", "red", [ "v0" ] ],
-    [ "esp:GND.1", "led1:C", "limegreen", [ "v0" ] ],
-    [ "esp:D4", "lcd2:SDA", "violet", [ "v0" ] ],
-    [ "esp:D2", "lcd2:SCL", "violet", [ "v0" ] ],
-    [ "lcd2:VCC", "vcc4:VCC", "red", [ "h0" ] ],
-    [ "lcd2:GND", "gnd4:GND", "limegreen", [ "h0" ] ],
-    [ "relay1:VCC", "esp:VIN", "red", [ "h0" ] ],
-    [ "gnd5:GND", "relay1:GND", "limegreen", [ "v0" ] ],
-    [ "dht1:SDA", "esp:D12", "violet", [ "h0" ] ],
-    [ "dht1:GND", "gnd2:GND", "limegreen", [ "h0" ] ],
+    [ "esp:D23", "pir1:OUT", "orange", [ "h0" ] ],
+    [ "vcc3:VCC", "pir1:VCC", "red", [ "v0" ] ],
+    [ "pir1:GND", "gnd3:GND", "limegreen", [ "h0" ] ],
     [ "dht1:VCC", "vcc1:VCC", "red", [ "h0" ] ],
-    [ "pir1:OUT", "esp:D13", "violet", [ "v0" ] ],
-    [ "pir1:VCC", "vcc3:VCC", "red", [ "v0" ] ],
-    [ "pir1:GND", "gnd3:GND", "limegreen", [ "v0" ] ]
+    [ "dht1:GND", "gnd2:GND", "limegreen", [ "h0" ] ],
+    [ "lcd2:SDA", "esp:D35", "orange", [ "h-38.96", "v257.37" ] ],
+    [ "lcd2:SCL", "esp:D34", "orange", [ "h-26.9", "v230.25" ] ],
+    [ "lcd2:VCC", "vcc4:VCC", "red", [ "h0" ] ],
+    [ "gnd4:GND", "lcd2:GND", "limegreen", [ "v0" ] ],
+    [ "esp:D2", "dht1:SDA", "orange", [ "h0" ] ],
+    [ "esp:D15", "r1:2", "red", [ "h0" ] ],
+    [ "r1:1", "led1:A", "red", [ "h0" ] ],
+    [ "led1:C", "gnd6:GND", "limegreen", [ "v0" ] ],
+    [ "esp:D32", "relay1:IN", "orange", [ "h0" ] ],
+    [ "esp:D13", "relay2:IN", "orange", [ "h0" ] ],
+    [ "esp:GND.2", "relay1:GND", "limegreen", [ "h-14.55", "v-68.1" ] ],
+    [ "esp:VIN", "relay1:VCC", "red", [ "h-24.69", "v-69.71" ] ],
+    [ "esp:GND.2", "relay2:GND", "limegreen", [ "h0" ] ],
+    [ "esp:VIN", "relay2:VCC", "red", [ "h0" ] ],
+    [ "r3:1", "led3:A", "red", [ "v0" ] ],
+    [ "led3:C", "gnd5:GND", "limegreen", [ "v0" ] ],
+    [ "relay2:NO", "r3:2", "red", [ "h0" ] ],
+    [ "relay1:NO", "bz1:2", "red", [ "h0" ] ],
+    [ "vcc2:VCC", "relay1:COM", "red", [ "v0" ] ],
+    [ "vcc2:VCC", "relay2:COM", "red", [ "v0" ] ],
+    [ "gnd7:GND", "bz1:1", "limegreen", [ "v0" ] ]
   ],
   "dependencies": {}
 }
