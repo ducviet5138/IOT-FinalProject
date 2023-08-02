@@ -23,16 +23,16 @@
     {
       "type": "wokwi-led",
       "id": "led1",
-      "top": 682.77,
-      "left": -246.88,
-      "rotate": 180,
+      "top": 573.88,
+      "left": -491.03,
+      "rotate": 270,
       "attrs": { "color": "cyan" }
     },
     {
       "type": "wokwi-resistor",
       "id": "r1",
-      "top": 583.75,
-      "left": -266.77,
+      "top": 553.47,
+      "left": -287.64,
       "rotate": 270,
       "attrs": { "value": "220" }
     },
@@ -47,23 +47,23 @@
     {
       "type": "wokwi-lcd1602",
       "id": "lcd2",
-      "top": 145.79,
-      "left": -470.84,
+      "top": 240.27,
+      "left": -509.98,
       "attrs": { "pins": "i2c" }
     },
     {
       "type": "wokwi-vcc",
       "id": "vcc4",
-      "top": 169.38,
-      "left": -563.89,
+      "top": 265.9,
+      "left": -633.13,
       "rotate": 270,
       "attrs": {}
     },
     {
       "type": "wokwi-gnd",
       "id": "gnd4",
-      "top": 116.47,
-      "left": -515.85,
+      "top": 225.59,
+      "left": -613.43,
       "rotate": 180,
       "attrs": {}
     },
@@ -79,19 +79,12 @@
       "rotate": 180,
       "attrs": {}
     },
-    {
-      "type": "wokwi-gnd",
-      "id": "gnd6",
-      "top": 618.58,
-      "left": -189.44,
-      "rotate": 270,
-      "attrs": {}
-    },
+    { "type": "wokwi-gnd", "id": "gnd6", "top": 609.55, "left": -269.28, "attrs": {} },
     {
       "type": "wokwi-text",
       "id": "text1",
-      "top": 686.22,
-      "left": -493.02,
+      "top": 618.01,
+      "left": -517.17,
       "attrs": { "text": "Thay thế IR-Transmitter bằng Led" }
     },
     {
@@ -169,14 +162,10 @@
     [ "pir1:GND", "gnd3:GND", "limegreen", [ "h0" ] ],
     [ "dht1:VCC", "vcc1:VCC", "red", [ "h0" ] ],
     [ "dht1:GND", "gnd2:GND", "limegreen", [ "h0" ] ],
-    [ "lcd2:SDA", "esp:D35", "orange", [ "h-38.96", "v257.37" ] ],
-    [ "lcd2:SCL", "esp:D34", "orange", [ "h-26.9", "v230.25" ] ],
     [ "lcd2:VCC", "vcc4:VCC", "red", [ "h0" ] ],
     [ "gnd4:GND", "lcd2:GND", "limegreen", [ "v0" ] ],
     [ "esp:D2", "dht1:SDA", "orange", [ "h0" ] ],
     [ "esp:D15", "r1:2", "red", [ "h0" ] ],
-    [ "r1:1", "led1:A", "red", [ "h0" ] ],
-    [ "led1:C", "gnd6:GND", "limegreen", [ "v0" ] ],
     [ "esp:D32", "relay1:IN", "orange", [ "h0" ] ],
     [ "esp:D13", "relay2:IN", "orange", [ "h0" ] ],
     [ "esp:GND.2", "relay1:GND", "limegreen", [ "h-14.55", "v-68.1" ] ],
@@ -189,7 +178,11 @@
     [ "relay1:NO", "bz1:2", "red", [ "h0" ] ],
     [ "vcc2:VCC", "relay1:COM", "red", [ "v0" ] ],
     [ "vcc2:VCC", "relay2:COM", "red", [ "v0" ] ],
-    [ "gnd7:GND", "bz1:1", "limegreen", [ "v0" ] ]
+    [ "gnd7:GND", "bz1:1", "limegreen", [ "v0" ] ],
+    [ "led1:A", "r1:1", "red", [ "h0" ] ],
+    [ "led1:C", "gnd6:GND", "limegreen", [ "h0" ] ],
+    [ "lcd2:SDA", "esp:D35", "orange", [ "h-32.64", "v143.94" ] ],
+    [ "lcd2:SCL", "esp:D34", "orange", [ "h-21.84", "v135.77" ] ]
   ],
   "dependencies": {}
 }
