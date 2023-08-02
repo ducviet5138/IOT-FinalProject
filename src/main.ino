@@ -13,6 +13,11 @@
 // =========== [Default Value] ===========
 // 0. Server
     const char* server = "broker.hivemq.com";
+    const String main_channel = "/GDrpD2J3jxvzQEy7vGOn/";
+    const char* GetChannel(String pram)
+    {
+        return (main_channel + pram).c_str();
+    }
 
 // 1. Working Mode [0: Outside, 1: At Home]
     bool working_mode = 1;
@@ -20,8 +25,8 @@
 // 2. Person in room [0: Not Availavle, 1: Available]
     bool person_in_room = 0;
 
-// 3. PIR
-    const int PIR_pin = 13;
+// 3. PIR Motion Sensor
+    const int pir_pin = 23;
 
 // 4. ESP 32
     String ssid = "Wokwi-GUEST";
@@ -31,34 +36,21 @@
 
 // 5. DHT 22
     DHTesp dht;
-    const int DHT_pin = 12;
+    const int dht_pin = 2;
     String temperature = "";
     String humid = "";
 
 // 6. IR Transmitter (Replaced by LED)
-    const int IR_pin = 15;
-    void UseIR()
-    {
-        digitalWrite(IR_pin, HIGH);
-        delay(1000);
-        digitalWrite(IR_pin, LOW);
-        delay(1000);
-    }
+    const int ir_pin = 15;
 
 // 7. Relay
-    const int Relay_pin = 23;
-    void PowerOn()
-    {
-        digitalWrite(Relay_pin, HIGH);
-    }
-
-    void PowerOff()
-    {
-        digitalWrite(Relay_pin, LOW);
-    }
+    const int relay_light_pin = 13;
+    const int relay_ac_pin = 32;
 
 // 8. LCD
     LiquidCrystal_I2C lcd(0x27, 16, 2);
+    const int lcd_sda_pin = 34;
+    const int lcd_scl_pin = 35;
 
 // 9. isSendMessage
     bool isSendMessage_on, isSendMessage_off = 0;
@@ -83,7 +75,7 @@ void reconnect()
         if (client.connect(clientId.c_str()))
         {
             Serial.println(" Connected!");
-            client.subscribe("/GDrpD2J3jxvzQEy7vGOn/text");
+            client.subscribe(GetChannel("WorkingMode"));
         }
         else
         {
@@ -123,13 +115,13 @@ void setup()
     s_time_counter = e_time_counter = 0;
 
     // Pin
-    pinMode(PIR_pin, INPUT);
-    dht.setup(DHT_pin, DHTesp::DHT22);
-    pinMode(IR_pin, OUTPUT);
-    pinMode(Relay_pin, OUTPUT);
+    pinMode(dht_pin, INPUT);
+    dht.setup(dht_pin, DHTesp::DHT22);
+    pinMode(ir_pin, OUTPUT);
+    pinMode(ir_pin, OUTPUT);
 
     // LCD
-    Wire.begin(4, 2);
+    Wire.begin(lcd_scl_pin, lcd_sda_pin);
     lcd.init();
     lcd.backlight();
 
@@ -150,7 +142,7 @@ void setup()
 // ============= [Function] ==============
 void GetPersonStatus()
 {
-    person_in_room = digitalRead(PIR_pin);
+    person_in_room = digitalRead(pir_pin);
 }
 
 void ReadTempAndHumid()
@@ -162,12 +154,13 @@ void ReadTempAndHumid()
 
 void SyncTempAndHumid()
 {
-    client.publish("/GDrpD2J3jxvzQEy7vGOn/temp", temperature.c_str());
-    client.publish("/GDrpD2J3jxvzQEy7vGOn/humid", humid.c_str());
+    client.publish(GetChannel("temperature"), temperature.c_str());
+    client.publish(GetChannel("humid"), humid.c_str());
 }
 
 void HandleWorkingMode()
 {
+    /*
     isSendMessage_off = 0;
 
     if (!isSendMessage_on)
@@ -207,10 +200,12 @@ void HandleWorkingMode()
             // Turn Off AC
         }
     }
+    */
 }
 
 void HandleSafetyMode()
 {
+    /*
     if (person_in_room && !isSendMessage_off)
     {
         String Warning_Mess = "1";
@@ -219,6 +214,7 @@ void HandleSafetyMode()
     }
 
     isSendMessage_on = 0;
+    */
 }
 // =======================================
 
