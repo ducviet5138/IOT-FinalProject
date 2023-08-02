@@ -49,8 +49,8 @@
 
 // 8. LCD
     LiquidCrystal_I2C lcd(0x27, 16, 2);
-    const int lcd_sda_pin = 34;
-    const int lcd_scl_pin = 35;
+    const int lcd_sda_pin = 35;
+    const int lcd_scl_pin = 34;
 
 // 9. isSendMessage
     bool isSendMessage_on, isSendMessage_off = 0;
@@ -71,15 +71,15 @@ void reconnect()
     {
        String clientId = "ESP32Client-21127112-21127141-21127203";
 
-        Serial.print("Connecting to server...");
+        Serial.print("Connecting to server... ");
         if (client.connect(clientId.c_str()))
         {
-            Serial.println(" Connected!");
+            Serial.println("Connected!");
             client.subscribe(GetChannel("WorkingMode"));
         }
         else
         {
-            Serial.println(" Failed!");
+            Serial.println("Failed!");
             delay(5000);
         }
     }
@@ -121,7 +121,7 @@ void setup()
     pinMode(ir_pin, OUTPUT);
 
     // LCD
-    Wire.begin(lcd_scl_pin, lcd_sda_pin);
+    //Wire.begin(lcd_scl_pin, lcd_sda_pin);
     lcd.init();
     lcd.backlight();
 
