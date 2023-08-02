@@ -80,11 +80,8 @@
     }
 
 // 9. isSendMessage
-    bool isSendMessage_on, isSendMessage_off = 0;
 
 // 10. Time counter
-    long s_time_counter = 0;
-    long e_time_counter = 0;
 // =======================================
 
 
@@ -138,14 +135,15 @@ void setup()
     // Wifi Connection
     WiFi.begin(ssid, pw);
 
-    // Time
-    s_time_counter = e_time_counter = 0;
+    // Time Counter
 
     // Pin
     pinMode(dht_pin, INPUT);
     dht.setup(dht_pin, DHTesp::DHT22);
     pinMode(ir_pin, OUTPUT);
-    pinMode(ir_pin, OUTPUT);
+    pinMode(relay_light_pin, OUTPUT);
+    pinMode(relay_ac_pin, OUTPUT);
+    pinMode(pir_pin, INPUT);
 
     // LCD
     lcd.init();
@@ -157,7 +155,9 @@ void setup()
 
     // Temperature and Humid
     temperature = humid = "";
-    Serial.println("Done");
+
+    // Message Status
+
 }
 // =======================================
 
