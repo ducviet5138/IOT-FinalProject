@@ -85,3 +85,38 @@ void MyDevice::UpdateWorkingMode(bool val)
 {
     _dMode->UpdateWorkingMode(val);
 }
+
+// ========== [Call another device's function] ========== //
+    // IR
+    void MyDevice::UseIR(char* device)
+    {
+        ir.UseIR(device);
+    }
+
+    // LCD
+    void MyDevice::lcdOn()
+    {
+        lcd.On();
+    }
+
+    void MyDevice::lcdOff()
+    {
+        lcd.Off();
+    }
+
+    void MyDevice::lcdPrint()
+    {
+        dht.Update();
+        lcd.Print(dht.GetTemperature(), dht.GetHumid());
+    }
+
+    // Relay
+    void MyDevice::relayOn(char* param)
+    {
+        relay.On(param);
+    }
+
+    void MyDevice::relayOff(char* param)
+    {
+        relay.Off(param);
+    }
