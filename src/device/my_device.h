@@ -40,6 +40,27 @@ class MyDevice
 
         void UpdatePersonStatus();
         void UpdateWorkingMode(bool val);
+
+        void UseIR(char* device)
+        {
+            ir.UseIR(device);
+        }
+
+        void lcdOn()
+        {
+            lcd.On();
+        }
+
+        void lcdOff()
+        {
+            lcd.Off();
+        }
+
+        void lcdPrint()
+        {
+            dht.Update();
+            lcd.Print(dht.GetTemperature(), dht.GetHumid());
+        }
 };
 
 

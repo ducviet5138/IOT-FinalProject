@@ -14,9 +14,7 @@ class DeviceDHT
     public:
         void SetUp()
         {
-            pinMode(dht_pin, INPUT);
             dht.setup(dht_pin, DHTesp::DHT22);
-
             temperature = humid = "";
         }
 
@@ -25,6 +23,9 @@ class DeviceDHT
             TempAndHumidity data = dht.getTempAndHumidity();
             temperature = String(data.temperature, 2);
             humid = String(data.humidity, 1);
+
+            Serial.println(temperature);
+            Serial.println(humid);
         }
 
         String GetTemperature()
