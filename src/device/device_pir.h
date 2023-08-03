@@ -7,7 +7,6 @@ class DevicePIR
 {
     private:
         const int pir_pin = 23;
-        bool is_motion = false;
 
     public:
         void SetUp()
@@ -15,14 +14,9 @@ class DevicePIR
             pinMode(pir_pin, INPUT);
         }
 
-        void Update()
-        {
-            is_motion = digitalRead(pir_pin);
-        }
-
         bool IsMotion()
         {
-            return is_motion;
+            return digitalRead(pir_pin);
         }
 };
 
