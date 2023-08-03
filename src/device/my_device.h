@@ -28,18 +28,21 @@ class MyDevice
         
         const String ssid = "Wokwi-GUEST";
         const String pw = "";
+
+        bool SendMessage_WorkingMode;
+        bool SendMessage_SafetyMode;
     public:
         void SetUp();
 
         const char* GetChannel(String pram);
         void reconnect();
         void ReconnectToServer();
-
         void Sync(String param, String value);
-        void SyncTempAndHumid();
-
-        void UpdatePersonStatus();
         void UpdateWorkingMode(bool val);
+
+        // DHT
+        void SyncTempAndHumid();
+        void UpdateDHT();
 
         // IR
         void UseIR(char* device);

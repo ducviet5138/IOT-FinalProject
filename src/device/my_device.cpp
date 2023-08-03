@@ -8,8 +8,8 @@ void callback(char* topic, byte* message, unsigned int length)
     for (int i = 0; i < length; i++) buffer += (char)message[i];
     Serial.println(buffer);
 
-    if (buffer == "WorkingMode") dMode.UpdateWorkingMode(true);
-    if (buffer == "SafetyMode") dMode.UpdateWorkingMode(false);
+    if (buffer == "WorkingMode") dMode.UpdateWorkingMode(1);
+    if (buffer == "SafetyMode") dMode.UpdateWorkingMode(0);
 }
 
 void MyDevice::SetUp()
@@ -27,6 +27,8 @@ void MyDevice::SetUp()
     client.setCallback(callback);
 
     WiFi.begin(ssid, pw);
+
+    SendMessage_SafetyMode = SendMessage_WorkingMode = 0;
 }
 
 void MyDevice::reconnect()
@@ -60,25 +62,9 @@ void MyDevice::Sync(String param, String value)
     client.publish(GetChannel(param), value.c_str());
 }
 
-void MyDevice::SyncTempAndHumid()
-{
-    Sync("temperature", dht.GetTemperature());
-    Sync("humid", dht.GetHumid());
-}
-
 const char* MyDevice::GetChannel(String param)
 {
     return (main_channel + param).c_str();
-}
-
-void MyDevice::UpdatePersonStatus()
-{
-    bool newStatus = pir.IsMotion();
-    _dMode->UpdatePersonStatus(newStatus);
-    if (newStatus)
-        Serial.println("Person is in the room");
-    else
-        Serial.println("Person is not in the room");
 }
 
 void MyDevice::UpdateWorkingMode(bool val)
@@ -87,6 +73,20 @@ void MyDevice::UpdateWorkingMode(bool val)
 }
 
 // ========== [Call another device's function] ========== //
+// DHT
+void MyDevice::SyncTempAndHumid()
+{
+    Sync("temperature", dht.GetTemperature());
+    Sync("humid", dht.GetHumid());
+}
+
+void MyDevice::UpdateDHT()
+{
+    dht.Update();
+}
+
+
+
 // IR
 void MyDevice::UseIR(char* device)
 {
@@ -145,4 +145,31 @@ void MyDevice::HandleWorkingMode()
 // Safety Mode
 void MyDevice::HandleSafetyMode()
 {
+    SendMessage_WorkingMode = 0;
+    
+    if (pir.GetPersonStatus() && !SendMessage_SafetyMode)
+    {
+        String message = "Strangers are in the room!";
+        Sync("warning", message.c_str());
+        SendMessage_SafetyMode = 1;
+    }
+    
+    String tv = "tv";
+    String fan = "fan";
+    String air_conditioner = "ac";
+
+    // Turn off electric devices
+    UseIR((char*) tv.c_str());
+    UseIR((char*) fan.c_str());
+    UseIR((char*) air_conditioner.c_str());
+    
+    String light = "light";
+    String room = "room";
+
+    // Turn off light and room's electricity
+    relayOff((char*) light.c_str());
+    relayOff((char*) room.c_str());
+
+    // Turn off LCD
+    lcdOff();
 }

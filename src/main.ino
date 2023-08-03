@@ -11,5 +11,9 @@ void setup()
 void loop()
 {
     md.ReconnectToServer();
-    md.lcdPrint();
+
+    md.UpdateDHT();
+    md.SyncTempAndHumid();
+
+    md.ChooseSuitableMode();
 }

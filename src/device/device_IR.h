@@ -23,7 +23,7 @@ class DeviceIR
             pinMode(ir_pin, OUTPUT);
         }
 
-        void UseIR(char * device_name){
+        void UseIR(char* device_name){
             for (int i = 0; i < 2; i++)
             {
                 digitalWrite(ir_pin, LOW);

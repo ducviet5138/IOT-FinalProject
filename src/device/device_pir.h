@@ -14,7 +14,7 @@ class DevicePIR
             pinMode(pir_pin, INPUT);
         }
 
-        bool IsMotion()
+        bool GetPersonStatus()
         {
             return digitalRead(pir_pin);
         }
