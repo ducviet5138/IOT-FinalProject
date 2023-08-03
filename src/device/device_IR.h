@@ -9,7 +9,7 @@ using namespace std;
 class DeviceIR
 {
     private:
-        const int ir_pin = 15;
+        const int ir_pin = 4;
         MyMap<vector<vector<int>>> _devices;
         
     public:

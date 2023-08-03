@@ -7,7 +7,7 @@ class DeviceDHT
 {
     private:
         DHTesp dht;
-        const int dht_pin = 4;
+        const int dht_pin = 15;
         String temperature;
         String humid;
 
