@@ -3,6 +3,7 @@
 
 #include <LiquidCrystal_I2C.h>
 #include "device/device_relay.h"
+#include "device/device_IR.h"
 // =======================================
 
 
@@ -31,23 +32,23 @@
 // 6. IR Transmitter (Replaced by LED)
     // Simulate the way IR Transmitter works
     // Src: https://www.instructables.com/How-to-control-your-TV-with-an-Arduino/
-    const int ir_pin = 15;
-    const int tv_signal[2][2] = {{1, 203}, {200, 112}};
-    const int fan_signal[2][2] = {{1, 112}, {200, 141}};
-    const int ac_signal[2][2] = {{1, 141}, {200, 203}};
+    // const int ir_pin = 15;
+    // const int tv_signal[2][2] = {{1, 203}, {200, 112}};
+    // const int fan_signal[2][2] = {{1, 112}, {200, 141}};
+    // const int ac_signal[2][2] = {{1, 141}, {200, 203}};
 
-    void UseIR(const int signal[2][2])
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            digitalWrite(ir_pin, LOW);
-            delay(signal[i][0]);
-            digitalWrite(ir_pin, HIGH);
-            delay(signal[i][1]);
-        }
+    // void UseIR(const int signal[2][2])
+    // {
+    //     for (int i = 0; i < 2; i++)
+    //     {
+    //         digitalWrite(ir_pin, LOW);
+    //         delay(signal[i][0]);
+    //         digitalWrite(ir_pin, HIGH);
+    //         delay(signal[i][1]);
+    //     }
 
-        digitalWrite(ir_pin, LOW);
-    }
+    //     digitalWrite(ir_pin, LOW);
+    // }
 
 // 7. Relay
     
@@ -95,6 +96,7 @@ void reconnect()
 
 // ============ [Setup ESP32] ============
 DeviceRelay device_relay;
+DeviceIR device_ir;
 void setup() 
 {
     Serial.begin(115200);
@@ -129,6 +131,7 @@ void setup()
     // Message Status
     */
     device_relay.SetUp();
+    device_ir.SetUp();
 }
 // =======================================
 
@@ -235,9 +238,12 @@ void loop() {
     if (working_mode) HandleWorkingMode(); else HandleSafetyMode();
     */
     char temp[] = "light";
+    char temp1[] = "tv";
     device_relay.On(temp);
     delay(1000);
     device_relay.Off(temp);
     delay(1000);
+
+    device_ir.UseIR(temp1);
 }
 // =======================================
