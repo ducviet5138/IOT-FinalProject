@@ -10,5 +10,6 @@ void setup()
 
 void loop()
 {
+    md.ReconnectToServer();
     md.lcdPrint();
 }
