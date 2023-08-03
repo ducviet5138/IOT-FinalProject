@@ -14,6 +14,7 @@ class DeviceDHT
     public:
         void SetUp()
         {
+            pinMode(dht_pin, INPUT);
             dht.setup(dht_pin, DHTesp::DHT22);
         }
 

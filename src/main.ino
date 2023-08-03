@@ -1,9 +1,5 @@
 // ============ [Header File] ============
-#include <DHTesp.h> // Using DHT22 with ESP32
-
-#include <LiquidCrystal_I2C.h>
-#include "device/device_relay.h"
-#include "device/device_IR.h"
+#include "device/my_device.h"
 // =======================================
 
 
