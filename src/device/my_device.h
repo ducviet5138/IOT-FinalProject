@@ -10,11 +10,20 @@
 class MyDevice
 {
     private:
-        DeviceDHT device_dht;
-        DeviceLCD device_lcd;
-        DevicePIR device_pir;
-        DeviceRelay device_relay;
-        DeviceIR device_ir;
+        DeviceDHT dht;
+        DeviceLCD lcd;
+        DevicePIR pir;
+        DeviceRelay relay;
+        DeviceIR ir;
+    public:
+        void SetUp()
+        {
+            dht.SetUp();
+            lcd.SetUp();
+            pir.SetUp();
+            relay.SetUp();
+            ir.SetUp();
+        }       
 };
 
 #endif
