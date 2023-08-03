@@ -8,14 +8,16 @@ class DeviceDHT
     private:
         DHTesp dht;
         const int dht_pin = 4;
-        String temperature = "";
-        String humid = "";
+        String temperature;
+        String humid;
 
     public:
         void SetUp()
         {
             pinMode(dht_pin, INPUT);
             dht.setup(dht_pin, DHTesp::DHT22);
+
+            temperature = humid = "";
         }
 
         void Update()
