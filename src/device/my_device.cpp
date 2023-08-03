@@ -7,6 +7,9 @@ void callback(char* topic, byte* message, unsigned int length)
     String buffer = "";
     for (int i = 0; i < length; i++) buffer += (char)message[i];
     Serial.println(buffer);
+
+    if (buffer == "WorkingMode") dMode.UpdateWorkingMode(true);
+    if (buffer == "SafetyMode") dMode.UpdateWorkingMode(false);
 }
 
 void MyDevice::SetUp()
