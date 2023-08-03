@@ -38,7 +38,7 @@ void MyDevice::reconnect()
     }
 }
 
-void MyDevice::callback(char* topic, byte* message, unsigned int length)
+static void MyDevice::callback(char* topic, byte* message, unsigned int length)
 {
     String buffer = "";
     for (int i = 0; i < length; i++) buffer += char(message[i]);    

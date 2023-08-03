@@ -32,14 +32,14 @@ class MyDevice
         void SetUp();
 
         const char* GetChannel(String pram);
-        void callback(char* topic, byte* message, unsigned int length);
+        static void callback(char* topic, byte* message, unsigned int length);
         void reconnect();
         void ReconnectToServer();
 
         void Sync(String param, String value);
         void SyncTempAndHumid();
 
-        void GetPersonStatus()
+        void GetPersonStatus();
         
 };
 
