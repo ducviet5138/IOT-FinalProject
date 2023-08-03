@@ -87,36 +87,62 @@ void MyDevice::UpdateWorkingMode(bool val)
 }
 
 // ========== [Call another device's function] ========== //
-    // IR
-    void MyDevice::UseIR(char* device)
-    {
-        ir.UseIR(device);
-    }
+// IR
+void MyDevice::UseIR(char* device)
+{
+    ir.UseIR(device);
+}
 
-    // LCD
-    void MyDevice::lcdOn()
-    {
-        lcd.On();
-    }
 
-    void MyDevice::lcdOff()
-    {
-        lcd.Off();
-    }
 
-    void MyDevice::lcdPrint()
-    {
-        dht.Update();
-        lcd.Print(dht.GetTemperature(), dht.GetHumid());
-    }
+// LCD
+void MyDevice::lcdOn()
+{
+    lcd.On();
+}
 
-    // Relay
-    void MyDevice::relayOn(char* param)
-    {
-        relay.On(param);
-    }
+void MyDevice::lcdOff()
+{
+    lcd.Off();
+}
 
-    void MyDevice::relayOff(char* param)
-    {
-        relay.Off(param);
-    }
+void MyDevice::lcdPrint()
+{
+    dht.Update();
+    lcd.Print(dht.GetTemperature(), dht.GetHumid());
+}
+
+
+
+// Relay
+void MyDevice::relayOn(char* param)
+{
+    relay.On(param);
+}
+
+void MyDevice::relayOff(char* param)
+{
+    relay.Off(param);
+}
+
+// =============== [Handle Mode] =============== //
+// Choose suitable mode
+void MyDevice::ChooseSuitableMode()
+{
+    if (_dMode->GetWorkingMode()) HandleWorkingMode();
+    else HandleSafetyMode();
+}
+
+
+
+// Working Mode
+void MyDevice::HandleWorkingMode()
+{
+}
+
+
+
+// Safety Mode
+void MyDevice::HandleSafetyMode()
+{
+}

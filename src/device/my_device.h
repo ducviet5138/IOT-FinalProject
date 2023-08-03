@@ -52,6 +52,11 @@ class MyDevice
         // Relay
         void relayOn(char* param);
         void relayOff(char* param);
+
+        // Mode [0: Safety Mode, 1: Working Mode]
+        void ChooseSuitableMode();
+        void HandleSafetyMode();
+        void HandleWorkingMode();
 };
 
 
