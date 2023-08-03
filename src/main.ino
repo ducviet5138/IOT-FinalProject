@@ -10,12 +10,11 @@ void setup()
 
 void loop()
 {
-    // md.ReconnectToServer();
+    md.ReconnectToServer();
 
-    md.UseIR("tv");
-    delay(1000);
-    md.lcdOn();
-    md.lcdPrint();
-    delay(1000);
-    md.lcdOff();
+//    md.UpdatePersonStatus();
+//    md.relayOn("light");
+//    delay(2000);
+//    md.relayOff("light");
+//    delay(2000);
 }

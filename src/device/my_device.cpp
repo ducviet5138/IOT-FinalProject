@@ -72,6 +72,10 @@ void MyDevice::UpdatePersonStatus()
 {
     bool newStatus = pir.IsMotion();
     _dMode->UpdatePersonStatus(newStatus);
+    if (newStatus)
+        Serial.println("Person is in the room");
+    else
+        Serial.println("Person is not in the room");
 }
 
 void MyDevice::UpdateWorkingMode(bool val)
