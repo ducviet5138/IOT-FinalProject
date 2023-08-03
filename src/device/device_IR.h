@@ -1,6 +1,7 @@
 #ifndef DEVICE_IR_H
 #define DEVICE_IR_H
 #include "my_map.h"
+#include <vector>
 #include <arduino.h>
 
 using namespace std;
@@ -9,7 +10,7 @@ class DeviceIR
 {
     private:
         const int ir_pin = 15;
-        MyMap<int [2][2]> _devices;
+        MyMap<vector<vector<int>>> _devices;
         
     public:
         DeviceIR(){
