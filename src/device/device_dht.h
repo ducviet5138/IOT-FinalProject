@@ -1,4 +1,4 @@
-#ifdef DEVICE_DHT_H
+#ifndef DEVICE_DHT_H
 #define DEVICE_DHT_H
 
 #include <DHTesp.h>
@@ -12,7 +12,7 @@ class DeviceDHT
         String humid = "";
 
     public:
-        DeviceDHT()
+        void SetUp()
         {
             dht.setup(dht_pin, DHTesp::DHT22);
         }
