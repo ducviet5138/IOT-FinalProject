@@ -61,6 +61,16 @@ class MyDevice
             dht.Update();
             lcd.Print(dht.GetTemperature(), dht.GetHumid());
         }
+
+        void relayOn(char* param)
+        {
+            relay.On(param);
+        }
+
+        void relayOff(char* param)
+        {
+            relay.Off(param);
+        }
 };
 
 
