@@ -1,7 +1,8 @@
 // ============ [Header File] ============
 #include <DHTesp.h> // Using DHT22 with ESP32
-#include <WiFi.h>
+
 #include <LiquidCrystal_I2C.h>
+#include "device/device_relay.h"
 // =======================================
 
 
@@ -26,11 +27,6 @@
     String pw = "";
     
 
-// 5. DHT 22
-    DHTesp dht;
-    const int dht_pin = 4;
-    String temperature = "";
-    String humid = "";
 
 // 6. IR Transmitter (Replaced by LED)
     // Simulate the way IR Transmitter works
@@ -54,22 +50,9 @@
     }
 
 // 7. Relay
-    const int relay_light_pin = 13;
-    const int relay_ac_pin = 32;
+    
 
 // 8. LCD
-    LiquidCrystal_I2C lcd(0x27, 16, 2);
-    void lcdOn()
-    {
-        lcd.backlight();
-        lcd.display();
-    }
-
-    void lcdOff()
-    {
-        lcd.noBacklight();
-        lcd.noDisplay();
-    }
 
 // 9. isSendMessage
 
@@ -81,6 +64,7 @@
 
 
 // ===== [Server - Client Function] ======
+/*
 void reconnect()
 {
     while (!client.connected())
@@ -102,14 +86,7 @@ void reconnect()
     }
 }
 
-void callback(char* topic, byte* message, unsigned int length) 
-{
-    String buffer = "";
-    for (int i = 0; i < length; i++) buffer += char(message[i]);
-
-    Serial.println(buffer);
-    working_mode = (buffer == "mode_on");
-}
+*/
 // =======================================
 
 
@@ -117,10 +94,12 @@ void callback(char* topic, byte* message, unsigned int length)
 
 
 // ============ [Setup ESP32] ============
+DeviceRelay device_relay;
 void setup() 
 {
     Serial.begin(115200);
 
+    /*
     // Mode
     working_mode = 1;
     person_in_room = 1;
@@ -143,14 +122,13 @@ void setup()
     lcd.backlight();
 
     // Server
-    client.setServer(server, 1883);
-    client.setCallback(callback);
 
     // Temperature and Humid
     temperature = humid = "";
 
     // Message Status
-
+    */
+    device_relay.SetUp();
 }
 // =======================================
 
@@ -165,6 +143,7 @@ void GetPersonStatus()
     person_in_room = digitalRead(pir_pin);
 }
 
+/*
 void ReadTempAndHumid()
 {
     TempAndHumidity data = dht.getTempAndHumidity();
@@ -177,6 +156,7 @@ void SyncTempAndHumid()
     client.publish(GetChannel("temperature"), temperature.c_str());
     client.publish(GetChannel("humid"), humid.c_str());
 }
+*/
 
 void HandleWorkingMode()
 {
@@ -244,6 +224,7 @@ void HandleSafetyMode()
 
 // ============ [Loop ESP32] =============
 void loop() {
+    /*
     if (!client.connected()) reconnect();
     client.loop();
   
@@ -252,5 +233,11 @@ void loop() {
     GetPersonStatus();
   
     if (working_mode) HandleWorkingMode(); else HandleSafetyMode();
+    */
+    char temp[] = "light";
+    device_relay.On(temp);
+    delay(1000);
+    device_relay.Off(temp);
+    delay(1000);
 }
 // =======================================
