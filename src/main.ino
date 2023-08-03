@@ -12,12 +12,6 @@
 
 // =========== [Default Value] ===========
 // 0. Server
-    const char* server = "broker.hivemq.com";
-    const String main_channel = "/GDrpD2J3jxvzQEy7vGOn/";
-    const char* GetChannel(String pram)
-    {
-        return (main_channel + pram).c_str();
-    }
 
 // 1. Working Mode [0: Outside, 1: At Home]
     bool working_mode = 1;
