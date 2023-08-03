@@ -31,6 +31,8 @@ class MyDevice
 
         bool SendMessage_WorkingMode;
         bool SendMessage_SafetyMode;
+
+        bool TurnOffDevices_SafetyMode;
     public:
         void SetUp();
 

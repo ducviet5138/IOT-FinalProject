@@ -29,6 +29,8 @@ void MyDevice::SetUp()
     WiFi.begin(ssid, pw);
 
     SendMessage_SafetyMode = SendMessage_WorkingMode = 0;
+
+    TurnOffDevices_SafetyMode = 0;
 }
 
 void MyDevice::reconnect()
@@ -154,22 +156,27 @@ void MyDevice::HandleSafetyMode()
         SendMessage_SafetyMode = 1;
     }
     
-    String tv = "tv";
-    String fan = "fan";
-    String air_conditioner = "ac";
+    if (!TurnOffDevices_SafetyMode)
+    {
+        String tv = "tv";
+        String fan = "fan";
+        String air_conditioner = "ac";
 
-    // Turn off electric devices
-    UseIR((char*) tv.c_str());
-    UseIR((char*) fan.c_str());
-    UseIR((char*) air_conditioner.c_str());
-    
-    String light = "light";
-    String room = "room";
+        // Turn off electric devices
+        UseIR((char*) tv.c_str());
+        UseIR((char*) fan.c_str());
+        UseIR((char*) air_conditioner.c_str());
+        
+        String light = "light";
+        String room = "room";
 
-    // Turn off light and room's electricity
-    relayOff((char*) light.c_str());
-    relayOff((char*) room.c_str());
+        // Turn off light and room's electricity
+        relayOff((char*) light.c_str());
+        relayOff((char*) room.c_str());
 
-    // Turn off LCD
-    lcdOff();
+        // Turn off LCD
+        lcdOff();
+
+        TurnOffDevices_SafetyMode = 1;
+    }
 }
