@@ -62,26 +62,7 @@
 
 // ===== [Server - Client Function] ======
 /*
-void reconnect()
-{
-    while (!client.connected())
-    {
-       String clientId = "ESP32Client-21127112-21127141-21127203";
 
-        Serial.print("Connecting to server... ");
-        if (client.connect(clientId.c_str()))
-        {
-            Serial.println("Connected!");
-            client.subscribe(GetChannel("WorkingMode"));
-           
-        }
-        else
-        {
-            Serial.println("Failed!");
-            delay(5000);
-        }
-    }
-}
 
 */
 // =======================================
@@ -99,30 +80,17 @@ void setup()
 
     /*
     // Mode
-    working_mode = 1;
-    person_in_room = 1;
+    
 
     // Wifi Connection
     WiFi.begin(ssid, pw);
 
     // Time Counter
 
-    // Pin
-    pinMode(dht_pin, INPUT);
-    dht.setup(dht_pin, DHTesp::DHT22);
-    pinMode(ir_pin, OUTPUT);
-    pinMode(relay_light_pin, OUTPUT);
-    pinMode(relay_ac_pin, OUTPUT);
-    pinMode(pir_pin, INPUT);
 
-    // LCD
-    lcd.init();
-    lcd.backlight();
 
     // Server
 
-    // Temperature and Humid
-    temperature = humid = "";
 
     // Message Status
     */
@@ -137,25 +105,7 @@ void setup()
 
 
 // ============= [Function] ==============
-void GetPersonStatus()
-{
-    person_in_room = digitalRead(pir_pin);
-}
 
-/*
-void ReadTempAndHumid()
-{
-    TempAndHumidity data = dht.getTempAndHumidity();
-    temperature = String(data.temperature, 2);
-    humid = String(data.humidity, 1);
-}
-
-void SyncTempAndHumid()
-{
-    client.publish(GetChannel("temperature"), temperature.c_str());
-    client.publish(GetChannel("humid"), humid.c_str());
-}
-*/
 
 void HandleWorkingMode()
 {
