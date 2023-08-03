@@ -76,6 +76,7 @@ void reconnect()
         {
             Serial.println("Connected!");
             client.subscribe(GetChannel("WorkingMode"));
+           
         }
         else
         {
