@@ -26,6 +26,8 @@ class MyDevice
         WiFiClient espClient;
         PubSubClient client;
         
+        const String ssid = "Wokwi-GUEST";
+        const String pw = "";
     public:
         void SetUp()
         {
@@ -41,6 +43,8 @@ class MyDevice
             client = PubSubClient(espClient);
             client.setServer(server, 1883);
             client.setCallback(callback);
+
+            WiFi.begin(ssid, pw);
         }  
 
         void reconnect()
@@ -92,6 +96,11 @@ class MyDevice
             Sync("humid", dht.GetHumidity());
         }
 
+        void ReconnectToServer()
+        {
+            if (!client.connected()) reconnect();
+            client.loop();
+        }
 };
 
 #endif
