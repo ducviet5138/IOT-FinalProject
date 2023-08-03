@@ -36,12 +36,30 @@
 
 // 5. DHT 22
     DHTesp dht;
-    const int dht_pin = 2;
+    const int dht_pin = 4;
     String temperature = "";
     String humid = "";
 
 // 6. IR Transmitter (Replaced by LED)
+    // Simulate the way IR Transmitter works
+    // Src: https://www.instructables.com/How-to-control-your-TV-with-an-Arduino/
     const int ir_pin = 15;
+    const int tv_signal[2][2] = {{1, 203}, {200, 112}};
+    const int fan_signal[2][2] = {{1, 112}, {200, 141}};
+    const int ac_signal[2][2] = {{1, 141}, {200, 203}};
+
+    void UseIR(const int signal[2][2])
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            digitalWrite(ir_pin, LOW);
+            delay(signal[i][0]);
+            digitalWrite(ir_pin, HIGH);
+            delay(signal[i][1]);
+        }
+
+        digitalWrite(ir_pin, LOW);
+    }
 
 // 7. Relay
     const int relay_light_pin = 13;
@@ -49,15 +67,21 @@
 
 // 8. LCD
     LiquidCrystal_I2C lcd(0x27, 16, 2);
-    const int lcd_sda_pin = 35;
-    const int lcd_scl_pin = 34;
+    void lcdOn()
+    {
+        lcd.backlight();
+        lcd.display();
+    }
+
+    void lcdOff()
+    {
+        lcd.noBacklight();
+        lcd.noDisplay();
+    }
 
 // 9. isSendMessage
-    bool isSendMessage_on, isSendMessage_off = 0;
 
 // 10. Time counter
-    long s_time_counter = 0;
-    long e_time_counter = 0;
 // =======================================
 
 
@@ -112,17 +136,17 @@ void setup()
     // Wifi Connection
     WiFi.begin(ssid, pw);
 
-    // Time
-    s_time_counter = e_time_counter = 0;
+    // Time Counter
 
     // Pin
     pinMode(dht_pin, INPUT);
     dht.setup(dht_pin, DHTesp::DHT22);
     pinMode(ir_pin, OUTPUT);
-    pinMode(ir_pin, OUTPUT);
+    pinMode(relay_light_pin, OUTPUT);
+    pinMode(relay_ac_pin, OUTPUT);
+    pinMode(pir_pin, INPUT);
 
     // LCD
-    //Wire.begin(lcd_scl_pin, lcd_sda_pin);
     lcd.init();
     lcd.backlight();
 
@@ -132,6 +156,9 @@ void setup()
 
     // Temperature and Humid
     temperature = humid = "";
+
+    // Message Status
+
 }
 // =======================================
 
