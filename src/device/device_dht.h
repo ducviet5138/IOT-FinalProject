@@ -22,8 +22,9 @@ class DeviceDHT
 
         void Update()
         {
-            temperature = String(dht.getTemperature());
-            humid = String(dht.getHumidity());
+            TempAndHumidity data = dht.getTempAndHumidity();
+            temperature = String(data.temperature, 2);
+            humid = String(data.humidity, 1);
         }
 
         String GetTemperature()
