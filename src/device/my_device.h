@@ -41,36 +41,17 @@ class MyDevice
         void UpdatePersonStatus();
         void UpdateWorkingMode(bool val);
 
-        void UseIR(char* device)
-        {
-            ir.UseIR(device);
-        }
+        // IR
+        void UseIR(char* device);
 
-        void lcdOn()
-        {
-            lcd.On();
-        }
+        // LCD
+        void lcdOn();
+        void lcdOff();
+        void lcdPrint();
 
-        void lcdOff()
-        {
-            lcd.Off();
-        }
-
-        void lcdPrint()
-        {
-            dht.Update();
-            lcd.Print(dht.GetTemperature(), dht.GetHumid());
-        }
-
-        void relayOn(char* param)
-        {
-            relay.On(param);
-        }
-
-        void relayOff(char* param)
-        {
-            relay.Off(param);
-        }
+        // Relay
+        void relayOn(char* param);
+        void relayOff(char* param);
 };
 
 
