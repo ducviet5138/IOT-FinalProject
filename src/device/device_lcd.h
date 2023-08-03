@@ -30,7 +30,7 @@ class DeviceLCD
         void Print(String temperature, String humid)
         {
             lcd.setCursor(0, 0);
-            lcd.print("Temp: " + temperature + "°C ");
+            lcd.print("Temp: " + temperature + " " + String(char(223)) + "C ");
             lcd.setCursor(0, 1);
             lcd.print("Humid: " + humid + " %");
         }
