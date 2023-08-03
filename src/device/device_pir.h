@@ -4,7 +4,7 @@
 class DevicePIR
 {
     private:
-        const int pir_pin = 2;
+        const int pir_pin = 23;
         bool is_motion = false;
 
     public:
