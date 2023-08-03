@@ -9,7 +9,7 @@ class DeviceLCD
         LiquidCrystal_I2C lcd = LiquidCrystal_I2C(0x27, 16, 2);
 
     public:
-        DeviceLCD()
+        void SetUp()
         {
             lcd.init();
             lcd.backlight();

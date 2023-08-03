@@ -12,7 +12,7 @@ class DeviceDHT
         String humid = "";
 
     public:
-        DeviceDHT()
+        void SetUp()
         {
             dht.setup(dht_pin, DHTesp::DHT22);
         }
