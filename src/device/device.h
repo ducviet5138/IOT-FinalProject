@@ -1,4 +1,5 @@
-#include "device_connection.h"
-#include "device_dht.h"
-#include "device_lcd.h"
-
+#include "device/device_dht.h"
+#include "device/device_dht.h"
+#include "device/device_pir.h"
+#include "device/device_relay.h"
+#include "device/device_IR.h"
