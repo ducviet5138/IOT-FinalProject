@@ -2,7 +2,6 @@
 #include <DHTesp.h> // Using DHT22 with ESP32
 #include <WiFi.h>
 #include <LiquidCrystal_I2C.h>
-#include <PubSubClient.h>
 // =======================================
 
 
@@ -25,8 +24,7 @@
 // 4. ESP 32
     String ssid = "Wokwi-GUEST";
     String pw = "";
-    WiFiClient espClient;
-    PubSubClient client(espClient);
+    
 
 // 5. DHT 22
     DHTesp dht;
