@@ -6,6 +6,7 @@
 #include "device/device_pir.h"
 #include "device/device_relay.h"
 #include "device/device_IR.h"
+#include "device/device_mode.h"
 #include <PubSubClient.h>
 #include <WiFi.h>
 
@@ -18,8 +19,7 @@ class MyDevice
         DeviceRelay relay;
         DeviceIR ir;
 
-        bool working_mode;
-        bool person_in_room;
+        DeviceMode* _dMode;
 
         const char* server = "broker.hivemq.com";
         const String main_channel = "/GDrpD2J3jxvzQEy7vGOn/";
@@ -32,15 +32,15 @@ class MyDevice
         void SetUp();
 
         const char* GetChannel(String pram);
-        static void callback(char* topic, byte* message, unsigned int length);
         void reconnect();
         void ReconnectToServer();
 
         void Sync(String param, String value);
         void SyncTempAndHumid();
 
-        void GetPersonStatus();
-        
+        void UpdatePersonStatus();
+        void UpdateWorkingMode(bool val);
 };
+
 
 #endif

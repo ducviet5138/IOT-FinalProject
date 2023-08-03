@@ -1,4 +1,13 @@
 #include "my_device.h"
+#include "device/device_mode.h"
+
+DeviceMode dMode;
+void callback(char* topic, byte* message, unsigned int length)
+{
+    String buffer = "";
+    for (int i = 0; i < length; i++) buffer += (char)message[i];
+    Serial.println(buffer);
+}
 
 void MyDevice::SetUp()
 {
@@ -8,8 +17,7 @@ void MyDevice::SetUp()
     relay.SetUp();
     ir.SetUp();
 
-    working_mode = 1;
-    person_in_room = 1;
+    _dMode = &dMode;
 
     client = PubSubClient(espClient);
     client.setServer(server, 1883);
@@ -38,13 +46,6 @@ void MyDevice::reconnect()
     }
 }
 
-void MyDevice::callback(char* topic, byte* message, unsigned int length)
-{
-    String buffer = "";
-    for (int i = 0; i < length; i++) buffer += char(message[i]);    
-    Serial.println(buffer);   
-}
-
 void MyDevice::ReconnectToServer()
 {
     if (!client.connected()) reconnect();
@@ -67,7 +68,13 @@ const char* MyDevice::GetChannel(String param)
     return (main_channel + param).c_str();
 }
 
-void MyDevice::GetPersonStatus()
+void MyDevice::UpdatePersonStatus()
 {
-    person_in_room = pir.IsMotion();
+    bool newStatus = pir.IsMotion();
+    _dMode->UpdatePersonStatus(newStatus);
+}
+
+void MyDevice::UpdateWorkingMode(bool val)
+{
+    _dMode->UpdateWorkingMode(val);
 }
