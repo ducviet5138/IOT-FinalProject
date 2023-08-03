@@ -1,5 +1,5 @@
-#ifndef SERVER_H
-#define SERVER_H
+#ifndef DEVICE_CONNECTION_H
+#define DEVICE_CONNECTION_H
 
 class Server{
     private:
@@ -14,5 +14,6 @@ class Server{
 };
 
 
-
+//WiFiClient m_espClient;
+//PubSubClient av_client(m_espClient);
 #endif
