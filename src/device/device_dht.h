@@ -1,4 +1,4 @@
-#ifdef DEVICE_DHT_H
+#ifndef DEVICE_DHT_H
 #define DEVICE_DHT_H
 
 #include <DHTesp.h>
