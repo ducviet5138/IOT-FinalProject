@@ -36,7 +36,7 @@ class MyDevice
         void reconnect();
         void ReconnectToServer();
 
-        void Sync();
+        void Sync(String param, String value);
         void SyncTempAndHumid();
 
         void GetPersonStatus()
