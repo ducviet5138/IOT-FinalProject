@@ -1,6 +1,8 @@
 #ifndef DEVICE_PIR_H
 #define DEVICE_PIR_H
 
+#include <Arduino.h>
+
 class DevicePIR
 {
     private:
@@ -8,7 +10,7 @@ class DevicePIR
         bool is_motion = false;
 
     public:
-        DevicePIR()
+        void SetUp()
         {
             pinMode(pir_pin, INPUT);
         }
