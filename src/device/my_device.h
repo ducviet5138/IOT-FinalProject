@@ -43,6 +43,27 @@ class MyDevice
             client.setCallback(callback);
         }  
 
+        void reconnect()
+        {
+            while (!client.connected())
+            {
+                String clientId = "ESP32Client-21127112-21127141-21127203";
+
+                Serial.print("Connecting to server... ");
+                if (client.connect(clientId.c_str()))
+                {
+                    Serial.println("Connected!");
+                    client.subscribe(GetChannel("WorkingMode"));
+                }
+                else
+                {
+                    Serial.println("Failed!");
+                    delay(5000);
+                }
+            }
+        }
+
+
         void callback(char* topic, byte* message, unsigned int length);
         {
             String buffer = "";
@@ -54,6 +75,23 @@ class MyDevice
         {
             return (main_channel + pram).c_str();
         } 
+
+        void GetPersonStatus()
+        {
+            person_in_room = pir.IsMotion();
+        }
+
+        void Sync(String param, String value)
+        {
+            client.publish(GetChannel(pram), value.c_str());
+        }
+
+        void SyncTempAndHumid()
+        {
+            Sync("temperature", dht.GetTemperature());
+            Sync("humid", dht.GetHumidity());
+        }
+
 };
 
 #endif
