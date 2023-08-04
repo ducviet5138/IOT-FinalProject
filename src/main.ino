@@ -1,7 +1,6 @@
 #include "device/my_device.h"
 
 MyDevice md;
-long countLoop = 0;
 
 void setup()
 {
@@ -11,8 +10,6 @@ void setup()
 
 void loop()
 {
-    ++countLoop;
-    Serial.println("Loop: "+ String(countLoop));
     md.ReconnectToServer();
 
     md.UpdateDHT();
