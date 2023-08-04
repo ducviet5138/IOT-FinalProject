@@ -17,6 +17,9 @@ void callback(char* topic, byte* message, unsigned int length)
     if (buffer == "SafetyMode") dMode.UpdateWorkingMode(0);
 }
 
+
+
+// ========== [Define methods for MyDevice] ========== //
 void MyDevice::SetUp()
 {
     dht.SetUp();
@@ -34,6 +37,11 @@ void MyDevice::SetUp()
 
     SendMessage_SafetyMode = SendMessage_WorkingMode = 0;
     TurnOffDevices_SafetyMode = 0;
+}
+
+const char* MyDevice::GetChannel(String param)
+{
+    return (main_channel + param).c_str();
 }
 
 void MyDevice::reconnect()
@@ -67,27 +75,20 @@ void MyDevice::Sync(String param, String value)
    client.publish(GetChannel(param), value.c_str(), 1);
 }
 
-const char* MyDevice::GetChannel(String param)
-{
-    return (main_channel + param).c_str();
-}
-
 void MyDevice::UpdateWorkingMode(bool val)
 {
     _dMode->UpdateWorkingMode(val);
 }
 
+
+
 // ========== [Call another device's function] ========== //
 // DHT
 void MyDevice::SyncTempAndHumid()
 {
+    dht.Update();
     Sync("temperature", dht.GetTemperature());
     Sync("humid", dht.GetHumid());
-}
-
-void MyDevice::UpdateDHT()
-{
-    dht.Update();
 }
 
 

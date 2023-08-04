@@ -36,7 +36,7 @@ class MyDevice
     public:
         void SetUp();
 
-        const char* GetChannel(String pram);
+        const char* GetChannel(String param);
         void reconnect();
         void ReconnectToServer();
         void Sync(String param, String value);
@@ -44,7 +44,6 @@ class MyDevice
 
         // DHT
         void SyncTempAndHumid();
-        void UpdateDHT();
 
         // IR
         void UseIR(char* device);

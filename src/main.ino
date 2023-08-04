@@ -11,9 +11,6 @@ void setup()
 void loop()
 {
     md.ReconnectToServer();
-
-    md.UpdateDHT();
     md.SyncTempAndHumid();
-
     md.ChooseSuitableMode();
 }
