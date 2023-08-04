@@ -2,7 +2,6 @@
 #define DEVICE_IR_H
 #include "my_map.h"
 #include <vector>
-#include <arduino.h>
 
 using namespace std;
 

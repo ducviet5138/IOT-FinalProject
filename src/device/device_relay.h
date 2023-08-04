@@ -2,8 +2,6 @@
 #define DEVICE_RELAY_H
 
 #include "my_map.h"
-#include <Arduino.h>
-
 
 using namespace std;
 

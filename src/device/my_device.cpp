@@ -60,13 +60,13 @@ void MyDevice::reconnect()
 
 void MyDevice::ReconnectToServer()
 {
-    if (!client.connected()) reconnect();
+    reconnect();
     client.loop();
 }
 
 void MyDevice::Sync(String param, String value)
 {
-    client.publish(GetChannel(param), value.c_str());
+    Serial.println("Is pub: " + String(client.publish(GetChannel(param), value.c_str())));
 }
 
 const char* MyDevice::GetChannel(String param)

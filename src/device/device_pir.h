@@ -1,8 +1,6 @@
 #ifndef DEVICE_PIR_H
 #define DEVICE_PIR_H
 
-#include <Arduino.h>
-
 class DevicePIR
 {
     private:
