@@ -40,7 +40,7 @@ void MyDevice::reconnect()
 {
     while (!client.connected())
     {
-        String clientId = "ESP32Client-21127112-21127141-21127203";
+        String clientId = "ESP32Client-" + String(random(0xffff), HEX);
 
         Serial.print("Connecting to server... ");
         if (client.connect(clientId.c_str()))
@@ -64,7 +64,7 @@ void MyDevice::ReconnectToServer()
 
 void MyDevice::Sync(String param, String value)
 {
-   String(client.publish(GetChannel(param), value.c_str()));
+   client.publish(GetChannel(param), value.c_str(), 1);
 }
 
 const char* MyDevice::GetChannel(String param)
