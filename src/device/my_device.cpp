@@ -140,6 +140,8 @@ void MyDevice::ChooseSuitableMode()
 // Working Mode
 void MyDevice::HandleWorkingMode()
 {
+    SendMessage_SafetyMode = TurnOffDevices_SafetyMode = 0;
+    Serial.println("Working Mode");
 }
 
 
@@ -147,11 +149,12 @@ void MyDevice::HandleWorkingMode()
 // Safety Mode
 void MyDevice::HandleSafetyMode()
 {
+    Serial.println("Safety Mode");
     SendMessage_WorkingMode = 0;
     
     if (pir.GetPersonStatus() && !SendMessage_SafetyMode)
     {
-        String message = "Strangers are in the room!";
+        String message = "1";
         Sync("warning", message.c_str());
         SendMessage_SafetyMode = 1;
     }
