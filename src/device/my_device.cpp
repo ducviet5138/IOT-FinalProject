@@ -26,15 +26,13 @@ void MyDevice::SetUp()
     ir.SetUp();
 
     _dMode = &dMode;
+    
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid, pw, 6);
 
-    client = PubSubClient(espClient);
-    client.setServer(server, 1883);
-    client.setCallback(callback);
-
-    WiFi.begin(ssid, pw);
+    client = PubSubClient(server, 1883, callback, espClient);
 
     SendMessage_SafetyMode = SendMessage_WorkingMode = 0;
-
     TurnOffDevices_SafetyMode = 0;
 }
 
