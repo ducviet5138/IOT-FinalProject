@@ -21,7 +21,7 @@ class MyDevice
 
         DeviceMode* _dMode;
 
-        const char* server = "broker.hivemq.com";
+        const char* server = "broker.emqx.io";
         const String main_channel = "/GDrpD2J3jxvzQEy7vGOn/";
         WiFiClient espClient;
         PubSubClient client;

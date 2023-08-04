@@ -1,6 +1,11 @@
 #include "my_device.h"
 #include "device/device_mode.h"
 
+
+// ========== [Global variables] ========== //
+bool isPrint_SafetyMode = 0;
+bool isPrint_WorkingMode = 0;
+
 DeviceMode dMode;
 void callback(char* topic, byte* message, unsigned int length)
 {
@@ -141,7 +146,12 @@ void MyDevice::ChooseSuitableMode()
 void MyDevice::HandleWorkingMode()
 {
     SendMessage_SafetyMode = TurnOffDevices_SafetyMode = 0;
-    Serial.println("Working Mode");
+    if (!isPrint_WorkingMode)
+    {
+        Serial.println("Working Mode");
+        isPrint_WorkingMode = 1;
+        isPrint_SafetyMode = 0;
+    }
 }
 
 
@@ -149,7 +159,13 @@ void MyDevice::HandleWorkingMode()
 // Safety Mode
 void MyDevice::HandleSafetyMode()
 {
-    Serial.println("Safety Mode");
+    if (!isPrint_SafetyMode)
+    {
+        Serial.println("Safety Mode");
+        isPrint_SafetyMode = 1;
+        isPrint_WorkingMode = 0;
+    }
+
     SendMessage_WorkingMode = 0;
     
     if (pir.GetPersonStatus() && !SendMessage_SafetyMode)
