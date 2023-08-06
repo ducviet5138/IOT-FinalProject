@@ -72,7 +72,7 @@ void MyDevice::ReconnectToServer()
 
 void MyDevice::Sync(String param, String value)
 {
-   client.publish(GetChannel(param), value.c_str(), 1);
+   client.publish(GetChannel(param), value.c_str());
 }
 
 void MyDevice::UpdateWorkingMode(bool val)

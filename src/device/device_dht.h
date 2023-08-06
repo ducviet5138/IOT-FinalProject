@@ -8,31 +8,27 @@ class DeviceDHT
     private:
         DHTesp dht;
         const int dht_pin = 15;
-        String temperature;
-        String humid;
+        TempAndHumidity data;
 
     public:
         void SetUp()
         {
             dht.setup(dht_pin, DHTesp::DHT22);
-            temperature = humid = "";
         }
 
         void Update()
         {
-            TempAndHumidity data = dht.getTempAndHumidity();
-            temperature = String(data.temperature, 2);
-            humid = String(data.humidity, 1);
+            data = dht.getTempAndHumidity();
         }
 
         String GetTemperature()
         {
-            return temperature;
+            return String(data.temperature, 2);
         }
 
         String GetHumid()
         {
-            return humid;
+            return String(data.humidity, 2);
         }
 };
 
