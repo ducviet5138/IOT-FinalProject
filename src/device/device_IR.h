@@ -9,26 +9,48 @@ class DeviceIR
 {
     private:
         const int ir_pin = 4;
-        MyMap<vector<vector<int>>> _devices;
+        vector<vector<int>> signal;
+        bool isOn;
         
     public:
-        DeviceIR(){
-            _devices.Add("tv", {{1, 203}, {200, 112}});
-            _devices.Add("fan", {{1, 112}, {200, 141}});
-            _devices.Add("ac", {{1, 141}, {200, 203}});
+        DeviceIR(vector<vector<int>> userSignal)
+        {
+            signal = userSignal;
+            isOn = 0;
         }
 
-        void SetUp(){
+        void SetUp()
+        {
             pinMode(ir_pin, OUTPUT);
         }
 
-        void UseIR(char* device_name){
+        void TurnOn()
+        {
+            if (isOn) return;
+            isOn = 1;
+
             for (int i = 0; i < 2; i++)
             {
                 digitalWrite(ir_pin, LOW);
-                delay(_devices.Get(device_name)[i][0]);
+                delay(signal[i][0]);
                 digitalWrite(ir_pin, HIGH);
-                delay(_devices.Get(device_name)[i][1]);
+                delay(signal[i][1]);
+            }
+
+            digitalWrite(ir_pin, LOW);
+        }
+
+        void TurnOff()
+        {
+            if (!isOn) return;
+            isOn = 0;
+
+            for (int i = 0; i < 2; i++)
+            {
+                digitalWrite(ir_pin, LOW);
+                delay(signal[i][0]);
+                digitalWrite(ir_pin, HIGH);
+                delay(signal[i][1]);
             }
 
             digitalWrite(ir_pin, LOW);

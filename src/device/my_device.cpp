@@ -1,20 +1,19 @@
 #include "my_device.h"
 #include "device/device_mode.h"
 
-
 // ========== [Global variables] ========== //
 bool isPrint_SafetyMode = 0;
 bool isPrint_WorkingMode = 0;
 
-DeviceMode dMode;
+DeviceMode deviceMode;
 void callback(char* topic, byte* message, unsigned int length)
 {
     String buffer = "";
     for (int i = 0; i < length; i++) buffer += (char)message[i];
     Serial.println(buffer);
 
-    if (buffer == "WorkingMode") dMode.UpdateWorkingMode(1);
-    if (buffer == "SafetyMode") dMode.UpdateWorkingMode(0);
+    if (buffer == "WorkingMode") deviceMode.UpdateWorkingMode(1);
+    if (buffer == "SafetyMode") deviceMode.UpdateWorkingMode(0);
 }
 
 
@@ -26,9 +25,12 @@ void MyDevice::SetUp()
     lcd.SetUp();
     pir.SetUp();
     relay.SetUp();
-    ir.SetUp();
 
-    _dMode = &dMode;
+    ac = new DeviceIR({{1, 203}, {200, 112}});
+    fan = new DeviceIR({{1, 112}, {200, 141}});
+    tv = new DeviceIR({{1, 141}, {200, 203}});  
+
+    dMode = &deviceMode;
     
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, pw, 6);
@@ -39,8 +41,6 @@ void MyDevice::SetUp()
     SendWarningMessage = 0;
 
     countTime = 0;
-
-    UseAC = 0;
 }
 
 const char* MyDevice::GetChannel(String param)
@@ -81,7 +81,7 @@ void MyDevice::Sync(String param, String value)
 
 void MyDevice::UpdateWorkingMode(bool val)
 {
-    _dMode->UpdateWorkingMode(val);
+    dMode->UpdateWorkingMode(val);
 }
 
 
@@ -93,14 +93,6 @@ void MyDevice::SyncTempAndHumid()
     dht.Update();
     Sync("temperature", dht.GetTemperature());
     Sync("humid", dht.GetHumid());
-}
-
-
-
-// IR
-void MyDevice::UseIR(char* device)
-{
-    ir.UseIR(device);
 }
 
 
@@ -139,7 +131,7 @@ void MyDevice::relayOff(char* param)
 // Choose suitable mode
 void MyDevice::ChooseSuitableMode()
 {
-    if (_dMode->GetWorkingMode()) HandleWorkingMode();
+    if (dMode->GetWorkingMode()) HandleWorkingMode();
     else HandleSafetyMode();
 }
 
@@ -164,11 +156,7 @@ void MyDevice::HandleWorkingMode()
         // Turn on room's electricity
         relayOn((char*) "room");
 
-        if (!UseAC and dht.GetTemperature().toFloat() > 30)
-        {
-            UseIR((char*) "ac");
-            UseAC = 1;
-        }
+        if (dht.GetTemperature().toFloat() > 30) ac->TurnOn();
 
         DoOnceWorkingMode = 1;
     }
@@ -184,18 +172,14 @@ void MyDevice::HandleWorkingMode()
     {
         lcdOff();
 
-        if (millis() - countTime > 20000)
+        if (millis() - countTime > 2000)
         {
             relayOff((char*) "light");
-            UseIR((char*) "tv");
-            UseIR((char*) "fan");
+            tv->TurnOff();
+            fan->TurnOff();
         }
 
-        if (millis() - countTime > 30000 and UseAC)
-        {
-            UseIR((char*) "ac");
-            UseAC = 0;
-        }
+        if (millis() - countTime > 30000) ac->TurnOff();
     }
 }
 
@@ -224,21 +208,17 @@ void MyDevice::HandleSafetyMode()
         // Remember to delete
         isPrint_WorkingMode = 0;
 
-        String tv = "tv";
-        String fan = "fan";
-        String air_conditioner = "ac";
-
         // Turn off electric devices
-        UseIR((char*) tv.c_str());
-        UseIR((char*) fan.c_str());
-        UseIR((char*) air_conditioner.c_str());
+        tv->TurnOff();
+        fan->TurnOff();
+        ac->TurnOff();
         
         String light = "light";
         String room = "room";
 
         // Turn off light and room's electricity
-        relayOff((char*) light.c_str());
-        relayOff((char*) room.c_str());
+        relayOff((char*) "light");
+        relayOff((char*) "room");
 
         // Turn off LCD
         lcdOff();

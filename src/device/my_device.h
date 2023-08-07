@@ -17,9 +17,11 @@ class MyDevice
         DeviceLCD lcd;
         DevicePIR pir;
         DeviceRelay relay;
-        DeviceIR ir;
+        DeviceIR *ac;
+        DeviceIR *tv;
+        DeviceIR *fan;
 
-        DeviceMode* _dMode;
+        DeviceMode* dMode;
 
         const char* server = "broker.emqx.io";
         const String main_channel = "/GDrpD2J3jxvzQEy7vGOn/";
@@ -34,11 +36,9 @@ class MyDevice
         bool SendWarningMessage;
 
         long countTime;
-
-        bool UseAC;
     public:
         void SetUp();
-
+        
         const char* GetChannel(String param);
         void reconnect();
         void ReconnectToServer();
@@ -47,9 +47,6 @@ class MyDevice
 
         // DHT
         void SyncTempAndHumid();
-
-        // IR
-        void UseIR(char* device);
 
         // LCD
         void lcdOn();
