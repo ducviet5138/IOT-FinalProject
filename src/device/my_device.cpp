@@ -37,6 +37,8 @@ void MyDevice::SetUp()
 
     DoOnceSafetyMode = DoOnceWorkingMode = 0;
     SendWarningMessage = 0;
+
+    countTime = 0;
 }
 
 const char* MyDevice::GetChannel(String param)
@@ -170,7 +172,10 @@ void MyDevice::HandleWorkingMode()
         relayOn((char*) "light");
         lcdOn();
         lcdPrint();
-    } else {
+
+        countTime = millis();
+    } else 
+    {
         lcdOff();
     }
 }
@@ -191,7 +196,7 @@ void MyDevice::HandleSafetyMode()
     {
         String message = "1";
         Sync("warning", message.c_str());
-        SendMessage_SafetyMode = 1;
+        SendWarningMessage = 1;
     }
     
     if (!DoOnceSafetyMode)

@@ -29,12 +29,11 @@ class MyDevice
         const String ssid = "Wokwi-GUEST";
         const String pw = "";
 
-        bool SendMessage_WorkingMode;
-        bool SendMessage_SafetyMode;
-
         bool DoOnceSafetyMode;
         bool DoOnceWorkingMode;
         bool SendWarningMessage;
+
+        long countTime;
     public:
         void SetUp();
 
