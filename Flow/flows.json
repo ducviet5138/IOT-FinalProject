@@ -1,0 +1,688 @@
+[
+    {
+        "id": "6b3f72761ac314f0",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8efe5c2b3e114420",
+        "type": "mqtt in",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2dc94d4363cba7c5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "8b0427e22a747406",
+                "020883dbb5fc8f83"
+            ]
+        ]
+    },
+    {
+        "id": "8b0427e22a747406",
+        "type": "ui_gauge",
+        "z": "6b3f72761ac314f0",
+        "name": "temp",
+        "group": "3e285108bacbbc63",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "temp",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#e60f0f"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 530,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "7478da9b06d91442",
+        "type": "mqtt in",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/humid",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2dc94d4363cba7c5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "9993be5028eb208d",
+                "90b0905e31bbcc85"
+            ]
+        ]
+    },
+    {
+        "id": "9993be5028eb208d",
+        "type": "ui_gauge",
+        "z": "6b3f72761ac314f0",
+        "name": "humid",
+        "group": "5005f177aa525c5d",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humid",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 530,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2a6cd42d6f6141ba",
+        "type": "mqtt out",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/WorkingMode",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2dc94d4363cba7c5",
+        "x": 1200,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "ca22a8931207663a",
+        "type": "switch",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 520,
+        "wires": [
+            [
+                "457ecb7981e6ccec"
+            ],
+            [
+                "807c633cbcbeb678"
+            ]
+        ]
+    },
+    {
+        "id": "457ecb7981e6ccec",
+        "type": "change",
+        "z": "6b3f72761ac314f0",
+        "name": "mode_off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "SafetyMode",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 460,
+        "wires": [
+            [
+                "2a6cd42d6f6141ba"
+            ]
+        ]
+    },
+    {
+        "id": "807c633cbcbeb678",
+        "type": "change",
+        "z": "6b3f72761ac314f0",
+        "name": "mode_on",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "WorkingMode",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 840,
+        "y": 600,
+        "wires": [
+            [
+                "2a6cd42d6f6141ba"
+            ]
+        ]
+    },
+    {
+        "id": "ca3eb9e54db3df4c",
+        "type": "mqtt in",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/warning",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "2dc94d4363cba7c5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 760,
+        "wires": [
+            [
+                "3048be018e515ae6"
+            ]
+        ]
+    },
+    {
+        "id": "3048be018e515ae6",
+        "type": "switch",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 390,
+        "y": 760,
+        "wires": [
+            [
+                "e710da4febddcf4b"
+            ],
+            [
+                "94c7e643f2f0f352"
+            ]
+        ]
+    },
+    {
+        "id": "94c7e643f2f0f352",
+        "type": "change",
+        "z": "6b3f72761ac314f0",
+        "name": "Warning",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Someone entered your room",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Node red",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 820,
+        "wires": [
+            [
+                "3e3ffaa3ad020436"
+            ]
+        ]
+    },
+    {
+        "id": "e710da4febddcf4b",
+        "type": "change",
+        "z": "6b3f72761ac314f0",
+        "name": "No_Warning",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Node red",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 720,
+        "wires": [
+            [
+                "3e3ffaa3ad020436"
+            ]
+        ]
+    },
+    {
+        "id": "257363cd28824011",
+        "type": "inject",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "test",
+        "payload": "1",
+        "payloadType": "str",
+        "x": 110,
+        "y": 1260,
+        "wires": [
+            [
+                "e82b7991dc7e8199"
+            ]
+        ]
+    },
+    {
+        "id": "e82b7991dc7e8199",
+        "type": "switch",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 1260,
+        "wires": [
+            [
+                "9218a5fe8fef5332"
+            ],
+            [
+                "4b55b6dfc9c50267"
+            ]
+        ]
+    },
+    {
+        "id": "4b55b6dfc9c50267",
+        "type": "change",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Not warning",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9218a5fe8fef5332",
+        "type": "change",
+        "z": "6b3f72761ac314f0",
+        "name": "warning",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Warning!!!!!",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Warning message",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 1260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c21c0b8913b3845",
+        "type": "telegram sender",
+        "z": "6b3f72761ac314f0",
+        "name": "Bot",
+        "bot": "a9e19a77db3e194b",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 990,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e3ffaa3ad020436",
+        "type": "function",
+        "z": "6b3f72761ac314f0",
+        "name": "setting messages",
+        "func": "var msg1 = { \"topic\": msg.topic, \"payload\": { \"chatId\": 955526463, \"type\": 'message', \"content\": msg.topic + '\\n\\n' + msg.payload } };\nreturn msg1;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 780,
+        "wires": [
+            [
+                "8c21c0b8913b3845"
+            ]
+        ]
+    },
+    {
+        "id": "8ad6964f0da8c2b5",
+        "type": "ui_switch",
+        "z": "6b3f72761ac314f0",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "group": "d6bac2ec52f7c9d2",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 490,
+        "y": 520,
+        "wires": [
+            [
+                "ca22a8931207663a"
+            ]
+        ]
+    },
+    {
+        "id": "61a799a07b237d70",
+        "type": "telegram receiver",
+        "z": "6b3f72761ac314f0",
+        "name": "Receive_Message",
+        "bot": "a9e19a77db3e194b",
+        "saveDataDir": "D:/",
+        "filterCommands": false,
+        "x": 90,
+        "y": 520,
+        "wires": [
+            [
+                "6aca031a36465f84"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6aca031a36465f84",
+        "type": "function",
+        "z": "6b3f72761ac314f0",
+        "name": "function 3",
+        "func": "var content = msg.payload.content;\nvar id = msg.payload.chatId;\nvar type = msg.payload.type;\n\nif (type == \"message\")\n{\n    if(content == '/safetymode')\n        msg.payload = false;\n    \n    if(content == '/workingmode')\n        msg.payload = true;\n} else{\n    msg.payload = \"not handle\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 520,
+        "wires": [
+            [
+                "8ad6964f0da8c2b5"
+            ]
+        ]
+    },
+    {
+        "id": "020883dbb5fc8f83",
+        "type": "debug",
+        "z": "6b3f72761ac314f0",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "90b0905e31bbcc85",
+        "type": "debug",
+        "z": "6b3f72761ac314f0",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "2dc94d4363cba7c5",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.emqx.io",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3e285108bacbbc63",
+        "type": "ui_group",
+        "name": "Temp",
+        "tab": "02b06cbe16ed1a53",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5005f177aa525c5d",
+        "type": "ui_group",
+        "name": "humid",
+        "tab": "02b06cbe16ed1a53",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a9e19a77db3e194b",
+        "type": "telegram bot",
+        "botname": "Wokwi Notification",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "d6bac2ec52f7c9d2",
+        "type": "ui_group",
+        "name": "mode",
+        "tab": "02b06cbe16ed1a53",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "02b06cbe16ed1a53",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
