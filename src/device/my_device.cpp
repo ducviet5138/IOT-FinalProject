@@ -36,7 +36,7 @@ void MyDevice::SetUp()
     client = PubSubClient(server, 1883, callback, espClient);
 
     SendMessage_SafetyMode = SendMessage_WorkingMode = 0;
-    TurnOffDevices_SafetyMode = 0;
+    TurnOffDevices_SafetyMode = TurnOnDevices_WorkingMode = 0;
 }
 
 const char* MyDevice::GetChannel(String param)
@@ -150,6 +150,19 @@ void MyDevice::HandleWorkingMode()
         Serial.println("Working Mode");
         isPrint_WorkingMode = 1;
         isPrint_SafetyMode = 0;
+    }
+
+    if (!TurnOnDevices_WorkingMode)
+    {
+        String room = "room";
+
+        // Turn on room's electricity
+        relayOn((char*) room.c_str());
+
+        // Turn on LCD
+        lcdOn();
+
+        TurnOnDevices_WorkingMode = 1;
     }
 }
 
