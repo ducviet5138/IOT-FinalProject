@@ -35,8 +35,8 @@ void MyDevice::SetUp()
 
     client = PubSubClient(server, 1883, callback, espClient);
 
-    SendMessage_SafetyMode = SendMessage_WorkingMode = 0;
-    TurnOffDevices_SafetyMode = TurnOnDevices_WorkingMode = 0;
+    DoOnceSafetyMode = DoOnceWorkingMode = 0;
+    SendWarningMessage = 0;
 }
 
 const char* MyDevice::GetChannel(String param)
@@ -144,7 +144,6 @@ void MyDevice::ChooseSuitableMode()
 // Working Mode
 void MyDevice::HandleWorkingMode()
 {
-    SendMessage_SafetyMode = TurnOffDevices_SafetyMode = 0;
     if (!isPrint_WorkingMode)
     {
         Serial.println("Working Mode");
@@ -152,8 +151,12 @@ void MyDevice::HandleWorkingMode()
         isPrint_SafetyMode = 0;
     }
 
-    if (!TurnOnDevices_WorkingMode)
+    if (!DoOnceWorkingMode)
     {
+        DoOnceSafetyMode = SendWarningMessage = 0;
+        // Remember to delete
+        isPrint_SafetyMode = 0;
+
         String room = "room";
 
         // Turn on room's electricity
@@ -162,7 +165,7 @@ void MyDevice::HandleWorkingMode()
         // Turn on LCD
         lcdOn();
 
-        TurnOnDevices_WorkingMode = 1;
+        DoOnceWorkingMode = 1;
     }
 }
 
@@ -177,18 +180,20 @@ void MyDevice::HandleSafetyMode()
         isPrint_SafetyMode = 1;
         isPrint_WorkingMode = 0;
     }
-
-    SendMessage_WorkingMode = 0;
     
-    if (pir.GetPersonStatus() && !SendMessage_SafetyMode)
+    if (pir.GetPersonStatus() && !SendWarningMessage)
     {
         String message = "1";
         Sync("warning", message.c_str());
         SendMessage_SafetyMode = 1;
     }
     
-    if (!TurnOffDevices_SafetyMode)
+    if (!DoOnceSafetyMode)
     {
+        DoOnceWorkingMode = 0;
+        // Remember to delete
+        isPrint_WorkingMode = 0;
+
         String tv = "tv";
         String fan = "fan";
         String air_conditioner = "ac";
@@ -208,6 +213,6 @@ void MyDevice::HandleSafetyMode()
         // Turn off LCD
         lcdOff();
 
-        TurnOffDevices_SafetyMode = 1;
+        DoOnceSafetyMode = 1;
     }
 }

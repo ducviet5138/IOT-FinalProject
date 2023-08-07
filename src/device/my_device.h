@@ -32,8 +32,9 @@ class MyDevice
         bool SendMessage_WorkingMode;
         bool SendMessage_SafetyMode;
 
-        bool TurnOffDevices_SafetyMode;
-        bool TurnOnDevices_WorkingMode;
+        bool DoOnceSafetyMode;
+        bool DoOnceWorkingMode;
+        bool SendWarningMessage;
     public:
         void SetUp();
 
