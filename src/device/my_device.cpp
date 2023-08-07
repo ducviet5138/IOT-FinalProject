@@ -177,6 +177,18 @@ void MyDevice::HandleWorkingMode()
     } else 
     {
         lcdOff();
+
+        if (millis() - countTime > 20000)
+        {
+            relayOff((char*) "light");
+            UseIR((char*) "tv");
+            UseIR((char*) "fan");
+        }
+
+        if (millis() - countTime > 30000)
+        {
+            UseIR((char*) "ac");
+        }
     }
 }
 
