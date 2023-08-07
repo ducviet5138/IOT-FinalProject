@@ -1,4 +1,5 @@
 # Wokwi in VSCode
+`Lưu ý:` Chỉ hoạt động ổn định trên Linux và MacOS.
 ## 1. Cài đặt Wokwi trong VSCode
 ```
 https://marketplace.visualstudio.com/items?itemName=Wokwi.wokwi-vscode
