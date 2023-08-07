@@ -162,10 +162,14 @@ void MyDevice::HandleWorkingMode()
         // Turn on room's electricity
         relayOn((char*) room.c_str());
 
-        // Turn on LCD
-        lcdOn();
-
         DoOnceWorkingMode = 1;
+    }
+
+    if (pir.GetPersonStatus())
+    {
+        relayOn((char*) "light");
+        lcdOn();
+        lcdPrint();
     }
 }
 
