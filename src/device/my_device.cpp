@@ -1,7 +1,6 @@
 #include "my_device.h"
 #include "device/device_mode.h"
 
-// ========== [Global variables] ========== //
 bool isPrint_SafetyMode = 0;
 bool isPrint_WorkingMode = 0;
 
@@ -30,6 +29,10 @@ void MyDevice::SetUp()
     fan = new DeviceIR({{1, 112}, {200, 141}});
     tv = new DeviceIR({{1, 141}, {200, 203}});  
 
+    ac->SetUp();
+    fan->SetUp();
+    tv->SetUp();
+
     dMode = &deviceMode;
     
     WiFi.mode(WIFI_STA);
@@ -40,7 +43,7 @@ void MyDevice::SetUp()
     DoOnceSafetyMode = DoOnceWorkingMode = 0;
     SendWarningMessage = 0;
 
-    countTime = 0;
+    countTime = 2e+9;
 }
 
 const char* MyDevice::GetChannel(String param)
@@ -156,7 +159,7 @@ void MyDevice::HandleWorkingMode()
         // Turn on room's electricity
         relayOn((char*) "room");
 
-        if (dht.GetTemperature().toFloat() > 30) ac->TurnOn();
+       
 
         DoOnceWorkingMode = 1;
     }
@@ -167,19 +170,26 @@ void MyDevice::HandleWorkingMode()
         lcdOn();
         lcdPrint();
 
+        if (dht.GetTemperature().toFloat() > 30) ac->TurnOn();
         countTime = millis();
     } else 
     {
         lcdOff();
-
-        if (millis() - countTime > 2000)
+        if (long(millis()) - countTime > 2000)
         {
-            relayOff((char*) "light");
-            tv->TurnOff();
-            fan->TurnOff();
+           relayOff((char*) "light");
+           //if tv, fan are turned on, the ir will shine
+           tv->TurnOff();
+           fan->TurnOff();
         }
 
-        if (millis() - countTime > 30000) ac->TurnOff();
+
+        if (long(millis()) - countTime > 4000)
+        {
+            //ac are turned on, the ir will shine
+            ac->TurnOff();
+        }
+         
     }
 }
 
