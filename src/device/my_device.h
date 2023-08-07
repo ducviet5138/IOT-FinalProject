@@ -34,6 +34,8 @@ class MyDevice
         bool SendWarningMessage;
 
         long countTime;
+
+        bool UseAC;
     public:
         void SetUp();
 

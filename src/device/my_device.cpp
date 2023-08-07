@@ -39,6 +39,8 @@ void MyDevice::SetUp()
     SendWarningMessage = 0;
 
     countTime = 0;
+
+    UseAC = 0;
 }
 
 const char* MyDevice::GetChannel(String param)
@@ -159,10 +161,14 @@ void MyDevice::HandleWorkingMode()
         // Remember to delete
         isPrint_SafetyMode = 0;
 
-        String room = "room";
-
         // Turn on room's electricity
-        relayOn((char*) room.c_str());
+        relayOn((char*) "room");
+
+        if (!UseAC and dht.GetTemperature().toFloat() > 30)
+        {
+            UseIR((char*) "ac");
+            UseAC = 1;
+        }
 
         DoOnceWorkingMode = 1;
     }
@@ -185,9 +191,10 @@ void MyDevice::HandleWorkingMode()
             UseIR((char*) "fan");
         }
 
-        if (millis() - countTime > 30000)
+        if (millis() - countTime > 30000 and UseAC)
         {
             UseIR((char*) "ac");
+            UseAC = 0;
         }
     }
 }
