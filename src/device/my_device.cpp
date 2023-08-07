@@ -170,6 +170,8 @@ void MyDevice::HandleWorkingMode()
         relayOn((char*) "light");
         lcdOn();
         lcdPrint();
+    } else {
+        lcdOff();
     }
 }
 
