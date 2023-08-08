@@ -15,7 +15,11 @@ class DeviceIR
     public:
         DeviceIR(vector<vector<int>> userSignal)
         {
-            swap(signal, userSignal);
+            for (size_t i { }; i < userSignal.size(); i++)
+            {
+                signal.push_back(userSignal.at(i));
+            }
+
             isOn = 0;
         }
 
