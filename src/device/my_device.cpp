@@ -1,9 +1,6 @@
 #include "my_device.h"
 #include "device/device_mode.h"
 
-bool isPrint_SafetyMode = 0;
-bool isPrint_WorkingMode = 0;
-
 DeviceMode deviceMode;
 void callback(char* topic, byte* message, unsigned int length)
 {
@@ -143,23 +140,13 @@ void MyDevice::ChooseSuitableMode()
 // Working Mode
 void MyDevice::HandleWorkingMode()
 {
-    if (!isPrint_WorkingMode)
-    {
-        Serial.println("Working Mode");
-        isPrint_WorkingMode = 1;
-        isPrint_SafetyMode = 0;
-    }
 
     if (!DoOnceWorkingMode)
     {
         DoOnceSafetyMode = SendWarningMessage = 0;
-        // Remember to delete
-        isPrint_SafetyMode = 0;
-
+        
         // Turn on room's electricity
         relayOn((char*) "room");
-
-       
 
         DoOnceWorkingMode = 1;
     }
@@ -197,14 +184,7 @@ void MyDevice::HandleWorkingMode()
 
 // Safety Mode
 void MyDevice::HandleSafetyMode()
-{
-    if (!isPrint_SafetyMode)
-    {
-        Serial.println("Safety Mode");
-        isPrint_SafetyMode = 1;
-        isPrint_WorkingMode = 0;
-    }
-    
+{   
     if (pir.GetPersonStatus() && !SendWarningMessage)
     {
         String message = "1";
@@ -215,8 +195,6 @@ void MyDevice::HandleSafetyMode()
     if (!DoOnceSafetyMode)
     {
         DoOnceWorkingMode = 0;
-        // Remember to delete
-        isPrint_WorkingMode = 0;
 
         // Turn off electric devices
         tv->TurnOff();
