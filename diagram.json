@@ -52,14 +52,6 @@
       "attrs": { "pins": "i2c" }
     },
     {
-      "type": "wokwi-vcc",
-      "id": "vcc4",
-      "top": 265.9,
-      "left": -633.13,
-      "rotate": 270,
-      "attrs": {}
-    },
-    {
       "type": "wokwi-gnd",
       "id": "gnd4",
       "top": 225.59,
@@ -222,7 +214,6 @@
     [ "pir1:GND", "gnd3:GND", "limegreen", [ "h0" ] ],
     [ "dht1:VCC", "vcc1:VCC", "red", [ "h0" ] ],
     [ "dht1:GND", "gnd2:GND", "limegreen", [ "h0" ] ],
-    [ "lcd2:VCC", "vcc4:VCC", "red", [ "h0" ] ],
     [ "gnd4:GND", "lcd2:GND", "limegreen", [ "v0" ] ],
     [ "esp:D32", "relay1:IN", "orange", [ "h0" ] ],
     [ "esp:D13", "relay2:IN", "orange", [ "h0" ] ],
@@ -252,7 +243,8 @@
     [ "led4:C", "gnd7:GND", "limegreen", [ "v0" ] ],
     [ "led2:C", "gnd7:GND", "limegreen", [ "v0" ] ],
     [ "led5:C", "gnd7:GND", "limegreen", [ "v0" ] ],
-    [ "led6:C", "gnd7:GND", "limegreen", [ "v0" ] ]
+    [ "led6:C", "gnd7:GND", "limegreen", [ "v0" ] ],
+    [ "lcd2:VCC", "relay1:COM", "red", [ "h-45.01", "v143.45", "h-122.58", "v37.42" ] ]
   ],
   "dependencies": {}
 }
