@@ -9,15 +9,16 @@ class DeviceIR
 {
     private:
         const int ir_pin = 4;
-        vector<vector<int>> signal;
+        int signal[2][2];
         bool isOn;
         
     public:
         DeviceIR(vector<vector<int>> userSignal)
         {
-            for (size_t i { }; i < userSignal.size(); i++)
+            for (int i = 0; i < 2; i++)
             {
-                signal.push_back(userSignal.at(i));
+                signal[i][0] = userSignal[i][0];
+                signal[i][1] = userSignal[i][1];
             }
 
             isOn = 0;
