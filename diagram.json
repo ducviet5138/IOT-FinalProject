@@ -136,7 +136,7 @@
       "id": "text3",
       "top": 326.46,
       "left": -907.68,
-      "attrs": { "text": "Giả lập thiết bị sử dụng điện trong phòng" }
+      "attrs": { "text": "Giả lập dòng điện đi qua các thiết bị trong phòng" }
     },
     {
       "type": "wokwi-text",
