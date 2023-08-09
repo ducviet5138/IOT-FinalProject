@@ -1,0 +1,135 @@
+[
+    {
+        "id": "b5efc06377c87a0f",
+        "type": "ui_button",
+        "z": "0e6ed75ad493da85",
+        "name": "",
+        "group": "6c07f069a2537b84",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Logout",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "logout",
+        "payload": "logout",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 970,
+        "y": 1180,
+        "wires": [
+            [
+                "4fd336ba3c3df34a"
+            ]
+        ]
+    },
+    {
+        "id": "5958c6f374c04626",
+        "type": "ui_ui_control",
+        "z": "0e6ed75ad493da85",
+        "name": "",
+        "events": "change",
+        "x": 1400,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "08b7770cac49dbb5",
+        "type": "ui_toast",
+        "z": "0e6ed75ad493da85",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1460,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "abe8a948d008438a",
+        "type": "change",
+        "z": "0e6ed75ad493da85",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Cút ra ngoài",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Logout",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 1340,
+        "wires": [
+            [
+                "08b7770cac49dbb5"
+            ]
+        ]
+    },
+    {
+        "id": "4fd336ba3c3df34a",
+        "type": "function",
+        "z": "0e6ed75ad493da85",
+        "name": "check logout",
+        "func": "if (msg.payload == \"logout\")\n{\n    msg.payload = {\"tab\": \"Login page\"}\n    msg.announce = \"Successfully logout\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1150,
+        "y": 1180,
+        "wires": [
+            [
+                "5958c6f374c04626",
+                "abe8a948d008438a"
+            ]
+        ]
+    },
+    {
+        "id": "6c07f069a2537b84",
+        "type": "ui_group",
+        "name": "Logout",
+        "tab": "02b06cbe16ed1a53",
+        "order": 3,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "02b06cbe16ed1a53",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": true
+    }
+]
