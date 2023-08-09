@@ -775,7 +775,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Cút ra ngoài",
+                "to": "Log out successfully",
                 "tot": "str"
             },
             {
