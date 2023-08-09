@@ -295,8 +295,8 @@
         "topic": "test",
         "payload": "1",
         "payloadType": "str",
-        "x": 110,
-        "y": 1260,
+        "x": 230,
+        "y": 1040,
         "wires": [
             [
                 "8153997758131bab"
@@ -325,8 +325,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 350,
-        "y": 1260,
+        "x": 470,
+        "y": 1040,
         "wires": [
             [
                 "ab07839a0619cd94"
@@ -362,8 +362,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
-        "y": 1340,
+        "x": 640,
+        "y": 1120,
         "wires": [
             []
         ]
@@ -394,8 +394,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
-        "y": 1200,
+        "x": 640,
+        "y": 980,
         "wires": [
             []
         ]
@@ -537,23 +537,6 @@
         "wires": []
     },
     {
-        "id": "beefc77f7699328f",
-        "type": "function",
-        "z": "0e6ed75ad493da85",
-        "name": "function 4",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 1440,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "1a109be92431845c",
         "type": "function",
         "z": "0e6ed75ad493da85",
@@ -564,8 +547,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 1640,
+        "x": 410,
+        "y": 1320,
         "wires": [
             [
                 "92f745c4ae696fab",
@@ -579,8 +562,8 @@
         "z": "0e6ed75ad493da85",
         "name": "",
         "events": "change",
-        "x": 520,
-        "y": 1640,
+        "x": 600,
+        "y": 1320,
         "wires": [
             []
         ]
@@ -602,8 +585,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 530,
-        "y": 1740,
+        "x": 610,
+        "y": 1420,
         "wires": []
     },
     {
@@ -643,8 +626,8 @@
         "topicType": "msg",
         "splitLayout": "",
         "className": "",
-        "x": 150,
-        "y": 1640,
+        "x": 230,
+        "y": 1320,
         "wires": [
             [
                 "1a109be92431845c"
@@ -721,6 +704,119 @@
         "y": 200,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "b5efc06377c87a0f",
+        "type": "ui_button",
+        "z": "0e6ed75ad493da85",
+        "name": "",
+        "group": "6c07f069a2537b84",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Logout",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "logout",
+        "payload": "logout",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 910,
+        "y": 1180,
+        "wires": [
+            [
+                "4fd336ba3c3df34a"
+            ]
+        ]
+    },
+    {
+        "id": "5958c6f374c04626",
+        "type": "ui_ui_control",
+        "z": "0e6ed75ad493da85",
+        "name": "",
+        "events": "change",
+        "x": 1260,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "08b7770cac49dbb5",
+        "type": "ui_toast",
+        "z": "0e6ed75ad493da85",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1460,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "abe8a948d008438a",
+        "type": "change",
+        "z": "0e6ed75ad493da85",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Cút ra ngoài",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Logout",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1260,
+        "y": 1300,
+        "wires": [
+            [
+                "08b7770cac49dbb5"
+            ]
+        ]
+    },
+    {
+        "id": "4fd336ba3c3df34a",
+        "type": "function",
+        "z": "0e6ed75ad493da85",
+        "name": "check logout",
+        "func": "if (msg.payload == \"logout\")\n{\n    msg.payload = {\"tab\": \"Login page\"}\n    msg.announce = \"Successfully logout\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 1180,
+        "wires": [
+            [
+                "5958c6f374c04626",
+                "abe8a948d008438a"
+            ]
         ]
     },
     {
@@ -804,6 +900,17 @@
         "tab": "02b06cbe16ed1a53",
         "order": 1,
         "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6c07f069a2537b84",
+        "type": "ui_group",
+        "name": "Logout",
+        "tab": "02b06cbe16ed1a53",
+        "order": 3,
+        "disp": false,
         "width": "6",
         "collapse": false,
         "className": ""
