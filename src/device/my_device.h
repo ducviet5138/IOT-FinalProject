@@ -38,6 +38,7 @@ class MyDevice
         long countTime;
     public:
         void SetUp();
+        ~MyDevice();
         
         const char* GetChannel(String param);
         void reconnect();

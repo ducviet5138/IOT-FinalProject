@@ -43,6 +43,13 @@ void MyDevice::SetUp()
     countTime = 2e+9;
 }
 
+MyDevice::~MyDevice()
+{
+    delete ac;
+    delete fan;
+    delete tv;
+}
+
 const char* MyDevice::GetChannel(String param)
 {
     return (main_channel + param).c_str();
