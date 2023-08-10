@@ -1,12 +1,12 @@
 #ifndef MY_DEVICE_H
 #define MY_DEVICE_H
 
-#include "device/device_dht.h"
-#include "device/device_lcd.h"
-#include "device/device_pir.h"
-#include "device/device_relay.h"
-#include "device/device_IR.h"
-#include "device/device_mode.h"
+#include "device_dht.h"
+#include "device_lcd.h"
+#include "device_pir.h"
+#include "device_relay.h"
+#include "device_IR.h"
+#include "device_mode.h"
 #include <PubSubClient.h>
 #include <WiFi.h>
 

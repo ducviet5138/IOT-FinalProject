@@ -1,4 +1,4 @@
-#include "device/my_device.h"
+#include "my_device.h"
 
 MyDevice md;
 

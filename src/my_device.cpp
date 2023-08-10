@@ -1,5 +1,5 @@
 #include "my_device.h"
-#include "device/device_mode.h"
+#include "device_mode.h"
 
 DeviceMode deviceMode;
 void callback(char* topic, byte* message, unsigned int length)
