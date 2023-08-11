@@ -91,6 +91,11 @@ void MyDevice::UpdateWorkingMode(bool val)
     dMode->UpdateWorkingMode(val);
 }
 
+void MyDevice::SendRequest(String param)
+{
+    httpService.SendRequest(param);
+}
+
 
 
 // ========== [Call another device's function] ========== //

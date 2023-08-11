@@ -13,4 +13,6 @@ void loop()
     md.ReconnectToServer();
     md.SyncTempAndHumid();
     md.ChooseSuitableMode();
+
+    md.SendRequest("/");
 }
