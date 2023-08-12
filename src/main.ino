@@ -14,5 +14,5 @@ void loop()
     md.SyncTempAndHumid();
     md.ChooseSuitableMode();
 
-    md.SendRequest("/");
+    // md.SendRequest("/");
 }

@@ -19,6 +19,15 @@ class DeviceRelay
             m_map.Add("room", relay_room_pin);
         }
 
+        void SetUp()
+        {
+            pinMode(relay_light_pin, OUTPUT);
+            pinMode(relay_room_pin, OUTPUT);
+        }
+
+        ~DeviceRelay()
+        {}
+
         void On(char* param)
         {
             int pin = m_map.Get(param);
@@ -29,13 +38,7 @@ class DeviceRelay
         {
             int pin = m_map.Get(param);
             digitalWrite(pin, LOW);
-        }
-
-        void SetUp()
-        {
-            pinMode(relay_light_pin, OUTPUT);
-            pinMode(relay_room_pin, OUTPUT);
-        }
+        }        
 };
 
 #endif

@@ -11,6 +11,9 @@ class DeviceMode
             working_mode = 1; 
         }
 
+        ~DeviceMode()
+        {}
+
         void UpdateWorkingMode(bool val)
         {
             working_mode = val;

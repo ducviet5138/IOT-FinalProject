@@ -12,6 +12,9 @@ class DevicePIR
             pinMode(pir_pin, INPUT);
         }
 
+        ~DevicePIR()
+        {}
+
         bool GetPersonStatus()
         {
             return digitalRead(pir_pin);

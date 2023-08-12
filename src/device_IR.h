@@ -29,6 +29,9 @@ class DeviceIR
             pinMode(ir_pin, OUTPUT);
         }
 
+        ~DeviceIR()
+        {}
+
         void TurnOn()
         {
             if (isOn) return;

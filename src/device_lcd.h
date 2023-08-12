@@ -15,6 +15,9 @@ class DeviceLCD
             lcd.backlight();
         }
 
+        ~DeviceLCD()
+        {}
+
         void On()
         {
             lcd.backlight();

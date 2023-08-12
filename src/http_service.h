@@ -30,6 +30,9 @@ class HttpService
                 Serial.print(line);
             }
         }
+
+        ~HttpService()
+        {}
 };
 
 #endif

@@ -16,6 +16,9 @@ class DeviceDHT
             dht.setup(dht_pin, DHTesp::DHT22);
         }
 
+        ~DeviceDHT()
+        {}
+
         void Update()
         {
             data = dht.getTempAndHumidity();
