@@ -1,6 +1,6 @@
 [
     {
-        "id": "0e6ed75ad493da85",
+        "id": "0b9fabc0f5c0a7bd",
         "type": "tab",
         "label": "Flow 1",
         "disabled": false,
@@ -8,9 +8,9 @@
         "env": []
     },
     {
-        "id": "ae1dfb045c6d0049",
+        "id": "d60ae750ba13d311",
         "type": "mqtt in",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/temperature",
         "qos": "2",
@@ -24,15 +24,43 @@
         "y": 200,
         "wires": [
             [
-                "4ff838022aabb106",
-                "b4c558dffb381a9c"
+                "b7a37abeb247369e",
+                "30627556bbe9d25b"
             ]
         ]
     },
     {
-        "id": "bb83b9af67126362",
+        "id": "b7a37abeb247369e",
+        "type": "ui_gauge",
+        "z": "0b9fabc0f5c0a7bd",
+        "name": "temp",
+        "group": "48c8c20a4274b46e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#e60f0f"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 530,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "650ec33bac24ca15",
         "type": "mqtt in",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/humid",
         "qos": "2",
@@ -46,15 +74,43 @@
         "y": 300,
         "wires": [
             [
-                "67835cdbe55a241f",
-                "64c8d0fe5658498c"
+                "879010f83bb3e6a5",
+                "bac99245252fcd33"
             ]
         ]
     },
     {
-        "id": "2a2fe49c33659b88",
+        "id": "879010f83bb3e6a5",
+        "type": "ui_gauge",
+        "z": "0b9fabc0f5c0a7bd",
+        "name": "humid",
+        "group": "48c8c20a4274b46e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 530,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "20cd33bdf7bf7036",
         "type": "mqtt out",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/WorkingMode",
         "qos": "",
@@ -70,9 +126,9 @@
         "wires": []
     },
     {
-        "id": "bae56a2c98d3270d",
+        "id": "5c2e01330a21c06c",
         "type": "switch",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "property": "payload",
         "propertyType": "msg",
@@ -91,17 +147,17 @@
         "y": 520,
         "wires": [
             [
-                "fccc4cdea273c6a9"
+                "36f185f58e23fc37"
             ],
             [
-                "cae5190defac5a18"
+                "a3693c2fd3a57aa8"
             ]
         ]
     },
     {
-        "id": "fccc4cdea273c6a9",
+        "id": "36f185f58e23fc37",
         "type": "change",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "mode_off",
         "rules": [
             {
@@ -121,14 +177,14 @@
         "y": 460,
         "wires": [
             [
-                "2a2fe49c33659b88"
+                "20cd33bdf7bf7036"
             ]
         ]
     },
     {
-        "id": "cae5190defac5a18",
+        "id": "a3693c2fd3a57aa8",
         "type": "change",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "mode_on",
         "rules": [
             {
@@ -148,14 +204,14 @@
         "y": 600,
         "wires": [
             [
-                "2a2fe49c33659b88"
+                "20cd33bdf7bf7036"
             ]
         ]
     },
     {
-        "id": "27309bf8890cd5c5",
+        "id": "dc5e01d7f5bb87c5",
         "type": "mqtt in",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/warning",
         "qos": "0",
@@ -169,14 +225,14 @@
         "y": 760,
         "wires": [
             [
-                "3cf9fb866b831470"
+                "36d3f247ea54b953"
             ]
         ]
     },
     {
-        "id": "3cf9fb866b831470",
+        "id": "36d3f247ea54b953",
         "type": "switch",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "property": "payload",
         "propertyType": "msg",
@@ -199,17 +255,17 @@
         "y": 760,
         "wires": [
             [
-                "6d9cf948bd693e74"
+                "eed492de6a3a6cb5"
             ],
             [
-                "582fab5eaefe3d40"
+                "0b717bbbe1331661"
             ]
         ]
     },
     {
-        "id": "582fab5eaefe3d40",
+        "id": "0b717bbbe1331661",
         "type": "change",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "Warning",
         "rules": [
             {
@@ -236,14 +292,14 @@
         "y": 820,
         "wires": [
             [
-                "6d70ffb50940ced3"
+                "51edbec860713ae3"
             ]
         ]
     },
     {
-        "id": "6d9cf948bd693e74",
+        "id": "eed492de6a3a6cb5",
         "type": "change",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "No_Warning",
         "rules": [
             {
@@ -270,14 +326,14 @@
         "y": 720,
         "wires": [
             [
-                "6d70ffb50940ced3"
+                "51edbec860713ae3"
             ]
         ]
     },
     {
-        "id": "78bc4cf5214b8013",
+        "id": "cfca197af95d1df1",
         "type": "inject",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "props": [
             {
@@ -295,18 +351,18 @@
         "topic": "test",
         "payload": "1",
         "payloadType": "str",
-        "x": 230,
-        "y": 1040,
+        "x": 110,
+        "y": 1260,
         "wires": [
             [
-                "8153997758131bab"
+                "594c0ea35aa39bab"
             ]
         ]
     },
     {
-        "id": "8153997758131bab",
+        "id": "594c0ea35aa39bab",
         "type": "switch",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "property": "payload",
         "propertyType": "msg",
@@ -325,21 +381,21 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 470,
-        "y": 1040,
+        "x": 350,
+        "y": 1260,
         "wires": [
             [
-                "ab07839a0619cd94"
+                "7de5dae57040b648"
             ],
             [
-                "9aa2e747fe04cd2b"
+                "466bceca1731b5f2"
             ]
         ]
     },
     {
-        "id": "9aa2e747fe04cd2b",
+        "id": "466bceca1731b5f2",
         "type": "change",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "rules": [
             {
@@ -362,16 +418,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
-        "y": 1120,
+        "x": 520,
+        "y": 1340,
         "wires": [
             []
         ]
     },
     {
-        "id": "ab07839a0619cd94",
+        "id": "7de5dae57040b648",
         "type": "change",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "warning",
         "rules": [
             {
@@ -394,16 +450,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
-        "y": 980,
+        "x": 520,
+        "y": 1200,
         "wires": [
             []
         ]
     },
     {
-        "id": "bdb8de926a7cc2a1",
+        "id": "32564b801e192e98",
         "type": "telegram sender",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "Bot",
         "bot": "a9e19a77db3e194b",
         "haserroroutput": false,
@@ -415,9 +471,9 @@
         ]
     },
     {
-        "id": "6d70ffb50940ced3",
+        "id": "51edbec860713ae3",
         "type": "function",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "setting messages",
         "func": "var msg1 = { \"topic\": msg.topic, \"payload\": { \"chatId\": 955526463, \"type\": 'message', \"content\": msg.topic + '\\n\\n' + msg.payload } };\nreturn msg1;\n",
         "outputs": 1,
@@ -429,14 +485,14 @@
         "y": 780,
         "wires": [
             [
-                "bdb8de926a7cc2a1"
+                "32564b801e192e98"
             ]
         ]
     },
     {
-        "id": "6d21acdbb01767d9",
+        "id": "cc12c24b8b0e8b26",
         "type": "ui_switch",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "label": "Switch",
         "tooltip": "",
@@ -463,14 +519,14 @@
         "y": 520,
         "wires": [
             [
-                "bae56a2c98d3270d"
+                "5c2e01330a21c06c"
             ]
         ]
     },
     {
-        "id": "6786c17fad6aea6b",
+        "id": "fd02ac0ade7fce9d",
         "type": "telegram receiver",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "Receive_Message",
         "bot": "a9e19a77db3e194b",
         "saveDataDir": "",
@@ -479,15 +535,15 @@
         "y": 520,
         "wires": [
             [
-                "6454ef42607431ab"
+                "fc69ffde32fa4ff2"
             ],
             []
         ]
     },
     {
-        "id": "6454ef42607431ab",
+        "id": "fc69ffde32fa4ff2",
         "type": "function",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "function 3",
         "func": "var content = msg.payload.content;\nvar id = msg.payload.chatId;\nvar type = msg.payload.type;\n\nif (type == \"message\")\n{\n    if(content == '/safetymode')\n        msg.payload = false;\n    \n    if(content == '/workingmode')\n        msg.payload = true;\n} else{\n    msg.payload = \"not handle\";\n}\nreturn msg;",
         "outputs": 1,
@@ -499,14 +555,14 @@
         "y": 520,
         "wires": [
             [
-                "6d21acdbb01767d9"
+                "cc12c24b8b0e8b26"
             ]
         ]
     },
     {
-        "id": "4ff838022aabb106",
+        "id": "30627556bbe9d25b",
         "type": "debug",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
@@ -521,9 +577,9 @@
         "wires": []
     },
     {
-        "id": "67835cdbe55a241f",
+        "id": "bac99245252fcd33",
         "type": "debug",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "debug 2",
         "active": true,
         "tosidebar": true,
@@ -537,9 +593,26 @@
         "wires": []
     },
     {
-        "id": "1a109be92431845c",
+        "id": "85d1244baf9c6990",
         "type": "function",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
+        "name": "function 4",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa108659a23786f9",
+        "type": "function",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "check login",
         "func": "var uname = msg.payload.username, pword = msg.payload.password\nvar validLogin = (uname == \"admin\" && pword == \"admin\")\nif (validLogin == true)\n    msg.payload = {\"tab\": \"Home\"}\nelse\n    {\n        msg.payload = {\"tab\": \"Login\"}\n        msg.announce = \"Wrong username or password\"\n    }\nreturn msg;",
         "outputs": 1,
@@ -547,32 +620,32 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 1320,
+        "x": 330,
+        "y": 1640,
         "wires": [
             [
-                "92f745c4ae696fab",
-                "d3d1b607ffbc4271"
+                "5c19ed731bdde067",
+                "13ceb54b602f5fa9"
             ]
         ]
     },
     {
-        "id": "d3d1b607ffbc4271",
+        "id": "13ceb54b602f5fa9",
         "type": "ui_ui_control",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "events": "change",
-        "x": 600,
-        "y": 1320,
+        "x": 520,
+        "y": 1640,
         "wires": [
             []
         ]
     },
     {
-        "id": "92f745c4ae696fab",
+        "id": "5c19ed731bdde067",
         "type": "ui_text",
-        "z": "0e6ed75ad493da85",
-        "group": "74ae639985968a94",
+        "z": "0b9fabc0f5c0a7bd",
+        "group": "9a696f93ed25a02c",
         "order": 13,
         "width": 0,
         "height": 0,
@@ -585,17 +658,17 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 610,
-        "y": 1420,
+        "x": 530,
+        "y": 1740,
         "wires": []
     },
     {
-        "id": "2ea7dc7702c7decd",
+        "id": "579949c6048d33b5",
         "type": "ui_form",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "label": "",
-        "group": "74ae639985968a94",
+        "group": "9a696f93ed25a02c",
         "order": 12,
         "width": 0,
         "height": 0,
@@ -626,92 +699,68 @@
         "topicType": "msg",
         "splitLayout": "",
         "className": "",
-        "x": 230,
-        "y": 1320,
+        "x": 150,
+        "y": 1640,
         "wires": [
             [
-                "1a109be92431845c"
+                "aa108659a23786f9"
             ]
         ]
     },
     {
-        "id": "64c8d0fe5658498c",
-        "type": "ui_gauge",
-        "z": "0e6ed75ad493da85",
-        "name": "humid",
-        "group": "14edde4ceda3abd4",
-        "order": 0,
+        "id": "c15d33bc1846d066",
+        "type": "ui_text",
+        "z": "0b9fabc0f5c0a7bd",
+        "group": "672a7644c358dbe0",
+        "order": 1,
         "width": 0,
         "height": 0,
-        "gtype": "wave",
-        "title": "Humidity",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
+        "name": "",
+        "label": "Hello",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
         "className": "",
-        "x": 530,
-        "y": 280,
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": 16,
+        "color": "#45a1e8",
+        "x": 610,
+        "y": 1020,
         "wires": []
     },
     {
-        "id": "b4c558dffb381a9c",
-        "type": "ui_chart",
-        "z": "0e6ed75ad493da85",
-        "name": "temp",
-        "group": "14edde4ceda3abd4",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "Temperature",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "5",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
+        "id": "ef59f7f76a8518fc",
+        "type": "change",
+        "z": "0b9fabc0f5c0a7bd",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "admin",
+                "tot": "str"
+            }
         ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 530,
-        "y": 200,
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 1020,
         "wires": [
-            []
+            [
+                "c15d33bc1846d066"
+            ]
         ]
     },
     {
-        "id": "b5efc06377c87a0f",
+        "id": "e22e29a345a3f1db",
         "type": "ui_button",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
-        "group": "6c07f069a2537b84",
+        "group": "80765ceea3f1931a",
         "order": 0,
         "width": 0,
         "height": 0,
@@ -726,30 +775,30 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 910,
-        "y": 1180,
+        "x": 820,
+        "y": 1460,
         "wires": [
             [
-                "4fd336ba3c3df34a"
+                "6a2c2188eb6791e4"
             ]
         ]
     },
     {
-        "id": "5958c6f374c04626",
+        "id": "ed02a1875892bf0d",
         "type": "ui_ui_control",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "events": "change",
-        "x": 1260,
-        "y": 1080,
+        "x": 1250,
+        "y": 1400,
         "wires": [
             []
         ]
     },
     {
-        "id": "08b7770cac49dbb5",
+        "id": "fd8bcdc4b8ef178d",
         "type": "ui_toast",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "position": "top right",
         "displayTime": "3",
         "highlight": "",
@@ -761,21 +810,21 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1460,
-        "y": 1300,
+        "x": 1310,
+        "y": 1580,
         "wires": []
     },
     {
-        "id": "abe8a948d008438a",
+        "id": "951c9539f08de922",
         "type": "change",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Log out successfully",
+                "to": "Successfully logout",
                 "tot": "str"
             },
             {
@@ -791,31 +840,73 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1260,
-        "y": 1300,
+        "x": 1010,
+        "y": 1620,
         "wires": [
             [
-                "08b7770cac49dbb5"
+                "fd8bcdc4b8ef178d"
             ]
         ]
     },
     {
-        "id": "4fd336ba3c3df34a",
+        "id": "6a2c2188eb6791e4",
         "type": "function",
-        "z": "0e6ed75ad493da85",
+        "z": "0b9fabc0f5c0a7bd",
         "name": "check logout",
-        "func": "if (msg.payload == \"logout\")\n{\n    msg.payload = {\"tab\": \"Login page\"}\n    msg.announce = \"Successfully logout\"\n}\nreturn msg;",
+        "func": "if (msg.payload == \"logout\")\n{\n    msg.payload = {\"tab\": \"Login\"}\n    msg.announce = \"Successfully logout\"\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1090,
-        "y": 1180,
+        "x": 1000,
+        "y": 1460,
         "wires": [
             [
-                "5958c6f374c04626",
-                "abe8a948d008438a"
+                "ed02a1875892bf0d",
+                "951c9539f08de922"
+            ]
+        ]
+    },
+    {
+        "id": "a91ac326c3ea0067",
+        "type": "ui_digital_clock",
+        "z": "0b9fabc0f5c0a7bd",
+        "name": "",
+        "group": "672a7644c358dbe0",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "x": 610,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "39d5b8e67b674739",
+        "type": "inject",
+        "z": "0b9fabc0f5c0a7bd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 410,
+        "y": 960,
+        "wires": [
+            [
+                "a91ac326c3ea0067"
             ]
         ]
     },
@@ -847,6 +938,17 @@
         "sessionExpiry": ""
     },
     {
+        "id": "48c8c20a4274b46e",
+        "type": "ui_group",
+        "name": "Humidity & Temperature",
+        "tab": "02b06cbe16ed1a53",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "a9e19a77db3e194b",
         "type": "telegram bot",
         "botname": "Wokwi Notification",
@@ -874,19 +976,19 @@
     {
         "id": "d6bac2ec52f7c9d2",
         "type": "ui_group",
-        "name": "Switching Mode",
+        "name": "Mode",
         "tab": "02b06cbe16ed1a53",
-        "order": 2,
+        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": false,
         "className": ""
     },
     {
-        "id": "74ae639985968a94",
+        "id": "9a696f93ed25a02c",
         "type": "ui_group",
         "name": "Login",
-        "tab": "973b0d3d64e13dd0",
+        "tab": "709974cef88c996f",
         "order": 1,
         "disp": true,
         "width": "6",
@@ -894,9 +996,9 @@
         "className": ""
     },
     {
-        "id": "14edde4ceda3abd4",
+        "id": "672a7644c358dbe0",
         "type": "ui_group",
-        "name": "Humidity & Temperature",
+        "name": "Information",
         "tab": "02b06cbe16ed1a53",
         "order": 1,
         "disp": true,
@@ -905,7 +1007,7 @@
         "className": ""
     },
     {
-        "id": "6c07f069a2537b84",
+        "id": "80765ceea3f1931a",
         "type": "ui_group",
         "name": "Logout",
         "tab": "02b06cbe16ed1a53",
@@ -920,14 +1022,13 @@
         "type": "ui_tab",
         "name": "Home",
         "icon": "dashboard",
-        "order": 2,
         "disabled": false,
         "hidden": true
     },
     {
-        "id": "973b0d3d64e13dd0",
+        "id": "709974cef88c996f",
         "type": "ui_tab",
-        "name": "Login page",
+        "name": "Login",
         "icon": "login",
         "order": 1,
         "disabled": false,
