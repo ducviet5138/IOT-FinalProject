@@ -147,10 +147,12 @@ void MyDevice::ChooseSuitableMode()
 // Working Mode
 void MyDevice::HandleWorkingMode()
 {
-
     if (!DoOnceWorkingMode)
     {
         DoOnceSafetyMode = SendWarningMessage = 0;
+
+        // Sync Current Mode
+        Sync("currentmode", "1");
         
         // Turn on room's electricity
         relayOn((char*) "room");
@@ -194,8 +196,7 @@ void MyDevice::HandleSafetyMode()
 {   
     if (pir.GetPersonStatus() && !SendWarningMessage)
     {
-        String message = "1";
-        Sync("warning", message.c_str());
+        Sync("warning", "1");
         SendWarningMessage = 1;
     }
     
@@ -203,13 +204,13 @@ void MyDevice::HandleSafetyMode()
     {
         DoOnceWorkingMode = 0;
 
+        // Sync Current Mode
+        Sync("currentmode", "0");
+
         // Turn off electric devices
         tv->TurnOff();
         fan->TurnOff();
         ac->TurnOff();
-        
-        String light = "light";
-        String room = "room";
 
         // Turn off light and room's electricity
         relayOff((char*) "light");
