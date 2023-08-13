@@ -6,33 +6,38 @@
 class HttpService
 {
     private:
-        const char * host = "www.example.com";
+        const char *host = "api.thingspeak.com";
         const int port = 80;
-        const char *request = "/";
+        const char *request = "/update?api_key=FWA0NHRAFXF0M0FR";
     public:
+        HttpService(){}
+        
+        String GetHTTPMessage(String param)
+        {
+            return  String("GET ") + request + param + " HTTP/1.1\r\n" +
+                    "Host: " + host + "\r\n" +
+                    "Connection: close\r\n\r\n";
+        }
+
         void SendRequest(String param)
         {
             WiFiClient HttpClient;
 
-            while(!HttpClient.connect(host, port)) 
+            if (!HttpClient.connect(host, port))
             {
-                Serial.println("connection fail");
-                delay(1000);
+                Serial.println("Connecting to cloud...");
+                delay(250);
             }
-            HttpClient.print(String("GET ") + request + " HTTP/1.1\r\n"
-                        + "Host: " + host + "\r\n"
-                        + "Connection: close\r\n\r\n");
-            delay(500);
 
-            while(HttpClient.available()) 
-            {
-                String line = HttpClient.readStringUntil('\r');
-                Serial.print(line);
-            }
+            HttpClient.print(GetHTTPMessage(param));
         }
 
-        ~HttpService()
-        {}
+        void GetRequest(String param)
+        {
+            
+        }
+
+        ~HttpService(){}
 };
 
 #endif

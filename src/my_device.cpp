@@ -100,6 +100,9 @@ void MyDevice::SyncTempAndHumid()
     dht.Update();
     Sync("temperature", dht.GetTemperature());
     Sync("humid", dht.GetHumid());
+
+    SendRequest("&field2=" + dht.GetTemperature());
+    SendRequest("&field3=" + dht.GetHumid());
 }
 
 
