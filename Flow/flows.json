@@ -2,16 +2,9 @@
     {
         "id": "2c8cd484086658f3",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "My Device",
         "disabled": false,
-        "info": "",
-        "env": [
-            {
-                "name": "telegram_id",
-                "value": "6370226403:AAFalsUvcL8HUX592rCplIo4qq4AhxEYo-w",
-                "type": "env"
-            }
-        ]
+        "info": ""
     },
     {
         "id": "0d4e2ba7915da887",
@@ -337,7 +330,7 @@
         "type": "mqtt out",
         "z": "2c8cd484086658f3",
         "name": "MQTT Working Mode",
-        "topic": "/GDrpD2J3jxvzQEy7vGOn/WorkingMode",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/setmode",
         "qos": "",
         "retain": "",
         "respTopic": "",
@@ -1013,7 +1006,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "⚙️ Mode: WorkingMode 🔑",
+                "to": "⚙️ Mode: WorkingMode 📊",
                 "tot": "str"
             },
             {

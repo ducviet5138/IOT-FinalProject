@@ -65,7 +65,7 @@ void MyDevice::reconnect()
         if (client.connect(clientId.c_str()))
         {
             Serial.println("Connected!");
-            client.subscribe(GetChannel("WorkingMode"));
+            client.subscribe(GetChannel("setmode"));
         }
         else
         {
