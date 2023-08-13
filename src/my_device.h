@@ -47,7 +47,6 @@ class MyDevice
         void reconnect();
         void ReconnectToServer();
         void Sync(String param, String value);
-        void UpdateWorkingMode(bool val);
 
         void SendRequest(String param);
 

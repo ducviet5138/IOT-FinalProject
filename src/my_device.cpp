@@ -8,8 +8,8 @@ void callback(char* topic, byte* message, unsigned int length)
     for (int i = 0; i < length; i++) buffer += (char)message[i];
     Serial.println(buffer);
 
-    if (buffer == "WorkingMode") deviceMode.UpdateWorkingMode(1);
-    if (buffer == "SafetyMode") deviceMode.UpdateWorkingMode(0);
+    if (buffer == "WorkingMode") deviceMode.UpdateMode(1);
+    if (buffer == "SafetyMode") deviceMode.UpdateMode(0);
 }
 
 
@@ -84,11 +84,6 @@ void MyDevice::ReconnectToServer()
 void MyDevice::Sync(String param, String value)
 {
    client.publish(GetChannel(param), value.c_str());
-}
-
-void MyDevice::UpdateWorkingMode(bool val)
-{
-    dMode->UpdateWorkingMode(val);
 }
 
 void MyDevice::SendRequest(String param)
