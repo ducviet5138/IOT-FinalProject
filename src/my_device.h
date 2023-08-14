@@ -7,7 +7,6 @@
 #include "device_relay.h"
 #include "device_IR.h"
 #include "device_mode.h"
-#include "http_service.h"
 #include <PubSubClient.h>
 #include <WiFi.h>
 
@@ -31,8 +30,6 @@ class MyDevice
         
         const String ssid = "Wokwi-GUEST";
         const String pw = "";
-
-        HttpService httpService;
 
         bool DoOnceSafetyMode;
         bool DoOnceWorkingMode;
