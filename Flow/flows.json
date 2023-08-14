@@ -1,20 +1,20 @@
 [
     {
-        "id": "16743fc8e67f6f19",
+        "id": "984281f8dd3b7249",
         "type": "tab",
         "label": "My Device",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "4af35da67292b276",
+        "id": "9152b75088e30fba",
         "type": "mqtt in",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "MQTT Temperature",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/temperature",
         "qos": "2",
         "datatype": "auto-detect",
-        "broker": "d3649e7d777927ed",
+        "broker": "e28fe818ac9d07d4",
         "nl": false,
         "rap": true,
         "rh": 0,
@@ -23,19 +23,19 @@
         "y": 200,
         "wires": [
             [
-                "ac695c30325cce77"
+                "d592d72b65ab6dcf"
             ]
         ]
     },
     {
-        "id": "aa08535debfd48ec",
+        "id": "2e865bebb96d086f",
         "type": "mqtt in",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "MQTT Humid",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/humid",
         "qos": "2",
         "datatype": "auto-detect",
-        "broker": "d3649e7d777927ed",
+        "broker": "e28fe818ac9d07d4",
         "nl": false,
         "rap": true,
         "rh": 0,
@@ -44,16 +44,16 @@
         "y": 300,
         "wires": [
             [
-                "9bb30c69c4b456cc"
+                "f031dd9e4ca6f810"
             ]
         ]
     },
     {
-        "id": "9bb30c69c4b456cc",
+        "id": "f031dd9e4ca6f810",
         "type": "ui_gauge",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Humidity",
-        "group": "65aef35c128023da",
+        "group": "b76f9c8f4316f82b",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -77,9 +77,9 @@
         "wires": []
     },
     {
-        "id": "e528ae6844aecc3d",
+        "id": "6af3d8346ebbc34b",
         "type": "mqtt out",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "MQTT Working Mode",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/setmode",
         "qos": "",
@@ -89,15 +89,15 @@
         "userProps": "",
         "correl": "",
         "expiry": "",
-        "broker": "d3649e7d777927ed",
+        "broker": "e28fe818ac9d07d4",
         "x": 1120,
         "y": 520,
         "wires": []
     },
     {
-        "id": "4d0f852865b25d1e",
+        "id": "9fecb7cfe154feff",
         "type": "switch",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "property": "payload",
         "propertyType": "msg",
@@ -116,17 +116,17 @@
         "y": 520,
         "wires": [
             [
-                "7f12c86b664801b1"
+                "a203b473c3d88fb2"
             ],
             [
-                "fbc0e4faf406c000"
+                "cc9345a9bab4a5db"
             ]
         ]
     },
     {
-        "id": "7f12c86b664801b1",
+        "id": "a203b473c3d88fb2",
         "type": "change",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Safety Mode",
         "rules": [
             {
@@ -146,14 +146,14 @@
         "y": 460,
         "wires": [
             [
-                "e528ae6844aecc3d"
+                "6af3d8346ebbc34b"
             ]
         ]
     },
     {
-        "id": "fbc0e4faf406c000",
+        "id": "cc9345a9bab4a5db",
         "type": "change",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Working Mode",
         "rules": [
             {
@@ -173,19 +173,19 @@
         "y": 600,
         "wires": [
             [
-                "e528ae6844aecc3d"
+                "6af3d8346ebbc34b"
             ]
         ]
     },
     {
-        "id": "3f84fd7c8e333b3e",
+        "id": "3b568abeaf55b0b3",
         "type": "mqtt in",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "MQTT Warning on SafetyMode",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/warning",
         "qos": "0",
         "datatype": "auto-detect",
-        "broker": "d3649e7d777927ed",
+        "broker": "e28fe818ac9d07d4",
         "nl": false,
         "rap": true,
         "rh": 0,
@@ -194,14 +194,14 @@
         "y": 780,
         "wires": [
             [
-                "2fc7d508f44ae500"
+                "8a904540dbc389c7"
             ]
         ]
     },
     {
-        "id": "2fc7d508f44ae500",
+        "id": "8a904540dbc389c7",
         "type": "switch",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "If true",
         "property": "payload",
         "propertyType": "msg",
@@ -219,14 +219,14 @@
         "y": 780,
         "wires": [
             [
-                "2ca9ca0ede243ba0"
+                "abb94cd0a59147c5"
             ]
         ]
     },
     {
-        "id": "2ca9ca0ede243ba0",
+        "id": "abb94cd0a59147c5",
         "type": "change",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Set Warning Message",
         "rules": [
             {
@@ -253,16 +253,16 @@
         "y": 780,
         "wires": [
             [
-                "1175ee1d06d63499"
+                "9aa7bdd8dd32e8dd"
             ]
         ]
     },
     {
-        "id": "cdac4882fb24eaf1",
+        "id": "53ede940cd84b520",
         "type": "telegram sender",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Bot",
-        "bot": "d6c1a409bcfbd74d",
+        "bot": "6dd9186ba79cafea",
         "haserroroutput": false,
         "outputs": 1,
         "x": 1510,
@@ -272,9 +272,9 @@
         ]
     },
     {
-        "id": "46325596a54b1965",
+        "id": "f4aecf282c68b852",
         "type": "function",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Setting Messages",
         "func": "var msg1 = { \"topic\": msg.topic, \"payload\": { \"chatId\": 955526463, \"type\": 'message', \"content\": msg.topic + '\\n\\n' + msg.payload + '\\n' + '⏰ ' + msg.mydate + ' ' + msg.mytime} };\nreturn msg1;\n",
         "outputs": 1,
@@ -286,18 +286,18 @@
         "y": 780,
         "wires": [
             [
-                "cdac4882fb24eaf1"
+                "53ede940cd84b520"
             ]
         ]
     },
     {
-        "id": "fb888ebdc8efde86",
+        "id": "9e5a3fbd768b8dcb",
         "type": "ui_switch",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "label": "Change Mode",
         "tooltip": "",
-        "group": "a9c24057acf82c3b",
+        "group": "7838dc3c77dce5c8",
         "order": 0,
         "width": 0,
         "height": 0,
@@ -320,31 +320,31 @@
         "y": 520,
         "wires": [
             [
-                "4d0f852865b25d1e"
+                "9fecb7cfe154feff"
             ]
         ]
     },
     {
-        "id": "93bcb1b2c78b35b3",
+        "id": "91386468d72b91bd",
         "type": "telegram receiver",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Receive Message",
-        "bot": "d6c1a409bcfbd74d",
+        "bot": "6dd9186ba79cafea",
         "saveDataDir": "",
         "filterCommands": false,
         "x": 90,
         "y": 520,
         "wires": [
             [
-                "12dc4c23ea38b011"
+                "a9940ae40936bd17"
             ],
             []
         ]
     },
     {
-        "id": "12dc4c23ea38b011",
+        "id": "a9940ae40936bd17",
         "type": "function",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Check condition",
         "func": "var content = msg.payload.content;\nvar id = msg.payload.chatId;\nvar type = msg.payload.type;\n\nif (type == \"message\")\n{\n    if(content == '/safetymode')\n        msg.payload = false;\n    \n    if(content == '/workingmode')\n        msg.payload = true;\n} else{\n    msg.payload = \"not handle\";\n}\nreturn msg;",
         "outputs": 1,
@@ -356,14 +356,14 @@
         "y": 520,
         "wires": [
             [
-                "fb888ebdc8efde86"
+                "9e5a3fbd768b8dcb"
             ]
         ]
     },
     {
-        "id": "f81b36635f360f5d",
+        "id": "c27b8ea188fb8903",
         "type": "function",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "check login",
         "func": "var uname = msg.payload.username, pword = msg.payload.password\nvar validLogin = (uname == \"admin\" && pword == \"admin\")\nif (validLogin == true)\n    msg.payload = {\"tab\": \"Home\"}\nelse\n    {\n        msg.payload = {\"tab\": \"Login\"}\n        msg.announce = \"Wrong username or password\"\n    }\nreturn msg;",
         "outputs": 1,
@@ -375,15 +375,15 @@
         "y": 1640,
         "wires": [
             [
-                "e3072964f60fd971",
-                "fcf6319a63888f2a"
+                "0cb69d61917c2ed2",
+                "729c3d8e5024a04c"
             ]
         ]
     },
     {
-        "id": "fcf6319a63888f2a",
+        "id": "729c3d8e5024a04c",
         "type": "ui_ui_control",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "events": "change",
         "x": 520,
@@ -393,10 +393,10 @@
         ]
     },
     {
-        "id": "e3072964f60fd971",
+        "id": "0cb69d61917c2ed2",
         "type": "ui_text",
-        "z": "16743fc8e67f6f19",
-        "group": "2836a3d0063f0e60",
+        "z": "984281f8dd3b7249",
+        "group": "f6a24bcaebe417bd",
         "order": 13,
         "width": 0,
         "height": 0,
@@ -414,12 +414,12 @@
         "wires": []
     },
     {
-        "id": "c27690a3e9de1b2f",
+        "id": "80ed51181f248bb2",
         "type": "ui_form",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "label": "",
-        "group": "2836a3d0063f0e60",
+        "group": "f6a24bcaebe417bd",
         "order": 12,
         "width": 0,
         "height": 0,
@@ -454,16 +454,16 @@
         "y": 1640,
         "wires": [
             [
-                "f81b36635f360f5d"
+                "c27b8ea188fb8903"
             ]
         ]
     },
     {
-        "id": "ab0c970921d8306d",
+        "id": "d7eabaf5b2a5ad32",
         "type": "ui_button",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
-        "group": "7ec464a6239e32f8",
+        "group": "1115733dd0980312",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -482,14 +482,14 @@
         "y": 1280,
         "wires": [
             [
-                "3f67a3788428557f"
+                "fa6e727f1d4d4a19"
             ]
         ]
     },
     {
-        "id": "8071fd4970fcdd0e",
+        "id": "07a256b9d182d11a",
         "type": "ui_ui_control",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "events": "change",
         "x": 1130,
@@ -499,9 +499,9 @@
         ]
     },
     {
-        "id": "b2220bdb746a10a9",
+        "id": "0f33647a8a5ba141",
         "type": "ui_toast",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "position": "top right",
         "displayTime": "3",
         "highlight": "",
@@ -518,9 +518,9 @@
         "wires": []
     },
     {
-        "id": "c4e7fadcaf892729",
+        "id": "bb629ae35222856a",
         "type": "change",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "rules": [
             {
@@ -547,14 +547,14 @@
         "y": 1320,
         "wires": [
             [
-                "b2220bdb746a10a9"
+                "0f33647a8a5ba141"
             ]
         ]
     },
     {
-        "id": "3f67a3788428557f",
+        "id": "fa6e727f1d4d4a19",
         "type": "function",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "check logout",
         "func": "if (msg.payload == \"logout\")\n{\n    msg.payload = {\"tab\": \"Login\"}\n    msg.announce = \"Successfully logout\"\n}\nreturn msg;",
         "outputs": 1,
@@ -566,15 +566,15 @@
         "y": 1280,
         "wires": [
             [
-                "8071fd4970fcdd0e",
-                "c4e7fadcaf892729"
+                "07a256b9d182d11a",
+                "bb629ae35222856a"
             ]
         ]
     },
     {
-        "id": "276f86d87d1ca71f",
+        "id": "7a4637eba3972bfc",
         "type": "inject",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "props": [
             {
@@ -596,16 +596,16 @@
         "y": 1100,
         "wires": [
             [
-                "169d4a35cbb11282"
+                "0ee4ce34f34d8580"
             ]
         ]
     },
     {
-        "id": "169d4a35cbb11282",
+        "id": "0ee4ce34f34d8580",
         "type": "ui_digital_clock",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
-        "group": "7ec464a6239e32f8",
+        "group": "1115733dd0980312",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -614,9 +614,9 @@
         "wires": []
     },
     {
-        "id": "1175ee1d06d63499",
+        "id": "9aa7bdd8dd32e8dd",
         "type": "simpletime",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Time Sync",
         "mydate": true,
         "myymd": false,
@@ -641,19 +641,19 @@
         "y": 780,
         "wires": [
             [
-                "46325596a54b1965"
+                "f4aecf282c68b852"
             ]
         ]
     },
     {
-        "id": "c701b0d88732a215",
+        "id": "f8e017ab5e7056e1",
         "type": "mqtt in",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Get Current Mode from ESP32",
         "topic": "/GDrpD2J3jxvzQEy7vGOn/currentmode",
         "qos": "2",
         "datatype": "auto-detect",
-        "broker": "d3649e7d777927ed",
+        "broker": "e28fe818ac9d07d4",
         "nl": false,
         "rap": true,
         "rh": 0,
@@ -662,14 +662,14 @@
         "y": 880,
         "wires": [
             [
-                "f570064a601b75c8"
+                "71128d071c80a088"
             ]
         ]
     },
     {
-        "id": "f570064a601b75c8",
+        "id": "71128d071c80a088",
         "type": "switch",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Check current mode",
         "property": "payload",
         "propertyType": "msg",
@@ -692,17 +692,17 @@
         "y": 880,
         "wires": [
             [
-                "a7b76cc380ef0330"
+                "3d10169d20c4d34e"
             ],
             [
-                "89951749e7826e6f"
+                "fc26d2690be6ce90"
             ]
         ]
     },
     {
-        "id": "a7b76cc380ef0330",
+        "id": "3d10169d20c4d34e",
         "type": "change",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Mode = \"WorkingMode\"",
         "rules": [
             {
@@ -729,14 +729,15 @@
         "y": 840,
         "wires": [
             [
-                "1175ee1d06d63499"
+                "9aa7bdd8dd32e8dd",
+                "5c1b5bd19d1c234a"
             ]
         ]
     },
     {
-        "id": "89951749e7826e6f",
+        "id": "fc26d2690be6ce90",
         "type": "change",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Mode = \"SafetyMode\"",
         "rules": [
             {
@@ -763,16 +764,17 @@
         "y": 920,
         "wires": [
             [
-                "1175ee1d06d63499"
+                "9aa7bdd8dd32e8dd",
+                "5c1b5bd19d1c234a"
             ]
         ]
     },
     {
-        "id": "ac695c30325cce77",
+        "id": "d592d72b65ab6dcf",
         "type": "ui_chart",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Temperature",
-        "group": "65aef35c128023da",
+        "group": "b76f9c8f4316f82b",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -812,10 +814,10 @@
         ]
     },
     {
-        "id": "637ce7c78832e528",
+        "id": "b0c306d28157d9ec",
         "type": "ui_template",
-        "z": "16743fc8e67f6f19",
-        "group": "1b429f50303e61de",
+        "z": "984281f8dd3b7249",
+        "group": "5399c0be53e05038",
         "name": "",
         "order": 0,
         "width": "6",
@@ -833,9 +835,9 @@
         ]
     },
     {
-        "id": "480d1f18137937f4",
+        "id": "9ed0d6519e7a6b41",
         "type": "http request",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -852,14 +854,14 @@
         "y": 1520,
         "wires": [
             [
-                "83ce0cdfb2956245"
+                "936e1fb809f3b28e"
             ]
         ]
     },
     {
-        "id": "3963ffac649ab034",
+        "id": "b3ec40d0c8817f02",
         "type": "inject",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "",
         "props": [],
         "repeat": "1",
@@ -871,14 +873,14 @@
         "y": 1520,
         "wires": [
             [
-                "480d1f18137937f4"
+                "9ed0d6519e7a6b41"
             ]
         ]
     },
     {
-        "id": "83ce0cdfb2956245",
+        "id": "936e1fb809f3b28e",
         "type": "function",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Control log list",
         "func": "var logList = flow.get(\"logList\")\nvar topic1 = \"\", payload1 = \"\"\nvar topic2 = \"\", payload2 = \"\"\nvar topic3 = \"\", payload3 = \"\"\n\nvar time = msg.payload.feeds[0].created_at\ntime = time.replace(\"T\", \" \")\ntime = time.replace(\"+07:00\", \"\")\n\nif (msg.payload.feeds[0].field1 != flow.get(\"prevMode\"))\n{\n    topic1 = \"Mode\"\n    payload1 = msg.payload.feeds[0].field1\n    flow.set(\"prevMode\", payload1)\n}\n\n\nif (msg.payload.feeds[0].field2 != flow.get(\"prevTemperature\")) \n{\n    topic2 = \"Temperature\"\n    payload2 = msg.payload.feeds[0].field2\n    flow.set(\"prevTemperature\", payload2)\n}\n\n\nif (msg.payload.feeds[0].field3 != flow.get(\"prevHumid\")) \n{\n    topic3 = \"Humid\"\n    payload3 = msg.payload.feeds[0].field3\n    flow.set(\"prevHumid\", payload3)\n}\n\nif (topic1 != \"\")\n{\n    msg = {}\n    msg.topic = topic1\n    msg.payload = payload1\n    msg.time = time\n    logList.push(msg)\n}\n\nif (topic2 != \"\") \n{\n    msg = {}\n    msg.topic = topic2\n    msg.payload = payload2\n    msg.time = time\n    logList.push(msg)\n}\n\nif (topic3 != \"\") \n{\n    msg = {}\n    msg.topic = topic3\n    msg.payload = payload3\n    msg.time = time\n    logList.push(msg)\n}\n\nif (logList.length > 10) \n{\n    logList.shift();\n    logList.length = 10;\n}\n\nflow.set(\"logList\", logList)\nmsg = {}\nmsg.payload = logList\nreturn msg",
         "outputs": 1,
@@ -890,14 +892,14 @@
         "y": 1520,
         "wires": [
             [
-                "637ce7c78832e528"
+                "b0c306d28157d9ec"
             ]
         ]
     },
     {
-        "id": "17ae0b7c8a5ceaa7",
+        "id": "3195f46d3c3acfed",
         "type": "inject",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "set entry id",
         "props": [],
         "repeat": "",
@@ -909,14 +911,14 @@
         "y": 1400,
         "wires": [
             [
-                "99b945e650c33ae9"
+                "01f0c0d181dbc32a"
             ]
         ]
     },
     {
-        "id": "99b945e650c33ae9",
+        "id": "01f0c0d181dbc32a",
         "type": "function",
-        "z": "16743fc8e67f6f19",
+        "z": "984281f8dd3b7249",
         "name": "Default value for log list",
         "func": "flow.set(\"prevMode\", -1)\nflow.set(\"prevTemperature\", -1)\nflow.set(\"prevHumid\", -1)\nflow.set(\"logList\", [])",
         "outputs": 1,
@@ -931,7 +933,28 @@
         ]
     },
     {
-        "id": "d3649e7d777927ed",
+        "id": "5c1b5bd19d1c234a",
+        "type": "ui_text",
+        "z": "984281f8dd3b7249",
+        "group": "7838dc3c77dce5c8",
+        "order": 1,
+        "width": "7",
+        "height": "1",
+        "name": "",
+        "label": "Current Mode",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1100,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "e28fe818ac9d07d4",
         "type": "mqtt-broker",
         "name": "Mqtt Server",
         "broker": "broker.emqx.io",
@@ -958,10 +981,10 @@
         "sessionExpiry": ""
     },
     {
-        "id": "65aef35c128023da",
+        "id": "b76f9c8f4316f82b",
         "type": "ui_group",
         "name": "Humidity & Temperature",
-        "tab": "ddeb8410e4bcb88a",
+        "tab": "1f18d93c24426e1e",
         "order": 2,
         "disp": true,
         "width": "6",
@@ -969,7 +992,7 @@
         "className": ""
     },
     {
-        "id": "d6c1a409bcfbd74d",
+        "id": "6dd9186ba79cafea",
         "type": "telegram bot",
         "botname": "Wokwi Notification",
         "usernames": "",
@@ -994,21 +1017,21 @@
         "verboselogging": false
     },
     {
-        "id": "a9c24057acf82c3b",
+        "id": "7838dc3c77dce5c8",
         "type": "ui_group",
         "name": "Mode",
-        "tab": "ddeb8410e4bcb88a",
+        "tab": "1f18d93c24426e1e",
         "order": 3,
         "disp": true,
-        "width": "6",
+        "width": "7",
         "collapse": false,
         "className": ""
     },
     {
-        "id": "2836a3d0063f0e60",
+        "id": "f6a24bcaebe417bd",
         "type": "ui_group",
         "name": "Login",
-        "tab": "02bb2b4a83d72856",
+        "tab": "8f1c49d0b8c780e8",
         "order": 1,
         "disp": true,
         "width": "6",
@@ -1016,10 +1039,10 @@
         "className": ""
     },
     {
-        "id": "7ec464a6239e32f8",
+        "id": "1115733dd0980312",
         "type": "ui_group",
         "name": "Information",
-        "tab": "ddeb8410e4bcb88a",
+        "tab": "1f18d93c24426e1e",
         "order": 1,
         "disp": true,
         "width": "6",
@@ -1027,10 +1050,10 @@
         "className": ""
     },
     {
-        "id": "1b429f50303e61de",
+        "id": "5399c0be53e05038",
         "type": "ui_group",
         "name": "Logs",
-        "tab": "ddeb8410e4bcb88a",
+        "tab": "1f18d93c24426e1e",
         "order": 4,
         "disp": true,
         "width": "6",
@@ -1038,7 +1061,7 @@
         "className": ""
     },
     {
-        "id": "ddeb8410e4bcb88a",
+        "id": "1f18d93c24426e1e",
         "type": "ui_tab",
         "name": "Home",
         "icon": "dashboard",
@@ -1046,7 +1069,7 @@
         "hidden": false
     },
     {
-        "id": "02bb2b4a83d72856",
+        "id": "8f1c49d0b8c780e8",
         "type": "ui_tab",
         "name": "Login",
         "icon": "login",
