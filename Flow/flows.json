@@ -818,16 +818,16 @@
         "group": "dd19f504fdd19850",
         "name": "",
         "order": 0,
-        "width": 0,
-        "height": 0,
-        "format": "<ul>\n    <li ng-repeat=\"x in msg.payload\"\n        <font color=\"red\">{{x.topic}}</font>\n        <ul>\n            <li>{{x.payload}}</li>\n        </ul>\n    </li>\n</ul>",
+        "width": "6",
+        "height": "7",
+        "format": "<ul>\n    <li ng-repeat=\"x in msg.payload\"\n        <font color=\"red\">{{x.topic}}</font>\n        <ul>\n            <li>{{x.payload}}</li>\n        </ul>\n    </li>\n</ul>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1080,
-        "y": 1480,
+        "x": 1240,
+        "y": 1420,
         "wires": [
             []
         ]
@@ -863,9 +863,9 @@
         "z": "49e0e293ca37072e",
         "name": "",
         "props": [],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": "0.1",
         "topic": "",
         "x": 450,
@@ -897,7 +897,7 @@
         "type": "function",
         "z": "49e0e293ca37072e",
         "name": "function 5",
-        "func": "var EId = flow.get(\"EId\");\nvar last_entry = msg.payload.channel.last_entry_id;\n\nif (EId != last_entry)\n{\n    flow.set(\"EId\", last_entry);\n    var topic = null;\n    var payload = null;\n\n    if (msg.payload.feeds[0].field1 != null)\n    {\n        topic = \"Mode\";\n        payload = msg.payload.feeds[0].field1\n    }\n\n    if (msg.payload.feeds[0].field2 != null) {\n        topic = \"Temperature\";\n        payload = msg.payload.feeds[0].field2\n    }\n\n    if (msg.payload.feeds[0].field3 != null) {\n        topic = \"Humid\";\n        payload = msg.payload.feeds[0].field3\n    }\n\n    msg.topic = topic;\n    msg.payload = payload;\n} else {\n    msg = null\n}\n\nreturn msg;",
+        "func": "var EId = flow.get(\"EId\");\nvar last_entry = msg.payload.channel.last_entry_id;\n\nif (EId != last_entry)\n{\n    flow.set(\"EId\", last_entry);\n    var topic = null;\n    var payload = null;\n\n    if (msg.payload.feeds[0].field1 != null)\n    {\n        topic = \"Mode\";\n        payload = msg.payload.feeds[0].field1\n    }\n\n    if (msg.payload.feeds[0].field2 != null) {\n        topic = \"Temperature\";\n        payload = msg.payload.feeds[0].field2\n    }\n\n    if (msg.payload.feeds[0].field3 != null) {\n        topic = \"Humid\";\n        payload = msg.payload.feeds[0].field3\n    }\n\n    msg.topic = topic;\n    msg.payload = payload;\n} else {\n    msg.payload = \"\";\n    msg.topic = \"\"\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -908,7 +908,7 @@
         "wires": [
             [
                 "61de7cd964fcce9b",
-                "d7aa5733fd13871d"
+                "34cb33ca4201d6ef"
             ]
         ]
     },
@@ -963,6 +963,43 @@
         "statusType": "auto",
         "x": 1000,
         "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "34cb33ca4201d6ef",
+        "type": "function",
+        "z": "49e0e293ca37072e",
+        "name": "function 7",
+        "func": "var dbl = flow.get(\"dbl\") || []\n\nif(msg.topic != \"\")\n    dbl.push(msg);\nif(dbl.length > 10){\n    dbl.shift();\n    dbl.length = 10;\n}\n\nflow.set(\"dbl\", dbl);\nmsg = {};\nmsg.payload = dbl;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 1420,
+        "wires": [
+            [
+                "d7aa5733fd13871d",
+                "12272e6733538d09"
+            ]
+        ]
+    },
+    {
+        "id": "12272e6733538d09",
+        "type": "debug",
+        "z": "49e0e293ca37072e",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 1500,
         "wires": []
     },
     {
@@ -1069,7 +1106,7 @@
         "order": 4,
         "disp": true,
         "width": "6",
-        "collapse": true,
+        "collapse": false,
         "className": ""
     },
     {
