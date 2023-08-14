@@ -46,6 +46,7 @@ class MyDevice
         void Sync(String param, String value);
 
         void SendRequest(String param);
+        void SyncToCloud();
 
         // DHT
         void SyncTempAndHumid();

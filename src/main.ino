@@ -12,5 +12,6 @@ void loop()
 {
     md.ReconnectToServer();
     md.SyncTempAndHumid();
+    md.SyncToCloud();
     md.ChooseSuitableMode();
 }

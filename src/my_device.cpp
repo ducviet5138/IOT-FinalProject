@@ -103,6 +103,11 @@ void MyDevice::SendRequest(String param)
     Serial.println("Request sent!");
 }
 
+void MyDevice::SyncToCloud()
+{
+    SendRequest("&field1=" + String(dMode->GetWorkingMode())+ "&field2=" + dht.GetTemperature() + "&field3=" + dht.GetHumid());
+}
+
 
 
 // ========== [Call another device's function] ========== //
@@ -112,9 +117,6 @@ void MyDevice::SyncTempAndHumid()
     dht.Update();
     Sync("temperature", dht.GetTemperature());
     Sync("humid", dht.GetHumid());
-
-    SendRequest("&field2=" + dht.GetTemperature());
-    SendRequest("&field3=" + dht.GetHumid());
 }
 
 
