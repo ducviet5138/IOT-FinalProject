@@ -95,7 +95,7 @@ void MyDevice::SendRequest(String param)
         Serial.println("Connecting to cloud... ");
         delay(1000);
     }
-    Serial.print("Connected!");
+    Serial.print("Cosnnected!");
 
     HttpClient.print(String("GET /update?api_key=XLGHYLZHYRSMC4JJ") + param + " HTTP/1.1\r\n" +
                     "Host: api.thingspeak.com \r\n" +

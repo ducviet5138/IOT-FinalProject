@@ -826,11 +826,144 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 880,
-        "y": 1520,
+        "x": 1080,
+        "y": 1480,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "1e26c891e5d3e979",
+        "type": "http request",
+        "z": "49e0e293ca37072e",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 650,
+        "y": 1520,
+        "wires": [
+            [
+                "57e32bb896fcd170",
+                "d3c289c9b51aa0eb"
+            ]
+        ]
+    },
+    {
+        "id": "6f98ddbaf64069d0",
+        "type": "inject",
+        "z": "49e0e293ca37072e",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 450,
+        "y": 1520,
+        "wires": [
+            [
+                "1e26c891e5d3e979"
+            ]
+        ]
+    },
+    {
+        "id": "57e32bb896fcd170",
+        "type": "debug",
+        "z": "49e0e293ca37072e",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "d3c289c9b51aa0eb",
+        "type": "function",
+        "z": "49e0e293ca37072e",
+        "name": "function 5",
+        "func": "var EId = flow.get(\"EId\");\nvar last_entry = msg.payload.channel.last_entry_id;\n\nif (EId != last_entry)\n{\n    flow.set(\"EId\", last_entry);\n    var topic = null;\n    var payload = null;\n\n    if (msg.payload.feeds[0].field1 != null)\n    {\n        topic = \"Mode\";\n        payload = msg.payload.feeds[0].field1\n    }\n\n    if (msg.payload.feeds[0].field2 != null) {\n        topic = \"Temperature\";\n        payload = msg.payload.feeds[0].field2\n    }\n\n    if (msg.payload.feeds[0].field3 != null) {\n        topic = \"Humid\";\n        payload = msg.payload.feeds[0].field3\n    }\n\n    msg.topic = topic;\n    msg.payload = payload;\n} else {\n    msg = null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 1600,
+        "wires": [
+            [
+                "61de7cd964fcce9b",
+                "d7aa5733fd13871d"
+            ]
+        ]
+    },
+    {
+        "id": "5c3b1ba8ae2490ec",
+        "type": "inject",
+        "z": "49e0e293ca37072e",
+        "name": "set entry id",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 350,
+        "y": 1400,
+        "wires": [
+            [
+                "7984a74b3333178d"
+            ]
+        ]
+    },
+    {
+        "id": "7984a74b3333178d",
+        "type": "function",
+        "z": "49e0e293ca37072e",
+        "name": "function 6",
+        "func": "flow.set(\"EId\", 0);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61de7cd964fcce9b",
+        "type": "debug",
+        "z": "49e0e293ca37072e",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 1620,
+        "wires": []
     },
     {
         "id": "a6cc39a9b868ee45",
