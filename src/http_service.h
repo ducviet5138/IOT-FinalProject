@@ -8,7 +8,7 @@ class HttpService
     private:
         const char *host = "api.thingspeak.com";
         const int port = 80;
-        const char *request = "/update?api_key=FWA0NHRAFXF0M0FR";
+        const char *request = "/update?api_key=XLGHYLZHYRSMC4JJ";
     public:
         HttpService(){}
         
@@ -25,9 +25,10 @@ class HttpService
 
             if (!HttpClient.connect(host, port))
             {
-                Serial.println("Connecting to cloud...");
-                delay(250);
+                Serial.println("Connecting to cloud... ");
+                delay(1000);
             }
+            Serial.print("Connected!");
 
             HttpClient.print(GetHTTPMessage(param));
         }
