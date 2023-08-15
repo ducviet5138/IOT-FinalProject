@@ -1,11 +1,11 @@
 # Fdb version 4
-["pdflatex"] 1692065863 "c:/Users/MINH/Downloads/Coding/IOT-FinalProject/Report/IoT-Final/main.tex" "main.pdf" "main" 1692065892 0
+["pdflatex"] 1692066150 "c:/Users/MINH/Downloads/Coding/IOT-FinalProject/Report/IoT-Final/main.tex" "main.pdf" "main" 1692066179 0
   "1-01.png" 1692040394 3175509 05697954d28298b87d20290d8050efd9 ""
   "2-01.png" 1692040394 3551745 33866481980c6512c7f5dbba77ed286f ""
   "KHTN.png" 1692040392 70943 1440d53a180cbc0091066e87a5455bcc ""
   "Khoi_tao.png" 1692040392 134349 6807db68132f5c40d579d7383c0c69dc ""
   "PhoiCanh-01.png" 1692040394 4339139 ce73cb4ef6eb401d50a6b30ab3e03457 ""
-  "c:/Users/MINH/Downloads/Coding/IOT-FinalProject/Report/IoT-Final/main.tex" 1692065863 12912 36b6b201ecd199f3e37bf1d30b753ba4 ""
+  "c:/Users/MINH/Downloads/Coding/IOT-FinalProject/Report/IoT-Final/main.tex" 1692066136 12903 6910858a8ec3f9816013070646208a39 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1673779525 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1673780885 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm1440.tfm" 1673780327 1536 3290a75021d32d016616fe527bc9884c ""
@@ -179,10 +179,10 @@
   "c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1673786261 4662804 131178ccc9b2f4741a821427ce79dce1 ""
   "c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1673786456 7874753 a0e9a9f329d268937815ec43b9d57126 ""
   "c:/texlive/2022/texmf.cnf" 1673786240 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1692065892 3410 d1ea3274bc0219bc1c7f0488d84c0810 "pdflatex"
-  "main.out" 1692065892 1023 440dfcd6e19eb8091327584b290e7f9b "pdflatex"
-  "main.tex" 1692065863 12912 36b6b201ecd199f3e37bf1d30b753ba4 ""
-  "main.toc" 1692065892 1099 ad26062e6399596645eeeb668aa4d45e "pdflatex"
+  "main.aux" 1692066179 3410 d1ea3274bc0219bc1c7f0488d84c0810 "pdflatex"
+  "main.out" 1692066179 1023 440dfcd6e19eb8091327584b290e7f9b "pdflatex"
+  "main.tex" 1692066136 12903 6910858a8ec3f9816013070646208a39 ""
+  "main.toc" 1692066179 1099 ad26062e6399596645eeeb668aa4d45e "pdflatex"
   "mlanh_mo.png" 1692040392 150983 bc54c8f4dd4d56c015bf75ceca8567b0 ""
   "nul" 0 0 d41d8cd98f00b204e9800998ecf8427e ""
   "thiet_bi.png" 1692040392 134623 c9e9cadaeca7116261fcbcf830bbfc84 ""
