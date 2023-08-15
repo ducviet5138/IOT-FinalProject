@@ -6,7 +6,6 @@
 \usepackage{hyperref} % Hyperlink
 \usepackage{parskip}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-\usepackage{minted}
 \usetikzlibrary{calc}
 \usepackage{titlesec} % Change section font
 \usepackage{multirow}
@@ -218,8 +217,27 @@ Dựa trên yêu cầu và qui định của đồ án cuối kì thì nhóm đ�
     \item Sau khi không còn ai trong phòng thì các thiết bị sẽ được tắt sau 1 khoảng thời gian nhất định, cụ thể  \textbf{máy lạnh} sẽ được tắt sau khoảng 30 phút tính từ thời điểm không có người nào trong phòng, còn \textbf{các thiết bị khác} sẽ tắt sau khoảng 2 phút.
 
     \item Đối với trường hợp \textbf{"Bảo vệ"}, các thiết bị trong phòng sẽ không được cung cấp nguồn điện, và khi có người vào trong phòng, sản phẩm sẽ cảnh báo về \textbf{chat bot telegram} rằng có người vào phòng.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/warning_room.png}
+        \centering
+        \caption{Tin nhắn cảnh báo từ chat bot telegram}
+    \end{figure}
+    
 
-    \item Ngoài ra, nhóm đã thiết lập cho phép thay đổi 2 chế độ này thông qua các lệnh được cài đặt trong khung chat bot của telegram, giúp người dùng có thể thay đổi nhanh chóng.
+    \item Ngoài ra, nhóm đã thiết lập cho phép thay đổi 2 chế độ này thông qua các lệnh được cài đặt trong khung chat bot của telegram, giúp người dùng có thể thay đổi nhanh chóng. Lệnh để  chuyển đổi sang chế độ \textbf{"hoạt động"} là \textbf{"/workingmode"} và chuyển sang chế độ \textbf{"bảo vệ"} là \textbf{"/safetymode"}.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/change_work.png}
+        \centering
+        \caption{Lệnh chuyển đổi sang chế độ "hoạt động"}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/change_safe.png}s
+        \centering
+        \caption{Lệnh chuyển đổi sang chế độ "bảo vệ"}
+    \end{figure}
+    
+    
 \end{itemize}
 
 
@@ -234,19 +252,37 @@ Dưới đây sẽ là chi tiết về hình ảnh của sản phẩm được t
         \caption{Vị trí đặt thiết bị ở trong phòng}
     \end{figure}
 
-    % \item Đến với chi tiết của sản phẩm, trước hết các thiết bị của sản phẩm được liên kết với nhau và đặt trong hộp làm bằng hộp nhựa acrylic. Bên ngoài của hộp là 2 thiết bị \textbf{Cảm biến chuyển động} và \textbf{màn hình LCD} để người dùng dễ dàng nhìn thấy thông số trong phòng và giúp thiết bị cảm nhận người trong phòng tốt nhất.
+    \item Đến với chi tiết của sản phẩm, trước hết các thiết bị của sản phẩm được liên kết với nhau và đặt trong hộp làm bằng hộp nhựa acrylic. Bên ngoài của hộp là 2 thiết bị \textbf{Cảm biến chuyển động} và \textbf{màn hình LCD} để người dùng dễ dàng nhìn thấy thông số trong phòng và giúp thiết bị cảm nhận người trong phòng tốt nhất.
     \begin{figure}[!ht]
         \centering
         \includegraphics[width=\textwidth, keepaspectratio]{img/1-01.png}
         \caption{Mặt trước của sản phẩm}
     \end{figure}
-
-    % \item Phía trên của sản phẩm chính là thiết bị \textbf{DHT22} dùng để  đo nhiệt độ, độ ẩm. Thiết bị này sẽ kết nối với \textbf{LCD} và thông tin nhiệt độ, độ ẩm sẽ in ra màn hình.
+    \pagebreak
+    \item Phía trên của sản phẩm chính là thiết bị \textbf{DHT22} dùng để  đo nhiệt độ, độ ẩm. Thiết bị này sẽ kết nối với \textbf{LCD} và thông tin nhiệt độ, độ ẩm sẽ in ra màn hình.
     \begin{figure}[!ht]
         \centering
         \includegraphics[width=\textwidth, keepaspectratio]{img/2-01.png}
         \caption{Mặt trên của sản phẩm}
     \end{figure}
+
+    \pagebreak
+    \item Mặt sau của sản phẩm là thiết bị \textbf{ESP32} và vị trí giữa \textbf{ESP32} và \textbf{LCD} là thiết bị \textbf{Relay}.
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=\textwidth, keepaspectratio]{img/3-01.png}
+        \caption{Mặt sau của sản phẩm}
+    \end{figure}
+    
+    \pagebreak
+    \item Cuối cùng nhìn từ mặt sau chúng ta còn thấy được chân của thiết bị  \textbf{IR-Transmitter}, phần đầu để phát tín hiệu hồng ngoại của thiết bị sẽ nằm phía mặt trước của sản phẩm.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/4-01.png}
+        \centering
+        \caption{Vị trí của IR-Transmitter}
+    \end{figure}
+
+    
 \end{itemize}
 
 \newpage
