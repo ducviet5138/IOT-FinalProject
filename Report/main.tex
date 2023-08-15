@@ -6,6 +6,8 @@
 \usepackage{hyperref} % Hyperlink
 \usepackage{parskip}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
 \usetikzlibrary{calc}
 \usepackage{titlesec} % Change section font
 \usepackage{multirow}
@@ -23,7 +25,73 @@
     \usepackage[english]{babel}
 \fi
 % ========== END OF [LANGUAGE] ==========
-
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+ 
+%Customize a bit the look
+\lstset{ %
+backgroundcolor=\color{white}, % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+basicstyle=\footnotesize, % the size of the fonts that are used for the code
+breakatwhitespace=false, % sets if automatic breaks should only happen at whitespace
+breaklines=true, % sets automatic line breaking
+captionpos=b, % sets the caption-position to bottom
+commentstyle=\color{mygreen}, % comment style
+deletekeywords={...}, % if you want to delete keywords from the given language
+escapeinside={\%*}{*)}, % if you want to add LaTeX within your code
+extendedchars=true, % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+frame=single, % adds a frame around the code
+keepspaces=true, % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+keywordstyle=\color{blue}, % keyword style
+% language=Octave, % the language of the code
+morekeywords={*,...}, % if you want to add more keywords to the set
+numbers=left, % where to put the line-numbers; possible values are (none, left, right)
+numbersep=5pt, % how far the line-numbers are from the code
+numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+rulecolor=\color{black}, % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+showspaces=false, % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+showstringspaces=false, % underline spaces within strings only
+showtabs=false, % show tabs within strings adding particular underscores
+stepnumber=1, % the step between two line-numbers. If it's 1, each line will be numbered
+stringstyle=\color{mymauve}, % string literal style
+tabsize=2, % sets default tabsize to 2 spaces
+title=\lstname % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+%END of listing package%
+ 
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+ 
+%define Javascript language
+\lstdefinelanguage{JavaScript}{
+keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+keywordstyle=\color{blue}\bfseries,
+ndkeywords={class, export, boolean, throw, implements, import, this},
+ndkeywordstyle=\color{darkgray}\bfseries,
+identifierstyle=\color{black},
+sensitive=false,
+comment=[l]{//},
+morecomment=[s]{/*}{*/},
+commentstyle=\color{purple}\ttfamily,
+stringstyle=\color{red}\ttfamily,
+morestring=[b]',
+morestring=[b]"
+}
+ 
+\lstset{
+language=JavaScript,
+extendedchars=true,
+basicstyle=\footnotesize\ttfamily,
+showstringspaces=false,
+showspaces=false,
+numbers=left,
+numberstyle=\footnotesize,
+numbersep=9pt,
+tabsize=2,
+breaklines=true,
+showtabs=false,
+captionpos=b
+}
 
 
 
@@ -286,13 +354,174 @@ Dưới đây sẽ là chi tiết về hình ảnh của sản phẩm được t
 \end{itemize}
 
 \newpage
-\subsubsection{Các tình huống}
-\begin{enumerate}
-    \item \textbf{Khởi tạo mặc định}: Ban đầu sẽ luôn ở chế độ "ở nhà" và chờ người dùng nhập thiết bị tài khoản và mật khẩu để kết nối với wifi trong khoảng thời gian 5 phút. Nếu sau 5 phút không có kết nối wifi thì sẽ hoạt động với trường hợp \textbf{Sự cố mạng} bên dưới.
+\subsection{Giao diện và chức năng của web}
+\subsection{Xây dựng flow trong NodeRed}
+Giao diện và chức năng của web được xây dựng bằng NodeRed qua việc kết hợp các node chức năng để  tạo thành flow cho trang web.
 
-    \item \textbf{Sự cố mạng}: Người dùng không thể truy cập và chỉnh sửa chế độ từ xa, các thiết lập được chuyển về chế độ "ở nhà" (Ưu tiên trải nghiệm người dùng hơn tiết kiệm điện). 
+
+\begin{enumerate}
+    \item Đầu tiên chính là phần node cho \textbf{đăng nhập vào trang web}. Node này sẽ có chức năng kiểm tra tài khoản và mật khẩu của người dùng, nếu đúng thì sẽ cho phép người dùng đăng nhập vào trang web, nếu sai thì sẽ hiện thông báo lỗi.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/login_node.png}
+        \centering
+        \caption{Các node về đăng nhập tài khoản}
+    \end{figure}
+    Sau khi người dùng điền tên đăng nhập và mật khẩu vào \textbf{form} thì hàm \textbf{check login} sẽ kiểm tra thông tin đăng nhập có hợp lệ hay không. Nhóm đã thống nhất rằng tên đăng nhập và mật khẩu để vào web đều là \textbf{"admin"}. Đăng nhập thành công thì sẽ chuyển sang màn hình chính cùa web, và ngược lại thì sẽ đưa ra dòng thông báo đăng nhấp thất bại.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/check_login.png}
+        \centering
+        \caption{Hàm kiểm tra tài khoản và mật khẩu}
+    \end{figure}
+
+    \item Tiếp đó là các node cho giao diện về \textbf{đồng hồ và chức năng đăng xuất}. Để có thể lấy thông tin giờ/phút/giây hiện tại thì sẽ sử dụng node \textbf{digital clock} và 1 node \textbf{inject} để liên tục lấy thông tin thời gian liên tực sau 1 giây và hiển thị lên màn hình trang web.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/clock.png}
+        \centering
+        \caption{Node về đồng hồ} 
+    \end{figure}
+    Nút \textbf{Log out} trên màn hình sẽ hỗ trợ chức năng thoát khỏi trang chính của web và quay trở lại trang đăng nhập trước đó.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/logout.png}
+        \centering
+        \caption{Node về đăng xuất}
+    \end{figure}
+
+    \item Kế đến đó chính là các node hỗ trợ chức năng chính của trang web. Đầu tiên để  hiển thị thông tin nhiệt độ, độ ẩm trong phòng thì nhóm đã sử dụng node \textbf{MQTT in}-là node sử dụng giao thức \textbf{MQTT}. Node này được cài đặt sẽ kết nối với server \textbf{broker.emqx.io} thông qua giao thức MQTT và lấy thông tin được đưa lên về nhiệt độ, độ ẩm từ thiết bị \textbf{ESP32} và hiển thị lên trang web.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/mqtt_in.png}
+        \centering
+        \caption{Node lấy thông tin nhiệt độ, độ ẩm}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/configure_mqtt.png}
+        \centering
+        \caption{Thiết lập cho node MQTT in}
+    \end{figure}
     
-    \item \textbf{Cúp điện đột ngột}: Trường hợp bất khả kháng của nhà cung cấp điện, ngay khi có điện trở lại thì sẽ về chế độ \textbf{khởi tạo mặc định}.
+    \item Phần hiển thị thông tin đang ở chế độ nào cũng sẽ được thực hiện bằng cách lấy thông tin chế độ từ server đã được gửi từ \textbf{ESP32}. Hình ảnh giao diện về chế độ sẽ được cập nhật trên màn hình web theo đúng với thông tin chế độ của thiết bị. Đồng thời sản phẩm còn cho phép gửi thông tin chế độ và thời gian đã chuyển sang chế độ đó vào khung chat bot của telegram.
+    Nhóm đã sử dụng node \textbf{sender} của \textbf{telegram bot} giúp truyền thông tin về chat box với bot của người dùng. Node này sẽ được khởi tạo bởi một mã token được cấp bởi \textbf{telegram bot father} và thông tin sẽ được gửi vào khung chat box của bot có mã token đó.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/send_current_mode.png}
+        \centering
+        \caption{Node gửi thông tin chế độ}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/configure_bot.png}
+        \centering
+        \caption{Thiết lập cho node sender}
+    \end{figure}
+
+    \item 1 chức năng cũng được cài đặt khá tương tự với chức năng trên đó là \textbf{gửi tin nhắn cảnh báo về người dùng}. Điểm tương đồng là cũng sẽ sử dụng node \textbf{MQTT in} để lấy dữ liệu khi có người vào phòng và cũng sẽ tạo tin nhắn và gửi qua chat box của \textbf{bot telegram}.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/send_warning.png}
+        \centering
+        \caption{Node gửi tin nhắn cảnh báo}
+    \end{figure}
+
+    \item Chức năng tiếp theo được đề cập đến chính là \textbf{Chuyển đổi chế độ}. Nhóm đã thiết kế để cho người dùng có thể điều chỉnh giữa 2 chế độ thông qua 2 cách đó chính là \textbf{trên web và qua bot telegram}. \textbf{Nút bấm chuyển đổi} được cài đặt để khi chuyển sang chế độ nào sẽ gửi thông tin về lên server thông qua \textbf{MQTT out} và thông tin đó sẽ chuyển về \textbf{ESP32} để điều khiển các thiết bị trong phòng.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/change_btn_mode.png}
+        \centering
+        \caption{Node chuyển đổi chế độ}
+    \end{figure}
+    Việc gửi lệnh chuyển đổi thông qua \textbf{bot telegram} thì sẽ sử dụng node \textbf{telegram receiver} để nhận lệnh từ khung chat box của bot. Thông tin lệnh được gửi tới sẽ dược kiểm tra xem có phải là loại \textbf{message} hay không và nội dung phải là 1 trong 2 câu lệnh \textbf{safetymode} và \textbf{workingmode} thì mới được lưu lại để \textbf{nút chuyển đổi} cũng nhận thông tin và gửi lên server.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/bot_receiver.png}
+        \centering
+        \caption{Node nhận lệnh chuyển đổi chế độ}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/check_message.png}
+        \centering
+        \caption{Hàm kiểm tra lệnh chuyển đổi chế độ}
+    \end{figure}
+    
+    \item Cuối cùng là chức năng lấy dữ liệu từ trên cloud \textbf{thingspeak} về. Node mà nhóm đã sử dụng chính là \textbf{https request} để thực hiện yêu cầu tới đường dẫn \textbf{API key} của \textbf{thingspeak} để lấy thông số của gần nhất của 3 thông tin \textbf{nhiệt độ, độ ẩm và chế độ} và thời điểm của các thông số đó. Nút \textbf{inject} sẽ có nhiệm vụ khởi động \textbf{request} liên tục sau 1 giây và khi phía cloud có sự thay đổi thông số của bất kì thông tin nào thì thông số đó sẽ được cập nhật lên trang web thông qua hàm \textbf{control log list}. Hàm này sẽ có nhiệm vụ thực hiện thông số mới nhất và khi liên tục nhận dữ liệu từ cloud, hàm sẽ tiến hành kiểm tra xem thông số mới nhận được có thay đổi hay không, nếu thay đổi thì sẽ đẩy lên hàng đầu của \textbf{log list} và in ra màn hình web, nếu không thay đổi thì sẽ không cập nhật để tránh tình trạng đưa lên các thông số chưa thay đổi.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/get_data.png}
+        \centering
+        \caption{Node lấy dữ liệu từ cloud}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/configure_request.png}
+        \centering
+        \caption{Thiết lập cho node https request}
+    \end{figure}
+
+    \pagebreak
+    \begin{lstlisting}[language=JavaScript, caption={function of control log list}]
+        var logList = flow.get("logList")
+        var topic1 = "", payload1 = ""
+        var topic2 = "", payload2 = ""
+        var topic3 = "", payload3 = ""
+
+        var time = msg.payload.feeds[0].created_at
+        time = time.replace("T", " ")
+        time = time.replace("+07:00", "")
+
+        if (msg.payload.feeds[0].field1 != flow.get("prevMode"))
+        {
+            topic1 = "Mode"
+            payload1 = msg.payload.feeds[0].field1
+            flow.set("prevMode", payload1)
+        }
+
+        if (msg.payload.feeds[0].field2 != flow.get("prevTemperature")) 
+        {
+            topic2 = "Temperature"
+            payload2 = msg.payload.feeds[0].field2
+            flow.set("prevTemperature", payload2)
+        }
+
+        if (msg.payload.feeds[0].field3 != flow.get("prevHumid")) 
+        {
+            topic3 = "Humid"
+            payload3 = msg.payload.feeds[0].field3
+            flow.set("prevHumid", payload3)
+        }
+
+        if (topic1 != "")
+        {
+            msg = {}
+            msg.topic = topic1
+            msg.payload = payload1
+            msg.time = time
+            logList.unshift(msg)
+        }
+
+        if (topic2 != "") 
+        {
+            msg = {}
+            msg.topic = topic2
+            msg.payload = payload2
+            msg.time = time
+            logList.unshift(msg)
+        }
+
+        if (topic3 != "") 
+        {
+            msg = {}
+            msg.topic = topic3
+            msg.payload = payload3
+            msg.time = time
+            logList.unshift(msg)
+        }
+
+        if (logList.length > 10) 
+        {
+            logList.shift();
+            logList.length = 10;
+        }
+
+        flow.set("logList", logList)
+        msg = {}
+        msg.payload = logList
+        return msg;
+    \end{lstlisting}
 \end{enumerate}
 
 \newpage
