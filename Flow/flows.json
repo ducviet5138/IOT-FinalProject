@@ -920,7 +920,7 @@
         "type": "function",
         "z": "bbda578bf909493c",
         "name": "Default value for log list",
-        "func": "if (!msg.payload.feeds[0].field1)\n    flow.set(\"prevMode\", -999)\nelse \n    flow.set(\"prevMode\", msg.payload.feeds[0].field1)\n\nif (!msg.payload.feeds[0].field2)\n    flow.set(\"prevTemperature\", -999)\nelse    \n    flow.set(\"prevTemperature\", msg.payload.feeds[0].field2)\n\nif (!msg.payload.feeds[0].field3)\n    flow.set(\"prevHumid\", -999)\nelse\n    flow.set(\"prevHumid\", msg.payload.feeds[0].field3)\n\nflow.set(\"logList\", [])",
+        "func": "if (!msg.payload.feeds[0])\n{\n    flow.set(\"prevMode\", -999)\n    flow.set(\"prevTemperature\", -999)\n    flow.set(\"prevHumid\", -999)\n}\nelse \n{\n    flow.set(\"prevMode\", msg.payload.feeds[0].field1)\n    flow.set(\"prevTemperature\", msg.payload.feeds[0].field2)\n    flow.set(\"prevHumid\", msg.payload.feeds[0].field3)\n}\n\nflow.set(\"logList\", [])\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
