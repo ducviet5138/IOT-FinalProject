@@ -7,76 +7,6 @@
         "info": ""
     },
     {
-        "id": "9152b75088e30fba",
-        "type": "mqtt in",
-        "z": "984281f8dd3b7249",
-        "name": "MQTT Temperature",
-        "topic": "/GDrpD2J3jxvzQEy7vGOn/temperature",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "e28fe818ac9d07d4",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 190,
-        "y": 200,
-        "wires": [
-            [
-                "d592d72b65ab6dcf"
-            ]
-        ]
-    },
-    {
-        "id": "2e865bebb96d086f",
-        "type": "mqtt in",
-        "z": "984281f8dd3b7249",
-        "name": "MQTT Humid",
-        "topic": "/GDrpD2J3jxvzQEy7vGOn/humid",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "e28fe818ac9d07d4",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 170,
-        "y": 300,
-        "wires": [
-            [
-                "f031dd9e4ca6f810"
-            ]
-        ]
-    },
-    {
-        "id": "f031dd9e4ca6f810",
-        "type": "ui_gauge",
-        "z": "984281f8dd3b7249",
-        "name": "Humidity",
-        "group": "b76f9c8f4316f82b",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "gtype": "wave",
-        "title": "Humidity",
-        "label": "",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 520,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "6af3d8346ebbc34b",
         "type": "mqtt out",
         "z": "984281f8dd3b7249",
@@ -90,8 +20,8 @@
         "correl": "",
         "expiry": "",
         "broker": "e28fe818ac9d07d4",
-        "x": 1120,
-        "y": 520,
+        "x": 1280,
+        "y": 620,
         "wires": []
     },
     {
@@ -112,8 +42,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 670,
-        "y": 520,
+        "x": 830,
+        "y": 620,
         "wires": [
             [
                 "a203b473c3d88fb2"
@@ -142,8 +72,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 870,
-        "y": 460,
+        "x": 1030,
+        "y": 560,
         "wires": [
             [
                 "6af3d8346ebbc34b"
@@ -169,8 +99,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 860,
-        "y": 600,
+        "x": 1020,
+        "y": 700,
         "wires": [
             [
                 "6af3d8346ebbc34b"
@@ -190,7 +120,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 130,
+        "x": 290,
         "y": 780,
         "wires": [
             [
@@ -215,7 +145,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 390,
+        "x": 550,
         "y": 780,
         "wires": [
             [
@@ -249,7 +179,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 620,
+        "x": 780,
         "y": 780,
         "wires": [
             [
@@ -265,7 +195,7 @@
         "bot": "6dd9186ba79cafea",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 1510,
+        "x": 1670,
         "y": 780,
         "wires": [
             []
@@ -282,7 +212,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1310,
+        "x": 1470,
         "y": 780,
         "wires": [
             [
@@ -316,8 +246,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 500,
-        "y": 520,
+        "x": 660,
+        "y": 620,
         "wires": [
             [
                 "9fecb7cfe154feff"
@@ -332,8 +262,8 @@
         "bot": "6dd9186ba79cafea",
         "saveDataDir": "",
         "filterCommands": false,
-        "x": 90,
-        "y": 520,
+        "x": 250,
+        "y": 620,
         "wires": [
             [
                 "a9940ae40936bd17"
@@ -352,109 +282,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 520,
+        "x": 460,
+        "y": 620,
         "wires": [
             [
                 "9e5a3fbd768b8dcb"
-            ]
-        ]
-    },
-    {
-        "id": "c27b8ea188fb8903",
-        "type": "function",
-        "z": "984281f8dd3b7249",
-        "name": "check login",
-        "func": "var uname = msg.payload.username, pword = msg.payload.password\nvar validLogin = (uname == \"admin\" && pword == \"admin\")\nif (validLogin == true)\n    msg.payload = {\"tab\": \"Home\"}\nelse\n    {\n        msg.payload = {\"tab\": \"Login\"}\n        msg.announce = \"Wrong username or password\"\n    }\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 1640,
-        "wires": [
-            [
-                "0cb69d61917c2ed2",
-                "729c3d8e5024a04c"
-            ]
-        ]
-    },
-    {
-        "id": "729c3d8e5024a04c",
-        "type": "ui_ui_control",
-        "z": "984281f8dd3b7249",
-        "name": "",
-        "events": "change",
-        "x": 520,
-        "y": 1640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0cb69d61917c2ed2",
-        "type": "ui_text",
-        "z": "984281f8dd3b7249",
-        "group": "f6a24bcaebe417bd",
-        "order": 13,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "",
-        "format": "{{msg.announce}}",
-        "layout": "row-center",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 530,
-        "y": 1740,
-        "wires": []
-    },
-    {
-        "id": "80ed51181f248bb2",
-        "type": "ui_form",
-        "z": "984281f8dd3b7249",
-        "name": "",
-        "label": "",
-        "group": "f6a24bcaebe417bd",
-        "order": 12,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Username",
-                "value": "username",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Password",
-                "value": "password",
-                "type": "password",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "username": "",
-            "password": ""
-        },
-        "payload": "",
-        "submit": "Login",
-        "cancel": "",
-        "topic": "topic",
-        "topicType": "msg",
-        "splitLayout": "",
-        "className": "",
-        "x": 150,
-        "y": 1640,
-        "wires": [
-            [
-                "c27b8ea188fb8903"
             ]
         ]
     },
@@ -478,8 +310,8 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 770,
-        "y": 1280,
+        "x": 210,
+        "y": 1240,
         "wires": [
             [
                 "fa6e727f1d4d4a19"
@@ -492,8 +324,8 @@
         "z": "984281f8dd3b7249",
         "name": "",
         "events": "change",
-        "x": 1130,
-        "y": 1240,
+        "x": 570,
+        "y": 1200,
         "wires": [
             []
         ]
@@ -513,8 +345,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1370,
-        "y": 1320,
+        "x": 810,
+        "y": 1280,
         "wires": []
     },
     {
@@ -543,8 +375,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1150,
-        "y": 1320,
+        "x": 590,
+        "y": 1280,
         "wires": [
             [
                 "0f33647a8a5ba141"
@@ -562,8 +394,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 950,
-        "y": 1280,
+        "x": 390,
+        "y": 1240,
         "wires": [
             [
                 "07a256b9d182d11a",
@@ -592,8 +424,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 930,
-        "y": 1100,
+        "x": 230,
+        "y": 1000,
         "wires": [
             [
                 "0ee4ce34f34d8580"
@@ -609,8 +441,8 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "x": 1130,
-        "y": 1100,
+        "x": 430,
+        "y": 1000,
         "wires": []
     },
     {
@@ -637,7 +469,7 @@
         "myepoch": false,
         "myrawdate": false,
         "mypm": false,
-        "x": 1090,
+        "x": 1250,
         "y": 780,
         "wires": [
             [
@@ -658,7 +490,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 130,
+        "x": 290,
         "y": 880,
         "wires": [
             [
@@ -688,7 +520,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 440,
+        "x": 600,
         "y": 880,
         "wires": [
             [
@@ -725,7 +557,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 750,
+        "x": 910,
         "y": 840,
         "wires": [
             [
@@ -760,7 +592,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 740,
+        "x": 900,
         "y": 920,
         "wires": [
             [
@@ -768,6 +600,261 @@
                 "5c1b5bd19d1c234a"
             ]
         ]
+    },
+    {
+        "id": "b0c306d28157d9ec",
+        "type": "ui_template",
+        "z": "984281f8dd3b7249",
+        "group": "5399c0be53e05038",
+        "name": "",
+        "order": 0,
+        "width": "6",
+        "height": "7",
+        "format": "<ul>\n    <li ng-repeat=\"x in msg.payload\"\n        <h1 style=\"color:red\"> {{x.topic}}</h1>\n        <ul style=\"color:black\">\n            <li>Value: {{x.payload}}</li>\n            <li>Time: {{x.time}}</li>\n        </ul>\n    </li>\n</ul>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 860,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ed0d6519e7a6b41",
+        "type": "http request",
+        "z": "984281f8dd3b7249",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1&timezone=Asia%2FJakarta",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 410,
+        "y": 1100,
+        "wires": [
+            [
+                "936e1fb809f3b28e"
+            ]
+        ]
+    },
+    {
+        "id": "b3ec40d0c8817f02",
+        "type": "inject",
+        "z": "984281f8dd3b7249",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 210,
+        "y": 1100,
+        "wires": [
+            [
+                "9ed0d6519e7a6b41"
+            ]
+        ]
+    },
+    {
+        "id": "936e1fb809f3b28e",
+        "type": "function",
+        "z": "984281f8dd3b7249",
+        "name": "Control log list",
+        "func": "var logList = flow.get(\"logList\")\nvar topic1 = \"\", payload1 = \"\"\nvar topic2 = \"\", payload2 = \"\"\nvar topic3 = \"\", payload3 = \"\"\n\nvar time = msg.payload.feeds[0].created_at\ntime = time.replace(\"T\", \" \")\ntime = time.replace(\"+07:00\", \"\")\n\nif (msg.payload.feeds[0].field1 != flow.get(\"prevMode\"))\n{\n    topic1 = \"Mode\"\n    payload1 = msg.payload.feeds[0].field1\n    flow.set(\"prevMode\", payload1)\n}\n\n\nif (msg.payload.feeds[0].field2 != flow.get(\"prevTemperature\")) \n{\n    topic2 = \"Temperature\"\n    payload2 = msg.payload.feeds[0].field2\n    flow.set(\"prevTemperature\", payload2)\n}\n\n\nif (msg.payload.feeds[0].field3 != flow.get(\"prevHumid\")) \n{\n    topic3 = \"Humid\"\n    payload3 = msg.payload.feeds[0].field3\n    flow.set(\"prevHumid\", payload3)\n}\n\nif (topic1 != \"\")\n{\n    msg = {}\n    msg.topic = topic1\n    msg.payload = payload1\n    msg.time = time\n    logList.push(msg)\n}\n\nif (topic2 != \"\") \n{\n    msg = {}\n    msg.topic = topic2\n    msg.payload = payload2\n    msg.time = time\n    logList.push(msg)\n}\n\nif (topic3 != \"\") \n{\n    msg = {}\n    msg.topic = topic3\n    msg.payload = payload3\n    msg.time = time\n    logList.push(msg)\n}\n\nif (logList.length > 10) \n{\n    logList.shift();\n    logList.length = 10;\n}\n\nflow.set(\"logList\", logList)\nmsg = {}\nmsg.payload = logList\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 1100,
+        "wires": [
+            [
+                "b0c306d28157d9ec"
+            ]
+        ]
+    },
+    {
+        "id": "5c1b5bd19d1c234a",
+        "type": "ui_text",
+        "z": "984281f8dd3b7249",
+        "group": "7838dc3c77dce5c8",
+        "order": 1,
+        "width": "7",
+        "height": "1",
+        "name": "",
+        "label": "Current Mode",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1260,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "8be3f971080d5987",
+        "type": "ui_template",
+        "z": "984281f8dd3b7249",
+        "group": "f6a24bcaebe417bd",
+        "name": "Hide toolbar",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<script>\n    $('#toolbar').css(\"display\", \"none\");\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 230,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d404f8d6f16c6074",
+        "type": "inject",
+        "z": "984281f8dd3b7249",
+        "name": "set entry id",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 230,
+        "y": 220,
+        "wires": [
+            [
+                "3531ab681274ecfa"
+            ]
+        ]
+    },
+    {
+        "id": "be052c7c99210fb1",
+        "type": "function",
+        "z": "984281f8dd3b7249",
+        "name": "Default value for log list",
+        "func": "if (!msg.payload.feeds[0])\n{\n    flow.set(\"prevMode\", -999)\n    flow.set(\"prevTemperature\", -999)\n    flow.set(\"prevHumid\", -999)\n}\nelse \n{\n    flow.set(\"prevMode\", msg.payload.feeds[0].field1)\n    flow.set(\"prevTemperature\", msg.payload.feeds[0].field2)\n    flow.set(\"prevHumid\", msg.payload.feeds[0].field3)\n}\n\nflow.set(\"logList\", [])\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3531ab681274ecfa",
+        "type": "http request",
+        "z": "984281f8dd3b7249",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "be052c7c99210fb1"
+            ]
+        ]
+    },
+    {
+        "id": "9152b75088e30fba",
+        "type": "mqtt in",
+        "z": "984281f8dd3b7249",
+        "name": "MQTT Temperature",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e28fe818ac9d07d4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "d592d72b65ab6dcf"
+            ]
+        ]
+    },
+    {
+        "id": "2e865bebb96d086f",
+        "type": "mqtt in",
+        "z": "984281f8dd3b7249",
+        "name": "MQTT Humid",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/humid",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e28fe818ac9d07d4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 540,
+        "wires": [
+            [
+                "f031dd9e4ca6f810"
+            ]
+        ]
+    },
+    {
+        "id": "f031dd9e4ca6f810",
+        "type": "ui_gauge",
+        "z": "984281f8dd3b7249",
+        "name": "Humidity",
+        "group": "b76f9c8f4316f82b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Humidity",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 540,
+        "wires": []
     },
     {
         "id": "d592d72b65ab6dcf",
@@ -807,151 +894,109 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 530,
-        "y": 200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b0c306d28157d9ec",
-        "type": "ui_template",
-        "z": "984281f8dd3b7249",
-        "group": "5399c0be53e05038",
-        "name": "",
-        "order": 0,
-        "width": "6",
-        "height": "7",
-        "format": "<ul>\n    <li ng-repeat=\"x in msg.payload\"\n        <h1 style=\"color:red\"> {{x.topic}}</h1>\n        <ul style=\"color:black\">\n            <li>Value: {{x.payload}}</li>\n            <li>Time: {{x.time}}</li>\n        </ul>\n    </li>\n</ul>\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1100,
-        "y": 1520,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9ed0d6519e7a6b41",
-        "type": "http request",
-        "z": "984281f8dd3b7249",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1&timezone=Asia%2FJakarta",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 650,
-        "y": 1520,
-        "wires": [
-            [
-                "936e1fb809f3b28e"
-            ]
-        ]
-    },
-    {
-        "id": "b3ec40d0c8817f02",
-        "type": "inject",
-        "z": "984281f8dd3b7249",
-        "name": "",
-        "props": [],
-        "repeat": "1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.1",
-        "topic": "",
-        "x": 450,
-        "y": 1520,
-        "wires": [
-            [
-                "9ed0d6519e7a6b41"
-            ]
-        ]
-    },
-    {
-        "id": "936e1fb809f3b28e",
-        "type": "function",
-        "z": "984281f8dd3b7249",
-        "name": "Control log list",
-        "func": "var logList = flow.get(\"logList\")\nvar topic1 = \"\", payload1 = \"\"\nvar topic2 = \"\", payload2 = \"\"\nvar topic3 = \"\", payload3 = \"\"\n\nvar time = msg.payload.feeds[0].created_at\ntime = time.replace(\"T\", \" \")\ntime = time.replace(\"+07:00\", \"\")\n\nif (msg.payload.feeds[0].field1 != flow.get(\"prevMode\"))\n{\n    topic1 = \"Mode\"\n    payload1 = msg.payload.feeds[0].field1\n    flow.set(\"prevMode\", payload1)\n}\n\n\nif (msg.payload.feeds[0].field2 != flow.get(\"prevTemperature\")) \n{\n    topic2 = \"Temperature\"\n    payload2 = msg.payload.feeds[0].field2\n    flow.set(\"prevTemperature\", payload2)\n}\n\n\nif (msg.payload.feeds[0].field3 != flow.get(\"prevHumid\")) \n{\n    topic3 = \"Humid\"\n    payload3 = msg.payload.feeds[0].field3\n    flow.set(\"prevHumid\", payload3)\n}\n\nif (topic1 != \"\")\n{\n    msg = {}\n    msg.topic = topic1\n    msg.payload = payload1\n    msg.time = time\n    logList.push(msg)\n}\n\nif (topic2 != \"\") \n{\n    msg = {}\n    msg.topic = topic2\n    msg.payload = payload2\n    msg.time = time\n    logList.push(msg)\n}\n\nif (topic3 != \"\") \n{\n    msg = {}\n    msg.topic = topic3\n    msg.payload = payload3\n    msg.time = time\n    logList.push(msg)\n}\n\nif (logList.length > 10) \n{\n    logList.shift();\n    logList.length = 10;\n}\n\nflow.set(\"logList\", logList)\nmsg = {}\nmsg.payload = logList\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 1520,
-        "wires": [
-            [
-                "b0c306d28157d9ec"
-            ]
-        ]
-    },
-    {
-        "id": "3195f46d3c3acfed",
-        "type": "inject",
-        "z": "984281f8dd3b7249",
-        "name": "set entry id",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.1",
-        "topic": "",
-        "x": 350,
-        "y": 1400,
-        "wires": [
-            [
-                "01f0c0d181dbc32a"
-            ]
-        ]
-    },
-    {
-        "id": "01f0c0d181dbc32a",
-        "type": "function",
-        "z": "984281f8dd3b7249",
-        "name": "Default value for log list",
-        "func": "flow.set(\"prevMode\", -1)\nflow.set(\"prevTemperature\", -1)\nflow.set(\"prevHumid\", -1)\nflow.set(\"logList\", [])",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
         "x": 590,
-        "y": 1400,
+        "y": 500,
         "wires": [
             []
         ]
     },
     {
-        "id": "5c1b5bd19d1c234a",
+        "id": "c27b8ea188fb8903",
+        "type": "function",
+        "z": "984281f8dd3b7249",
+        "name": "check login",
+        "func": "var uname = msg.payload.username, pword = msg.payload.password\nvar validLogin = (uname == \"admin\" && pword == \"admin\")\nif (validLogin == true)\n    msg.payload = {\"tab\": \"Home\"}\nelse\n    {\n        msg.payload = {\"tab\": \"Login\"}\n        msg.announce = \"Wrong username or password\"\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "0cb69d61917c2ed2",
+                "729c3d8e5024a04c"
+            ]
+        ]
+    },
+    {
+        "id": "729c3d8e5024a04c",
+        "type": "ui_ui_control",
+        "z": "984281f8dd3b7249",
+        "name": "",
+        "events": "change",
+        "x": 580,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0cb69d61917c2ed2",
         "type": "ui_text",
         "z": "984281f8dd3b7249",
-        "group": "7838dc3c77dce5c8",
-        "order": 1,
-        "width": "7",
-        "height": "1",
+        "group": "f6a24bcaebe417bd",
+        "order": 13,
+        "width": 0,
+        "height": 0,
         "name": "",
-        "label": "Current Mode",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
+        "label": "",
+        "format": "{{msg.announce}}",
+        "layout": "row-center",
         "className": "",
         "style": false,
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1100,
-        "y": 880,
+        "x": 590,
+        "y": 420,
         "wires": []
+    },
+    {
+        "id": "80ed51181f248bb2",
+        "type": "ui_form",
+        "z": "984281f8dd3b7249",
+        "name": "",
+        "label": "",
+        "group": "f6a24bcaebe417bd",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Username",
+                "value": "username",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Password",
+                "value": "password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "username": "",
+            "password": ""
+        },
+        "payload": "",
+        "submit": "Login",
+        "cancel": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 210,
+        "y": 320,
+        "wires": [
+            [
+                "c27b8ea188fb8903"
+            ]
+        ]
     },
     {
         "id": "4fed911a707e39fa",
@@ -973,8 +1018,8 @@
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
-        "x": 140,
-        "y": 1900,
+        "x": 220,
+        "y": 1380,
         "wires": [
             [
                 "35916c46076b4207"
@@ -987,8 +1032,8 @@
         "z": "984281f8dd3b7249",
         "name": "",
         "events": "change",
-        "x": 340,
-        "y": 1900,
+        "x": 420,
+        "y": 1380,
         "wires": [
             [
                 "54837e31f27c5c1f"
@@ -1004,14 +1049,14 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<html>\n\n<head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <style>\n        body {\n            font-family: Arial, Helvetica, sans-serif;\n            margin: 0;\n        }\n\n        html {\n            box-sizing: border-box;\n        }\n\n        *,\n        *:before,\n        *:after {\n            box-sizing: inherit;\n        }\n\n        .column {\n            float: left;\n            width: 33.3%;\n            margin-bottom: 16px;\n            padding: 0 8px;\n        }\n\n        .card {\n            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n            margin: 8px;\n        }\n\n        .about-section{\n            padding: 50px;\n            text-align: center;\n            background-color: #474e5d !important;\n        }\n\n        .container {\n            padding: 0 16px;\n        }\n\n        .container::after,\n        .row::after {\n            content: \"\";\n            clear: both;\n            display: table;\n        }\n\n        .title {\n            color: grey;\n        }\n\n        .button {\n            border: none;\n            outline: 0;\n            display: inline-block;\n            padding: 8px;\n            color: white;\n            background-color: #000;\n            text-align: center;\n            cursor: pointer;\n            width: 100%;\n        }\n\n        .button:hover {\n            background-color: #555;\n        }\n\n        @media screen and (max-width: 650px) {\n            .column {\n                width: 100%;\n                display: block;\n            }\n        }\n\n    .nr-dashboard-button{\n        margin-left: 39% !important\n    }\n    </style>\n</head>\n\n<body>\n\n    <div class=\"about-section\">\n        <h1 style=\"color: white !important; background-color: #474e5d !important;\">About Us</h1>\n        <p style=\"color: white !important; background-color: #474e5d !important;\">Đồ án cuối kì Vật lý dành cho CNTT (IOT)</p>\n    </div>\n\n    <h2 style=\"text-align:center\">NHÓM 10 - LỚP 21CLC02</h2>\n    <div class=\"row\" style=\"height=50% !important\">\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"Mink\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Triệu Nhật Minh</h2>\n                    <p class=\"title\">MSSV: 21127112</p>\n                    <p>Vai trò: </p>\n                    <p>tnminh21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:tnminh21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"DQuan\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Bùi Đỗ Duy Quân</h2>\n                    <p class=\"title\">MSSV: 21127141</p>\n                    <p>Vai trò: </p>\n                    <p>bddquan21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:bddquan21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"Zit\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Hoàng Đức Việt</h2>\n                    <p class=\"title\">MSSV: 21127203</p>\n                    <p>Vai trò: </p>\n                    <p>hdviet21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:hdviet21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n    </div>\n\n\n\n</body>\n<script>\n    $('#toolbar').css(\"display\", \"none\");\n</script>\n</html>\n\n",
+        "format": "<html>\n\n<head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <style>\n        body {\n            font-family: Arial, Helvetica, sans-serif;\n            margin: 0;\n        }\n\n        html {\n            box-sizing: border-box;\n        }\n\n        *,\n        *:before,\n        *:after {\n            box-sizing: inherit;\n        }\n\n        .column {\n            float: left;\n            width: 33.3%;\n            margin-bottom: 16px;\n            padding: 0 8px;\n        }\n\n        .card {\n            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n            margin: 8px;\n        }\n\n        .about-section{\n            padding: 50px;\n            text-align: center;\n            background-color: #474e5d !important;\n        }\n\n        .container {\n            padding: 0 16px;\n        }\n\n        .container::after,\n        .row::after {\n            content: \"\";\n            clear: both;\n            display: table;\n        }\n\n        .title {\n            color: grey;\n        }\n\n        .button {\n            border: none;\n            outline: 0;\n            display: inline-block;\n            padding: 8px;\n            color: white;\n            background-color: #000;\n            text-align: center;\n            cursor: pointer;\n            width: 100%;\n        }\n\n        .button:hover {\n            background-color: #555;\n        }\n\n        @media screen and (max-width: 650px) {\n            .column {\n                width: 100%;\n                display: block;\n            }\n        }\n\n    .nr-dashboard-button{\n        margin-left: 39% !important\n    }\n    </style>\n</head>\n\n<body>\n\n    <div class=\"about-section\">\n        <h1 style=\"color: white !important; background-color: #474e5d !important;\">About Us</h1>\n        <p style=\"color: white !important; background-color: #474e5d !important;\">Đồ án cuối kì Vật lý dành cho CNTT (IOT)</p>\n    </div>\n\n    <h2 style=\"text-align:center\">NHÓM 10 - LỚP 21CLC02</h2>\n    <div class=\"row\" style=\"height=50% !important\">\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"Mink\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Triệu Nhật Minh</h2>\n                    <p class=\"title\">MSSV: 21127112</p>\n                    <p>Vai trò: </p>\n                    <p>tnminh21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:tnminh21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"DQuan\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Bùi Đỗ Duy Quân</h2>\n                    <p class=\"title\">MSSV: 21127141</p>\n                    <p>Vai trò: </p>\n                    <p>bddquan21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:bddquan21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"Zit\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Hoàng Đức Việt</h2>\n                    <p class=\"title\">MSSV: 21127203</p>\n                    <p>Vai trò: </p>\n                    <p>hdviet21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:hdviet21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n    </div>\n\n\n\n</body>\n</html>\n\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 550,
-        "y": 1900,
+        "x": 630,
+        "y": 1380,
         "wires": [
             []
         ]
@@ -1036,8 +1081,8 @@
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
-        "x": 720,
-        "y": 1900,
+        "x": 800,
+        "y": 1380,
         "wires": [
             [
                 "333a31dab0af6ebd"
@@ -1050,8 +1095,8 @@
         "z": "984281f8dd3b7249",
         "name": "",
         "events": "change",
-        "x": 920,
-        "y": 1900,
+        "x": 1000,
+        "y": 1380,
         "wires": [
             []
         ]
@@ -1082,17 +1127,6 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
-    },
-    {
-        "id": "b76f9c8f4316f82b",
-        "type": "ui_group",
-        "name": "Humidity & Temperature",
-        "tab": "1f18d93c24426e1e",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
     },
     {
         "id": "6dd9186ba79cafea",
@@ -1131,17 +1165,6 @@
         "className": ""
     },
     {
-        "id": "f6a24bcaebe417bd",
-        "type": "ui_group",
-        "name": "Login",
-        "tab": "8f1c49d0b8c780e8",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
         "id": "1115733dd0980312",
         "type": "ui_group",
         "name": "Information",
@@ -1158,6 +1181,28 @@
         "name": "Logs",
         "tab": "1f18d93c24426e1e",
         "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f6a24bcaebe417bd",
+        "type": "ui_group",
+        "name": "Login",
+        "tab": "8f1c49d0b8c780e8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b76f9c8f4316f82b",
+        "type": "ui_group",
+        "name": "Humidity & Temperature",
+        "tab": "1f18d93c24426e1e",
+        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": false,
