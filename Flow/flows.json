@@ -602,89 +602,6 @@
         ]
     },
     {
-        "id": "b0c306d28157d9ec",
-        "type": "ui_template",
-        "z": "984281f8dd3b7249",
-        "group": "5399c0be53e05038",
-        "name": "",
-        "order": 0,
-        "width": "6",
-        "height": "7",
-        "format": "<ul>\n    <li ng-repeat=\"x in msg.payload\"\n        <h1 style=\"color:red\"> {{x.topic}}</h1>\n        <ul style=\"color:black\">\n            <li>Value: {{x.payload}}</li>\n            <li>Time: {{x.time}}</li>\n        </ul>\n    </li>\n</ul>\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 860,
-        "y": 1100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9ed0d6519e7a6b41",
-        "type": "http request",
-        "z": "984281f8dd3b7249",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1&timezone=Asia%2FJakarta",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 410,
-        "y": 1100,
-        "wires": [
-            [
-                "936e1fb809f3b28e"
-            ]
-        ]
-    },
-    {
-        "id": "b3ec40d0c8817f02",
-        "type": "inject",
-        "z": "984281f8dd3b7249",
-        "name": "",
-        "props": [],
-        "repeat": "1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.1",
-        "topic": "",
-        "x": 210,
-        "y": 1100,
-        "wires": [
-            [
-                "9ed0d6519e7a6b41"
-            ]
-        ]
-    },
-    {
-        "id": "936e1fb809f3b28e",
-        "type": "function",
-        "z": "984281f8dd3b7249",
-        "name": "Control log list",
-        "func": "var logList = flow.get(\"logList\")\nvar topic1 = \"\", payload1 = \"\"\nvar topic2 = \"\", payload2 = \"\"\nvar topic3 = \"\", payload3 = \"\"\n\nvar time = msg.payload.feeds[0].created_at\ntime = time.replace(\"T\", \" \")\ntime = time.replace(\"+07:00\", \"\")\n\nif (msg.payload.feeds[0].field1 != flow.get(\"prevMode\"))\n{\n    topic1 = \"Mode\"\n    payload1 = msg.payload.feeds[0].field1\n    flow.set(\"prevMode\", payload1)\n}\n\n\nif (msg.payload.feeds[0].field2 != flow.get(\"prevTemperature\")) \n{\n    topic2 = \"Temperature\"\n    payload2 = msg.payload.feeds[0].field2\n    flow.set(\"prevTemperature\", payload2)\n}\n\n\nif (msg.payload.feeds[0].field3 != flow.get(\"prevHumid\")) \n{\n    topic3 = \"Humid\"\n    payload3 = msg.payload.feeds[0].field3\n    flow.set(\"prevHumid\", payload3)\n}\n\nif (topic1 != \"\")\n{\n    msg = {}\n    msg.topic = topic1\n    msg.payload = payload1\n    msg.time = time\n    logList.push(msg)\n}\n\nif (topic2 != \"\") \n{\n    msg = {}\n    msg.topic = topic2\n    msg.payload = payload2\n    msg.time = time\n    logList.push(msg)\n}\n\nif (topic3 != \"\") \n{\n    msg = {}\n    msg.topic = topic3\n    msg.payload = payload3\n    msg.time = time\n    logList.push(msg)\n}\n\nif (logList.length > 10) \n{\n    logList.shift();\n    logList.length = 10;\n}\n\nflow.set(\"logList\", logList)\nmsg = {}\nmsg.payload = logList\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 660,
-        "y": 1100,
-        "wires": [
-            [
-                "b0c306d28157d9ec"
-            ]
-        ]
-    },
-    {
         "id": "5c1b5bd19d1c234a",
         "type": "ui_text",
         "z": "984281f8dd3b7249",
@@ -1102,6 +1019,89 @@
         ]
     },
     {
+        "id": "7c994b56bae591eb",
+        "type": "ui_template",
+        "z": "984281f8dd3b7249",
+        "group": "1115733dd0980312",
+        "name": "",
+        "order": 3,
+        "width": "6",
+        "height": "7",
+        "format": "<ul>\n    <li ng-repeat=\"x in msg.payload\"\n        <h1 style=\"color:red\"> {{x.topic}}</h1>\n        <ul style=\"color:black\">\n            <li>Value: {{x.payload}}</li>\n            <li>Time: {{x.time}}</li>\n        </ul>\n    </li>\n</ul>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 860,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b5306e530d3e0c74",
+        "type": "http request",
+        "z": "984281f8dd3b7249",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1&timezone=Asia%2FJakarta",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 410,
+        "y": 1120,
+        "wires": [
+            [
+                "9556d8a988d6f127"
+            ]
+        ]
+    },
+    {
+        "id": "2756e8be33b19267",
+        "type": "inject",
+        "z": "984281f8dd3b7249",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 210,
+        "y": 1120,
+        "wires": [
+            [
+                "b5306e530d3e0c74"
+            ]
+        ]
+    },
+    {
+        "id": "9556d8a988d6f127",
+        "type": "function",
+        "z": "984281f8dd3b7249",
+        "name": "Control log list",
+        "func": "var logList = flow.get(\"logList\")\nvar topic1 = \"\", payload1 = \"\"\nvar topic2 = \"\", payload2 = \"\"\nvar topic3 = \"\", payload3 = \"\"\n\nvar time = msg.payload.feeds[0].created_at\ntime = time.replace(\"T\", \" \")\ntime = time.replace(\"+07:00\", \"\")\n\nif (msg.payload.feeds[0].field1 != flow.get(\"prevMode\"))\n{\n    topic1 = \"Mode\"\n    payload1 = msg.payload.feeds[0].field1\n    flow.set(\"prevMode\", payload1)\n}\n\n\nif (msg.payload.feeds[0].field2 != flow.get(\"prevTemperature\")) \n{\n    topic2 = \"Temperature\"\n    payload2 = msg.payload.feeds[0].field2\n    flow.set(\"prevTemperature\", payload2)\n}\n\n\nif (msg.payload.feeds[0].field3 != flow.get(\"prevHumid\")) \n{\n    topic3 = \"Humid\"\n    payload3 = msg.payload.feeds[0].field3\n    flow.set(\"prevHumid\", payload3)\n}\n\nif (topic1 != \"\")\n{\n    msg = {}\n    msg.topic = topic1\n    msg.payload = payload1\n    msg.time = time\n    logList.unshift(msg)\n}\n\nif (topic2 != \"\") \n{\n    msg = {}\n    msg.topic = topic2\n    msg.payload = payload2\n    msg.time = time\n    logList.unshift(msg)\n}\n\nif (topic3 != \"\") \n{\n    msg = {}\n    msg.topic = topic3\n    msg.payload = payload3\n    msg.time = time\n    logList.unshift(msg)\n}\n\nif (logList.length > 10) \n{\n    logList.shift();\n    logList.length = 10;\n}\n\nflow.set(\"logList\", logList)\nmsg = {}\nmsg.payload = logList\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 1120,
+        "wires": [
+            [
+                "7c994b56bae591eb"
+            ]
+        ]
+    },
+    {
         "id": "e28fe818ac9d07d4",
         "type": "mqtt-broker",
         "name": "Mqtt Server",
@@ -1170,17 +1170,6 @@
         "name": "Information",
         "tab": "1f18d93c24426e1e",
         "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "5399c0be53e05038",
-        "type": "ui_group",
-        "name": "Logs",
-        "tab": "1f18d93c24426e1e",
-        "order": 4,
         "disp": true,
         "width": "6",
         "collapse": false,
