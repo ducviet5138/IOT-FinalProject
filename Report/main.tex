@@ -522,6 +522,8 @@ Giao diện và chức năng của web được xây dựng bằng NodeRed qua v
         msg.payload = logList
         return msg;
     \end{lstlisting}
+
+    Ngoài ra để  giúp in các thông tin được đồng nhất thì nhóm đã thiết kế  hàm để kiểm soát thông số  khởi tạo. Nếu trên cloud đang có thông số sẵn thì sẽ lấy thông số mới nhất của từng thông tin, và nếu chưa thì sẽ khởi tạo cho các thông số của thông tin giá trị cực nhỏ để khi bắt đầu chạy thiết bị thì sẽ lấy thông số  hiện tại mà sản phẩm thu nhận được.
 \end{enumerate}
 
 \newpage
