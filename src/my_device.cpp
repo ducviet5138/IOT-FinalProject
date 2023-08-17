@@ -146,7 +146,7 @@ void MyDevice::SendRequestCloud(String param)
     WiFiClient HttpClient;
     long startTime = millis();
 
-    if (!HttpClient.connect("api.thingspeak.com", 80))
+    while (!HttpClient.connect("api.thingspeak.com", 80))
     {
         if (millis() - startTime > 300000)
         {
