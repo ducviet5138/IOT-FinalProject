@@ -40,7 +40,15 @@ void MyDevice::SetUp()
     DoOnceSafetyMode = DoOnceWorkingMode = 0;
     SendWarningMessage = 0;
 
-    countTime = 2e+9;
+    lastTimeInRoom = 2e+9;
+    
+    lastReconnectWifiTime = 0;
+    lastReconnectMQTTTime = 0;
+    lastReconnectCloudTime = 0;
+
+    isReconnectWifi = 1;
+    isReconnectMQTT = 1;
+    isReconnectCloud = 1;
 }
 
 MyDevice::~MyDevice()
@@ -55,13 +63,55 @@ const char* MyDevice::GetChannel(String param)
     return (main_channel + param).c_str();
 }
 
-void MyDevice::reconnect()
+void MyDevice::UpdateReconnectStatus()
 {
-    while (!client.connected())
+    if (millis() - lastReconnectWifiTime > 300000) isReconnectWifi = 1;
+    if (millis() - lastReconnectMQTTTime > 300000) isReconnectMQTT = 1;
+    if (millis() - lastReconnectCloudTime > 300000) isReconnectCloud = 1;
+}
+
+void MyDevice::ReconnectWifi()
+{
+    if (WiFi.status() == WL_CONNECTED || !isReconnectWifi) return;
+
+    long startTime = millis();
+
+    WiFi.begin(ssid, pw, 6);
+    Serial.print("Connecting to WiFi... ");
+    while (WiFi.status() != WL_CONNECTED)
     {
+        if (long(millis()) - startTime > 300000)    // 5 mins
+        {
+            Serial.println("Timeout Wifi!");
+            isReconnectWifi = 0;
+            lastReconnectWifiTime = millis();
+            return;
+        }
+
+        Serial.print(".");
+        delay(1000);
+    }
+    Serial.println("Connected!");
+}
+
+void MyDevice::ReconnectMQTT()
+{
+    if (!isReconnectWifi || !isReconnectMQTT) return;
+    long startTime = millis();
+
+    while (!client.connected())
+    {   
+        if (millis() - startTime > 300000)
+        {
+            Serial.println("Timeout MQTT!");
+            lastReconnectMQTTTime = millis();
+            isReconnectMQTT = 0;
+            return;
+        }
+
         String clientId = "ESP32Client-" + String(random(0xffff), HEX);
 
-        Serial.print("Connecting to server... ");
+        Serial.print("Connecting to MQTT server... ");
         if (client.connect(clientId.c_str()))
         {
             Serial.println("Connected!");
@@ -75,9 +125,12 @@ void MyDevice::reconnect()
     }
 }
 
-void MyDevice::ReconnectToServer()
+void MyDevice::Reconnect()
 {
-    reconnect();
+    UpdateReconnectStatus();
+    ReconnectWifi();
+    ReconnectMQTT();
+
     client.loop();
 }
 
@@ -86,12 +139,23 @@ void MyDevice::Sync(String param, String value)
    client.publish(GetChannel(param), value.c_str());
 }
 
-void MyDevice::SendRequest(String param)
+void MyDevice::SendRequestCloud(String param)
 {
+    if (!isReconnectWifi || !isReconnectCloud) return;
+
     WiFiClient HttpClient;
+    long startTime = millis();
 
     if (!HttpClient.connect("api.thingspeak.com", 80))
     {
+        if (millis() - startTime > 300000)
+        {
+            Serial.println("Timeout Cloud!");
+            lastReconnectCloudTime = millis();
+            isReconnectCloud = 0;
+            return;
+        }
+
         Serial.println("Connecting to cloud... ");
         delay(1000);
     }
@@ -103,23 +167,21 @@ void MyDevice::SendRequest(String param)
     Serial.println("Request sent!");
 }
 
-void MyDevice::SyncToCloud()
+void MyDevice::SyncToServer()
 {
-    SendRequest("&field1=" + String(dMode->GetWorkingMode())+ "&field2=" + dht.GetTemperature() + "&field3=" + dht.GetHumid());
+    if (!isReconnectWifi) return;
+
+    Sync("temperature", dht.GetTemperature());
+    Sync("humid", dht.GetHumid());
+    SendRequestCloud("&field1=" + String(dMode->GetWorkingMode())+ "&field2=" + dht.GetTemperature() + "&field3=" + dht.GetHumid());
 }
-
-
 
 // ========== [Call another device's function] ========== //
 // DHT
-void MyDevice::SyncTempAndHumid()
+void MyDevice::updateDHT()
 {
     dht.Update();
-    Sync("temperature", dht.GetTemperature());
-    Sync("humid", dht.GetHumid());
 }
-
-
 
 // LCD
 void MyDevice::lcdOn()
@@ -137,8 +199,6 @@ void MyDevice::lcdPrint()
     dht.Update();
     lcd.Print(dht.GetTemperature(), dht.GetHumid());
 }
-
-
 
 // Relay
 void MyDevice::relayOn(char* param)
@@ -184,11 +244,11 @@ void MyDevice::HandleWorkingMode()
         lcdPrint();
 
         if (dht.GetTemperature().toFloat() > 30) ac->TurnOn();
-        countTime = millis();
+        lastTimeInRoom = millis();
     } else 
     {
         lcdOff();
-        if (long(millis()) - countTime > 2000)
+        if (long(millis()) - lastTimeInRoom > 2000)
         {
            relayOff((char*) "light");
            //if tv, fan are turned on, the ir will shine
@@ -197,7 +257,7 @@ void MyDevice::HandleWorkingMode()
         }
 
 
-        if (long(millis()) - countTime > 4000)
+        if (long(millis()) - lastTimeInRoom > 4000)
         {
             //ac are turned on, the ir will shine
             ac->TurnOff();

@@ -10,8 +10,8 @@ void setup()
 
 void loop()
 {
-    md.ReconnectToServer();
-    md.SyncTempAndHumid();
-    md.SyncToCloud();
+    md.updateDHT();
+    md.Reconnect();
+    md.SyncToServer();
     md.ChooseSuitableMode();
 }

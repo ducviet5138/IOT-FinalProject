@@ -35,22 +35,31 @@ class MyDevice
         bool DoOnceWorkingMode;
         bool SendWarningMessage;
 
-        long countTime;
+        long lastTimeInRoom;
+        
+        long lastReconnectWifiTime;
+        long lastReconnectMQTTTime;
+        long lastReconnectCloudTime;
+
+        bool isReconnectWifi;
+        bool isReconnectMQTT;
+        bool isReconnectCloud;
     public:
         void SetUp();
         ~MyDevice();
         
         const char* GetChannel(String param);
-        void reconnect();
-        void ReconnectToServer();
+        void ReconnectWifi();
+        void ReconnectMQTT();
+        void Reconnect();
+        void UpdateReconnectStatus();
         void Sync(String param, String value);
 
-        void SendRequest(String param);
-        void SyncToCloud();
+        void SendRequestCloud(String param);
+        void SyncToServer();
 
         // DHT
-        void SyncTempAndHumid();
-
+        void updateDHT();
         // LCD
         void lcdOn();
         void lcdOff();
