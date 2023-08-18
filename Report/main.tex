@@ -256,12 +256,15 @@ Dựa trên yêu cầu và qui định của đồ án cuối kì thì nhóm đ�
 \begin{itemize}
     \item Sản phẩm này của nhóm sẽ nhận biết rằng người trong phòng hay không để thực hiện mở các thiết bị điện cần thiết. Thêm vào đó người dùng có thể kiểm soát được 2 chế độ "hoạt động" và "bảo vệ", trong đó: chế độ \textbf{"hoạt động"} sẽ giúp người dùng bật tắt thiết bị điện khi người dùng ra hay vào phòng, và chế độ \textbf{"bảo vệ"} sẽ ngắt cung cấp điện cho các thiết bị đồng thời cảnh báo người dùng khi có người vào phòng.
 
-    \item Ngay khi khởi tạo, chế độ sẽ được mặc định là \textbf{"hoạt động"}, và các thiết bị trong phòng được cung cấp nguồn điện.
+    \item Ngay khi khởi tạo, thiết bị \textbf{ESP32} sẽ thực hiện kết nối wifi, nếu việc kết nối có vấn đề sẽ tiếp tục thực hiện kết nối \textbf{trong vòng 5 phút}. Nếu sau 5 phút không kết nối được thì các chức năng xem thông tin trên \textbf{trang web hay điện thoại} sẽ không thể sử dụng, và để thưc hiện kết nối lại wifi sẽ thực hiện lại \textbf{sau 5 phút từ khi việc kết nối cuối cùng thất bại}.
 
+    \item Trong trường hợp kết nối được wifi thì \textbf{ESP32} sẽ tiến hành kết nối \textbf{MQTT server} và \textbf{cloud server (Thingspeak)}. Việc cố gắng thực hiện kết nối giữa 2 server cũng sẽ diễn ra trong 5 phút và sẽ thực hiện kết nối lại cũng sau 5 phút kể từ lần cuối kết nối thất bại trong trường hợp đã kết nối wifi.
+    
+    \item Ngay sau khi các kết nối thành công, thiết bị sẽ mặc định được cài đặt chế độ \textbf{"hoạt động"}.
     \begin{figure}[!h]
         \centering
         \includegraphics[width=\textwidth, keepaspectratio]{img/Khoi_tao.png}
-        \caption{4 đèn led sáng tức là các thiết bị điện trong phòng đang được cung cấp điện}
+        \caption{khi các kết nối thành công sẽ khởi tạo chế độ "hoạt động". 4 đèn led sáng tức là các thiết bị điện trong phòng đang được cung cấp điện}
     \end{figure}
 
     \pagebreak
@@ -305,11 +308,15 @@ Dựa trên yêu cầu và qui định của đồ án cuối kì thì nhóm đ�
         \caption{Lệnh chuyển đổi sang chế độ "bảo vệ"}
     \end{figure}
     
+    \item Thêm vào đó, người dùng có thể xem thông tin về nhiệt độ, độ ẩm, chuyển đổi chế độ trên \textbf{trang web} và cũng như lịch sử của các thông tin nhờ việc \textbf{lưu và lấy dữ liệu từ cloud}.
     
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/web_UI.png}
+        \centering
+        \caption{Hình ảnh tổng quát về trang web}
+    \end{figure}
 \end{itemize}
 
-
-\newpage
 \subsection{Thiết kế 3D sản phẩm của nhóm}
 Dưới đây sẽ là chi tiết về hình ảnh của sản phẩm được thiết kế 3D ở nhiều góc độ.
 \begin{itemize}
@@ -355,6 +362,64 @@ Dưới đây sẽ là chi tiết về hình ảnh của sản phẩm được t
 
 \newpage
 \subsection{Giao diện và chức năng của web}
+\begin{itemize}
+    \item Đầu tiên ngay khi truy cập vào trang web thì sẽ là màn hình đăng nhập, yêu cầu người dùng nhập \textbf{tên đăng nhập ("admin") và mật khẩu ("admin")}.
+    
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/log_in_page.png}
+        \centering
+        \caption{Giao diện trang đăng nhập của website}
+    \end{figure}
+    
+    \item Khi đăng nhập thành công, người dùng sẽ chuyển sang trang chính của website.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/web_UI.png}
+        \centering
+        \caption{trang chính của website}
+    \end{figure}
+
+    \item Nhóm đã thiết kế ở trang chính của trang web này mỗi chức năng sẽ đươc đặt ở 1 khung riêng biết để người dùng dễ dàng nhận biết và sử dụng. Cụ thể như sau:
+    
+    \begin{itemize}
+        \item Đầu tiên ở bên trái ngoài cùng của trang web là khung để hiển thị \textbf{thời gian, nút chuyển tới thông tin của nhóm và nút đăng xuất khỏi trang web}.
+        \begin{figure}[H]
+            \includegraphics[width=\textwidth, keepaspectratio]{img/information_group.png}
+            \centering
+            \caption{Khung hiển thị thời gian, thông tin nhóm và nút đăng xuất}
+        \end{figure}
+        Ở trang \textbf{ABOUT US} sẽ hiển thị \textit{Tên, mã số sinh viên, vai trò, và đường dẫn đến email} của mỗi thành viên.
+        \begin{figure}[H]
+            \includegraphics[width=\textwidth, keepaspectratio]{img/about_us.png}
+            \centering
+            \caption{Thông tin của nhóm}
+        \end{figure}
+
+        \item Khung tiếp theo sẽ hiển thị biểu đồ đường về \textbf{nhiệt độ} và biểu đồ tròn về \textbf{đổ ẩm} ở thời điểm hiện tại.
+        \begin{figure}[H]
+            \includegraphics[width=\textwidth, height=0.4\textheight, keepaspectratio]{img/temp_humid.png}
+            \centering
+            \caption{Biểu đồ nhiệt độ và độ ẩm}
+        \end{figure}
+
+        \item Kế tiếp chính là khung \textbf{hiển thị chế độ hiện tại và nút thay đổi chế độ}. Với \textbf{nút thay đổi chế độ}, người dùng có thể thay đổi chế độ "hoạt động" hay "bảo vệ" của thiết bị ở trong phòng.
+
+        \begin{figure}[H]
+            \includegraphics[width=\textwidth, keepaspectratio]{img/mode.png}
+            \centering
+            \caption{Thông tin và chức năng chuyển chế độ}
+        \end{figure}
+        
+        \item Cuối cùng là khung \textbf{logs} để hiển thị lịch sử của những lần thay đổi chế độ và các thông tin về nhiệt độ, độ ẩm trong phòng.
+        
+        \begin{figure}[H]
+            \includegraphics[width=\textwidth, height=0.4\textheight, keepaspectratio]{img/logs.png}
+            \centering
+            \caption{Lịch sử các thông tin}
+        \end{figure}
+    \end{itemize}
+\end{itemize}
+
+\newpage
 \subsection{Xây dựng flow trong NodeRed}
 Giao diện và chức năng của web được xây dựng bằng NodeRed qua việc kết hợp các node chức năng để  tạo thành flow cho trang web.
 
@@ -439,7 +504,7 @@ Giao diện và chức năng của web được xây dựng bằng NodeRed qua v
         \caption{Hàm kiểm tra lệnh chuyển đổi chế độ}
     \end{figure}
     
-    \item Cuối cùng là chức năng lấy dữ liệu từ trên cloud \textbf{thingspeak} về. Node mà nhóm đã sử dụng chính là \textbf{https request} để thực hiện yêu cầu tới đường dẫn \textbf{API key} của \textbf{thingspeak} để lấy thông số của gần nhất của 3 thông tin \textbf{nhiệt độ, độ ẩm và chế độ} và thời điểm của các thông số đó. Nút \textbf{inject} sẽ có nhiệm vụ khởi động \textbf{request} liên tục sau 1 giây và khi phía cloud có sự thay đổi thông số của bất kì thông tin nào thì thông số đó sẽ được cập nhật lên trang web thông qua hàm \textbf{control log list}. Hàm này sẽ có nhiệm vụ thực hiện thông số mới nhất và khi liên tục nhận dữ liệu từ cloud, hàm sẽ tiến hành kiểm tra xem thông số mới nhận được có thay đổi hay không, nếu thay đổi thì sẽ đẩy lên hàng đầu của \textbf{log list} và in ra màn hình web, nếu không thay đổi thì sẽ không cập nhật để tránh tình trạng đưa lên các thông số chưa thay đổi.
+    \item Cuối cùng là chức năng lấy dữ liệu từ trên cloud \textbf{thingspeak} về. Node mà nhóm đã sử dụng chính là \textbf{https request} để thực hiện yêu cầu tới đường dẫn \textbf{API key} của \textbf{thingspeak} để lấy thông số của gần nhất của 3 thông tin \textbf{nhiệt độ, độ ẩm và chế độ và thời điểm} của các thông số đó. Nút \textbf{inject} sẽ có nhiệm vụ khởi động \textbf{request} liên tục sau 1 giây và khi phía cloud có sự thay đổi thông số của bất kì thông tin nào thì thông số đó sẽ được cập nhật lên trang web thông qua hàm \textbf{control log list}. Hàm này sẽ có nhiệm vụ thực hiện thông số mới nhất và khi liên tục nhận dữ liệu từ cloud, hàm sẽ tiến hành kiểm tra xem thông số mới nhận được có thay đổi hay không, nếu thay đổi thì sẽ đẩy lên hàng đầu của \textbf{log list} và in ra màn hình web, nếu không thay đổi thì sẽ không cập nhật để tránh tình trạng đưa lên các thông số chưa thay đổi. Chú ý rằng \textbf{API key} được lấy sẽ thêm tham số truy vấn \textbf{timezone} để chuyển múi giờ về \textbf{GMT+7} (chi tiết như ở \href{https://www.mathworks.com/help/thingspeak/readdata.html}{đây}).
     \begin{figure}[H]
         \includegraphics[width=\textwidth, keepaspectratio]{img/flow/get_data.png}
         \centering
@@ -447,11 +512,12 @@ Giao diện và chức năng của web được xây dựng bằng NodeRed qua v
     \end{figure}
 
     \begin{figure}[H]
-        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/configure_request.png}
+        \includegraphics[width=\textwidth, height=0.5\textheight, keepaspectratio]{img/flow/configure_request.png}
         \centering
         \caption{Thiết lập cho node https request}
     \end{figure}
 
+    với giá trị \textbf{URL: \url{https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1&timezone=Asia\%2FJakarta}}
     \pagebreak
     \begin{lstlisting}[language=JavaScript, caption={function of control log list}]
         var logList = flow.get("logList")
@@ -524,6 +590,11 @@ Giao diện và chức năng của web được xây dựng bằng NodeRed qua v
     \end{lstlisting}
 
     Ngoài ra để  giúp in các thông tin được đồng nhất thì nhóm đã thiết kế  hàm để kiểm soát thông số  khởi tạo. Nếu trên cloud đang có thông số sẵn thì sẽ lấy thông số mới nhất của từng thông tin, và nếu chưa thì sẽ khởi tạo cho các thông số của thông tin giá trị cực nhỏ để khi bắt đầu chạy thiết bị thì sẽ lấy thông số  hiện tại mà sản phẩm thu nhận được.
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth, keepaspectratio]{img/flow/init_log_value.png}
+        \centering
+        \caption{Hàm kiểm soát thông số khởi tạo}
+    \end{figure}
 \end{enumerate}
 
 \newpage
