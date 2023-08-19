@@ -317,27 +317,36 @@ Dựa trên yêu cầu và qui định của đồ án cuối kì thì nhóm đ�
     \end{figure}
 \end{itemize}
 
+
+\subsection{Sơ đồ truyền và nhận dữ liệu của các thiết bị IOT và server}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth, height=0.4\textheight, keepaspectratio]{img/Diagram.png}
+    \caption{Sơ đồ  truyền nhận dữ liệu}
+\end{figure}
+
+\newpage
 \subsection{Thiết kế 3D sản phẩm của nhóm}
 Dưới đây sẽ là chi tiết về hình ảnh của sản phẩm được thiết kế 3D ở nhiều góc độ.
 \begin{itemize}
     \item Đầu tiên phải nói tới vị trí đặt thiết bị ở trong phòng. Nhóm đã thiết kế bố trí sản phẩm ngay phía bên trái của cửa phòng để có thể nhận diện nhanh nhất khi có người vào phòng.
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=\textwidth, keepaspectratio]{img/PhoiCanh-01.png}
+        \includegraphics[width=0.5\textwidth, height=0.4\textheight, keepaspectratio]{img/PhoiCanh-01.png}
         \caption{Vị trí đặt thiết bị ở trong phòng}
     \end{figure}
 
     \item Đến với chi tiết của sản phẩm, trước hết các thiết bị của sản phẩm được liên kết với nhau và đặt trong hộp làm bằng hộp nhựa acrylic. Bên ngoài của hộp là 2 thiết bị \textbf{Cảm biến chuyển động} và \textbf{màn hình LCD} để người dùng dễ dàng nhìn thấy thông số trong phòng và giúp thiết bị cảm nhận người trong phòng tốt nhất.
     \begin{figure}[!ht]
         \centering
-        \includegraphics[width=\textwidth, keepaspectratio]{img/1-01.png}
+        \includegraphics[width=0.5\textwidth, keepaspectratio]{img/1-01.png}
         \caption{Mặt trước của sản phẩm}
     \end{figure}
     \pagebreak
     \item Phía trên của sản phẩm chính là thiết bị \textbf{DHT22} dùng để  đo nhiệt độ, độ ẩm. Thiết bị này sẽ kết nối với \textbf{LCD} và thông tin nhiệt độ, độ ẩm sẽ in ra màn hình.
     \begin{figure}[!ht]
         \centering
-        \includegraphics[width=\textwidth, keepaspectratio]{img/2-01.png}
+        \includegraphics[width=0.5\textwidth, keepaspectratio]{img/2-01.png}
         \caption{Mặt trên của sản phẩm}
     \end{figure}
 
@@ -345,14 +354,13 @@ Dưới đây sẽ là chi tiết về hình ảnh của sản phẩm được t
     \item Mặt sau của sản phẩm là thiết bị \textbf{ESP32} và vị trí giữa \textbf{ESP32} và \textbf{LCD} là thiết bị \textbf{Relay}.
     \begin{figure}[!ht]
         \centering
-        \includegraphics[width=\textwidth, keepaspectratio]{img/3-01.png}
+        \includegraphics[width=0.5\textwidth, keepaspectratio]{img/3-01.png}
         \caption{Mặt sau của sản phẩm}
     \end{figure}
     
-    \pagebreak
     \item Cuối cùng nhìn từ mặt sau chúng ta còn thấy được chân của thiết bị  \textbf{IR-Transmitter}, phần đầu để phát tín hiệu hồng ngoại của thiết bị sẽ nằm phía mặt trước của sản phẩm.
     \begin{figure}[H]
-        \includegraphics[width=\textwidth, keepaspectratio]{img/4-01.png}
+        \includegraphics[width=0.5\textwidth, keepaspectratio]{img/4-01.png}
         \centering
         \caption{Vị trí của IR-Transmitter}
     \end{figure}
@@ -394,7 +402,7 @@ Dưới đây sẽ là chi tiết về hình ảnh của sản phẩm được t
             \caption{Thông tin của nhóm}
         \end{figure}
 
-        \item Khung tiếp theo sẽ hiển thị biểu đồ đường về \textbf{nhiệt độ} và biểu đồ tròn về \textbf{đổ ẩm} ở thời điểm hiện tại.
+        \item Khung tiếp theo sẽ hiển thị biểu đồ đường về \textbf{nhiệt độ} và biểu đồ tròn về \textbf{độ ẩm} ở thời điểm hiện tại.
         \begin{figure}[H]
             \includegraphics[width=\textwidth, height=0.4\textheight, keepaspectratio]{img/temp_humid.png}
             \centering
@@ -596,12 +604,6 @@ Giao diện và chức năng của web được xây dựng bằng NodeRed qua v
         \caption{Hàm kiểm soát thông số khởi tạo}
     \end{figure}
 \end{enumerate}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{img/Diagram.png}
-    \caption{Sơ đồ  truyền nhận dữ liệu}
-\end{figure}
 
 \newpage
 \section{Tài liệu tham khảo}
