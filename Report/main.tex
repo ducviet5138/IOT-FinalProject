@@ -17,6 +17,7 @@
 \usepackage{setspace}
 \usepackage{pdfpages}
 \usepackage{lscape}
+\usepackage{longtable}
 
 % ========== [LANGUAGE] ==========
 \def\lang{1} % 0 == English, 1 == Vietnamese
@@ -604,6 +605,72 @@ Giao diện và chức năng của web được xây dựng bằng NodeRed qua v
         \caption{Hàm kiểm soát thông số khởi tạo}
     \end{figure}
 \end{enumerate}
+\pagebreak
+\section{Phân công công việc}
+\begin{table}[!h]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|c|l|c|}
+    \hline
+    \rowcolor[HTML]{DDD9C4} 
+    \multicolumn{1}{|l|}{\cellcolor[HTML]{00D2CB}{\color[HTML]{FFFFFF} \textbf{}}} & {\color[HTML]{000000} \textbf{Công việc}} & {\color[HTML]{000000} \textbf{Người thực hiện}} \\ \hline
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt lớp PIR & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt lớp DHT & Nhật Minh \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt lớp IR & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đăt lớp LCD & Duy Quân \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt lớp relay & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt hàm ReconnectMQTT & Nhật Minh \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt hàm SyncToServer & Nhật Minh \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt hàm SendRequestCloud & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt hàm callback & Nhật Minh \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt hàm ReconnectWifi & Duy Quân \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \cellcolor[HTML]{E6B8B7} & Cài đặt hàm HandleWorkingMode & Duy Quân \\ \cline{2-3} 
+    \rowcolor[HTML]{F2DCDB} 
+    \multirow{-12}{*}{\cellcolor[HTML]{E6B8B7}\textbf{\rotatebox{90}{ESP32}}} & Cài đặt hàm HandleSafetyMode & Đức Việt \\ \hline
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & Đăng nhập, đăng   xuất & Nhật Minh \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & Gửi tin nhắn cảnh báo qua chat bot của telegram & Duy Quân \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & Tạo lệnh để bật tắt chế độ qua chat bot của telegram & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & Thiết kế mô hình 3D của sản phẩm & Nhật Minh \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & Chuyển dữ liệu lên cloud (nhiệt độ, độ ẩm, lịch sử chuyển đổi   chế độ) & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & About us & Duy Quân \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & Cloud & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & Đồng bộ nút chuyển chế độ & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \cellcolor[HTML]{D8E4BC} & Hiển thị nhiệt độ độ ẩm & Nhật Minh \\ \cline{2-3} 
+    \rowcolor[HTML]{EBF1DE} 
+    \multirow{-10}{*}{\cellcolor[HTML]{D8E4BC}\textbf{\rotatebox{90}{WEB}}} & Logs & Nhật Minh \\ \hline
+    \rowcolor[HTML]{E4DFEC} 
+    \cellcolor[HTML]{CCC0DA} & Mô tả chức năng thiết bị & Nhật Minh, Duy Quân, Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{E4DFEC} 
+    \cellcolor[HTML]{CCC0DA} & Mô tả chức năng web, giải thích flow nodered & Duy Quân \\ \cline{2-3} 
+    \rowcolor[HTML]{E4DFEC} 
+    \cellcolor[HTML]{CCC0DA} & Vẽ sơ đồ truyền và nhận dữ liệu & Đức Việt \\ \cline{2-3} 
+    \rowcolor[HTML]{E4DFEC} 
+    \cellcolor[HTML]{CCC0DA} & Quay video demo & Nhật Minh \\ \cline{2-3} 
+    \rowcolor[HTML]{E4DFEC} 
+    \multirow{-5}{*}{\cellcolor[HTML]{CCC0DA}\textbf{\rotatebox{90}{BÁO CÁO}}} & Vẽ 3D sản phẩm & Nhật Minh \\ \hline
+    \end{tabular}%
+    }
+\end{table}
 
 \newpage
 \section{Tài liệu tham khảo}
