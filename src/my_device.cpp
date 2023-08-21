@@ -170,10 +170,13 @@ void MyDevice::SendRequestCloud(String param)
 void MyDevice::SyncToServer()
 {
     if (!isReconnectWifi) return;
+    
+    String temperature = dht.GetTemperature();
+    String humid = dht.GetHumid();
 
-    Sync("temperature", dht.GetTemperature());
-    Sync("humid", dht.GetHumid());
-    SendRequestCloud("&field1=" + String(dMode->GetWorkingMode())+ "&field2=" + dht.GetTemperature() + "&field3=" + dht.GetHumid());
+    Sync("temperature", temperature);
+    Sync("humid", humid);
+    SendRequestCloud("&field1=" + String(dMode->GetWorkingMode())+ "&field2=" + temperature + "&field3=" + humid);
 }
 
 // ========== [Call another device's function] ========== //
