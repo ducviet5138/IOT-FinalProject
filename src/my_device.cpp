@@ -35,7 +35,7 @@ void MyDevice::SetUp()
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, pw, 6);
 
-    client = PubSubClient(server, 1883, callback, espClient);
+    client = PubSubClient(MQTTServer, 1883, callback, espClient);
 
     DoOnceSafetyMode = DoOnceWorkingMode = 0;
     SendWarningMessage = 0;
@@ -148,7 +148,7 @@ void MyDevice::SendRequestCloud(String param)
     WiFiClient HttpClient;
     long startTime = millis();
 
-    while (!HttpClient.connect("api.thingspeak.com", 80))
+    while (!HttpClient.connect(CloudServer, 80))
     {
         if (long(millis()) - startTime > 300000)
         {

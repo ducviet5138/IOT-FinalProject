@@ -23,7 +23,8 @@ class MyDevice
 
         DeviceMode* dMode;
 
-        const char* server = "broker.emqx.io";
+        const char* MQTTServer = "broker.emqx.io";
+        const char* CloudServer = "api.thingspeak.com";
         const String main_channel = "/GDrpD2J3jxvzQEy7vGOn/";
         WiFiClient espClient;
         PubSubClient client;
