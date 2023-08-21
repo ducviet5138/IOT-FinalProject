@@ -65,9 +65,11 @@ const char* MyDevice::GetChannel(String param)
 
 void MyDevice::UpdateReconnectStatus()
 {
-    if (millis() - lastReconnectWifiTime > 300000) isReconnectWifi = 1;
-    if (millis() - lastReconnectMQTTTime > 300000) isReconnectMQTT = 1;
-    if (millis() - lastReconnectCloudTime > 300000) isReconnectCloud = 1;
+    long time = millis();
+
+    if (time - lastReconnectWifiTime > 300000) isReconnectWifi = 1;
+    if (time - lastReconnectMQTTTime > 300000) isReconnectMQTT = 1;
+    if (time - lastReconnectCloudTime > 300000) isReconnectCloud = 1;
 }
 
 void MyDevice::ReconnectWifi()
@@ -101,7 +103,7 @@ void MyDevice::ReconnectMQTT()
 
     while (!client.connected())
     {   
-        if (millis() - startTime > 300000)
+        if (long(millis()) - startTime > 300000)
         {
             Serial.println("Timeout MQTT!");
             lastReconnectMQTTTime = millis();
@@ -109,10 +111,8 @@ void MyDevice::ReconnectMQTT()
             return;
         }
 
-        String clientId = "ESP32Client-" + String(random(0xffff), HEX);
-
         Serial.print("Connecting to MQTT server... ");
-        if (client.connect(clientId.c_str()))
+        if (client.connect(clientId))
         {
             Serial.println("Connected!");
             client.subscribe(GetChannel("setmode"));
@@ -148,7 +148,7 @@ void MyDevice::SendRequestCloud(String param)
 
     while (!HttpClient.connect("api.thingspeak.com", 80))
     {
-        if (millis() - startTime > 300000)
+        if (long(millis()) - startTime > 300000)
         {
             Serial.println("Timeout Cloud!");
             lastReconnectCloudTime = millis();
