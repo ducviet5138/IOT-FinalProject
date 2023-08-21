@@ -101,6 +101,8 @@ void MyDevice::ReconnectMQTT()
     if (!isReconnectWifi || !isReconnectMQTT) return;
     long startTime = millis();
 
+    String clientId = "ESP32Client-" + String(random(0xffff), HEX);
+
     while (!client.connected())
     {   
         if (long(millis()) - startTime > 300000)
@@ -112,7 +114,7 @@ void MyDevice::ReconnectMQTT()
         }
 
         Serial.print("Connecting to MQTT server... ");
-        if (client.connect(clientId))
+        if (client.connect(clientId.c_str()))
         {
             Serial.println("Connected!");
             client.subscribe(GetChannel("setmode"));

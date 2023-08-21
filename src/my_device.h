@@ -25,7 +25,6 @@ class MyDevice
 
         const char* server = "broker.emqx.io";
         const String main_channel = "/GDrpD2J3jxvzQEy7vGOn/";
-        const char* clientId = "ESP32Client-112-141-203";
         WiFiClient espClient;
         PubSubClient client;
         
