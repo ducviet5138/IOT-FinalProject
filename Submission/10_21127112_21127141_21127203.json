@@ -1,0 +1,1272 @@
+[
+    {
+        "id": "9e081773b35459e7",
+        "type": "tab",
+        "label": "My Device",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "bc80ea6cfbd584db",
+        "type": "mqtt out",
+        "z": "9e081773b35459e7",
+        "name": "MQTT Working Mode",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/setmode",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "256a9f3dc8f63770",
+        "x": 1280,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "cd79033ee89d1192",
+        "type": "switch",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 620,
+        "wires": [
+            [
+                "20301df8b3e80c1a"
+            ],
+            [
+                "899f9cff7b2874bd"
+            ]
+        ]
+    },
+    {
+        "id": "20301df8b3e80c1a",
+        "type": "change",
+        "z": "9e081773b35459e7",
+        "name": "Safety Mode",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "SafetyMode",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 560,
+        "wires": [
+            [
+                "bc80ea6cfbd584db"
+            ]
+        ]
+    },
+    {
+        "id": "899f9cff7b2874bd",
+        "type": "change",
+        "z": "9e081773b35459e7",
+        "name": "Working Mode",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "WorkingMode",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 700,
+        "wires": [
+            [
+                "bc80ea6cfbd584db"
+            ]
+        ]
+    },
+    {
+        "id": "8655b5423d3f867a",
+        "type": "telegram receiver",
+        "z": "9e081773b35459e7",
+        "name": "Receive Message",
+        "bot": "9d8a37de4b024f67",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 250,
+        "y": 620,
+        "wires": [
+            [
+                "66a0b518b2ec694a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "66a0b518b2ec694a",
+        "type": "function",
+        "z": "9e081773b35459e7",
+        "name": "Check condition",
+        "func": "var content = msg.payload.content;\nvar id = msg.payload.chatId;\nvar type = msg.payload.type;\n\nif (type == \"message\")\n{\n    if(content == '/safetymode')\n        msg.payload = false;\n    \n    if(content == '/workingmode')\n        msg.payload = true;\n} else{\n    msg.payload = \"not handle\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 620,
+        "wires": [
+            [
+                "d27cc4243cbdc143"
+            ]
+        ]
+    },
+    {
+        "id": "0a5a7c9e4c78064c",
+        "type": "ui_button",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "group": "402d427a36fe3eec",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Logout",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "logout",
+        "payload": "logout",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 1240,
+        "wires": [
+            [
+                "b5872ddecc6b92ab"
+            ]
+        ]
+    },
+    {
+        "id": "c245280dbcae23d1",
+        "type": "ui_ui_control",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "events": "change",
+        "x": 570,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4665ecde8011d4fe",
+        "type": "ui_toast",
+        "z": "9e081773b35459e7",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 810,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "d221853c75c6bc22",
+        "type": "change",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Successfully logout",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Logout",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 1280,
+        "wires": [
+            [
+                "4665ecde8011d4fe"
+            ]
+        ]
+    },
+    {
+        "id": "b5872ddecc6b92ab",
+        "type": "function",
+        "z": "9e081773b35459e7",
+        "name": "check logout",
+        "func": "if (msg.payload == \"logout\")\n{\n    msg.payload = {\"tab\": \"Login\"}\n    msg.announce = \"Successfully logout\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1240,
+        "wires": [
+            [
+                "c245280dbcae23d1",
+                "d221853c75c6bc22"
+            ]
+        ]
+    },
+    {
+        "id": "2e1b81a4be33ea46",
+        "type": "inject",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 1000,
+        "wires": [
+            [
+                "4e63500a1e382865"
+            ]
+        ]
+    },
+    {
+        "id": "4e63500a1e382865",
+        "type": "ui_digital_clock",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "group": "402d427a36fe3eec",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "x": 430,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "60a80907a6755cbc",
+        "type": "ui_template",
+        "z": "9e081773b35459e7",
+        "group": "246717df5a153ad3",
+        "name": "Hide toolbar",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<script>\n    $('#toolbar').css(\"display\", \"none\");\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 230,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b0e2017bcf2f9257",
+        "type": "inject",
+        "z": "9e081773b35459e7",
+        "name": "set entry id",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 230,
+        "y": 220,
+        "wires": [
+            [
+                "b62ded5f201f8af6"
+            ]
+        ]
+    },
+    {
+        "id": "4475f8eae25f82f8",
+        "type": "function",
+        "z": "9e081773b35459e7",
+        "name": "Default value for log list",
+        "func": "if (!msg.payload.feeds[0])\n{\n    flow.set(\"prevMode\", -999)\n    flow.set(\"prevTemperature\", -999)\n    flow.set(\"prevHumid\", -999)\n}\nelse \n{\n    flow.set(\"prevMode\", msg.payload.feeds[0].field1)\n    flow.set(\"prevTemperature\", msg.payload.feeds[0].field2)\n    flow.set(\"prevHumid\", msg.payload.feeds[0].field3)\n}\n\nflow.set(\"logList\", [])\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b62ded5f201f8af6",
+        "type": "http request",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "4475f8eae25f82f8"
+            ]
+        ]
+    },
+    {
+        "id": "bd067bf7a92ac500",
+        "type": "mqtt in",
+        "z": "9e081773b35459e7",
+        "name": "MQTT Temperature",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "256a9f3dc8f63770",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "f38e6a9b0cad1c86"
+            ]
+        ]
+    },
+    {
+        "id": "64666aac20e26107",
+        "type": "mqtt in",
+        "z": "9e081773b35459e7",
+        "name": "MQTT Humid",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/humid",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "256a9f3dc8f63770",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 540,
+        "wires": [
+            [
+                "91a71ced407dfd06"
+            ]
+        ]
+    },
+    {
+        "id": "91a71ced407dfd06",
+        "type": "ui_gauge",
+        "z": "9e081773b35459e7",
+        "name": "Humidity",
+        "group": "92ae986910e4108e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Humidity",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "f38e6a9b0cad1c86",
+        "type": "ui_chart",
+        "z": "9e081773b35459e7",
+        "name": "Temperature",
+        "group": "92ae986910e4108e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 590,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bc77cda6904be28",
+        "type": "function",
+        "z": "9e081773b35459e7",
+        "name": "check login",
+        "func": "var uname = msg.payload.username, pword = msg.payload.password\nvar validLogin = (uname == \"admin\" && pword == \"admin\")\nif (validLogin == true)\n    msg.payload = {\"tab\": \"Home\"}\nelse\n    {\n        msg.payload = {\"tab\": \"Login\"}\n        msg.announce = \"Wrong username or password\"\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "1b708493df0b6f39",
+                "f5b6e434726ed458"
+            ]
+        ]
+    },
+    {
+        "id": "f5b6e434726ed458",
+        "type": "ui_ui_control",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "events": "change",
+        "x": 580,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b708493df0b6f39",
+        "type": "ui_text",
+        "z": "9e081773b35459e7",
+        "group": "246717df5a153ad3",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.announce}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 590,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ba829ff9711363d2",
+        "type": "ui_form",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "label": "",
+        "group": "246717df5a153ad3",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Username",
+                "value": "username",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Password",
+                "value": "password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "username": "",
+            "password": ""
+        },
+        "payload": "",
+        "submit": "Login",
+        "cancel": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 210,
+        "y": 320,
+        "wires": [
+            [
+                "6bc77cda6904be28"
+            ]
+        ]
+    },
+    {
+        "id": "17840c7b3c9743c5",
+        "type": "ui_button",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "group": "402d427a36fe3eec",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "label": "About us",
+        "tooltip": "",
+        "color": "#F3B567",
+        "bgcolor": "",
+        "className": "",
+        "icon": "people",
+        "payload": "{\"tab\": \"About us\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 220,
+        "y": 1380,
+        "wires": [
+            [
+                "7b2cbd6eede75208"
+            ]
+        ]
+    },
+    {
+        "id": "7b2cbd6eede75208",
+        "type": "ui_ui_control",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "events": "change",
+        "x": 420,
+        "y": 1380,
+        "wires": [
+            [
+                "752256f51bf683be"
+            ]
+        ]
+    },
+    {
+        "id": "752256f51bf683be",
+        "type": "ui_template",
+        "z": "9e081773b35459e7",
+        "group": "a135664c974438de",
+        "name": "html",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<html>\n\n<head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <style>\n        body {\n            font-family: Arial, Helvetica, sans-serif;\n            margin: 0;\n        }\n\n        html {\n            box-sizing: border-box;\n        }\n\n        *,\n        *:before,\n        *:after {\n            box-sizing: inherit;\n        }\n\n        .column {\n            float: left;\n            width: 33.3%;\n            margin-bottom: 16px;\n            padding: 0 8px;\n        }\n\n        .card {\n            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n            margin: 8px;\n        }\n\n        .about-section{\n            padding: 50px;\n            text-align: center;\n            background-color: #474e5d !important;\n        }\n\n        .container {\n            padding: 0 16px;\n        }\n\n        .container::after,\n        .row::after {\n            content: \"\";\n            clear: both;\n            display: table;\n        }\n\n        .title {\n            color: grey;\n        }\n\n        .button {\n            border: none;\n            outline: 0;\n            display: inline-block;\n            padding: 8px;\n            color: white;\n            background-color: #000;\n            text-align: center;\n            cursor: pointer;\n            width: 100%;\n        }\n\n        .button:hover {\n            background-color: #555;\n        }\n\n        @media screen and (max-width: 650px) {\n            .column {\n                width: 100%;\n                display: block;\n            }\n        }\n\n    .nr-dashboard-button{\n        margin-left: 39% !important\n    }\n    </style>\n</head>\n\n<body>\n\n    <div class=\"about-section\">\n        <h1 style=\"color: white !important; background-color: #474e5d !important;\">About Us</h1>\n        <p style=\"color: white !important; background-color: #474e5d !important;\">Đồ án cuối kì Vật lý dành cho CNTT (IOT)</p>\n    </div>\n\n    <h2 style=\"text-align:center\">NHÓM 10 - LỚP 21CLC02</h2>\n    <div class=\"row\" style=\"height=50% !important\">\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"Mink\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Triệu Nhật Minh</h2>\n                    <p class=\"title\">MSSV: 21127112</p>\n                    <p>Vai trò: Nhóm trưởng</p>\n                    <p>tnminh21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:tnminh21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"DQuan\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Bùi Đỗ Duy Quân</h2>\n                    <p class=\"title\">MSSV: 21127141</p>\n                    <p>Vai trò: Thành viên</p>\n                    <p>bddquan21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:bddquan21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"column\">\n            <div class=\"card\">\n                <img src=\"https://cdn.discordapp.com/avatars/806108245659615263/21eaaff16419d16a4a18b88b91d4a74c.png\" alt=\"Zit\" style=\"padding-left:35% !important\">\n                <div class=\"container\">\n                    <h2>Hoàng Đức Việt</h2>\n                    <p class=\"title\">MSSV: 21127203</p>\n                    <p>Vai trò: Thành viên</p>\n                    <p>hdviet21@clc.fitus.edu.vn</p>\n                    <a class=\"button\" href=\"mailto:hdviet21@clc.fitus.edu.vn\">Contact</a>\n                </div>\n            </div>\n        </div>\n    </div>\n\n\n\n</body>\n</html>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 630,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e95aa2baf0ec988c",
+        "type": "ui_button",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "group": "a135664c974438de",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Back to Home",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "btn_bạck_home",
+        "icon": "home",
+        "payload": "{\"tab\": \"Home\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 800,
+        "y": 1380,
+        "wires": [
+            [
+                "23960a3ab197c67f"
+            ]
+        ]
+    },
+    {
+        "id": "23960a3ab197c67f",
+        "type": "ui_ui_control",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "events": "change",
+        "x": 1000,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d083c2d77f5d0ff7",
+        "type": "ui_template",
+        "z": "9e081773b35459e7",
+        "group": "4c6bbdd0699d5a6e",
+        "name": "",
+        "order": 3,
+        "width": "6",
+        "height": "7",
+        "format": "<ul>\n    <li ng-repeat=\"x in msg.payload\"\n        <h1 style=\"color:red\"> {{x.topic}}</h1>\n        <ul style=\"color:black\">\n            <li>Value: {{x.payload}}</li>\n            <li>Time: {{x.time}}</li>\n        </ul>\n    </li>\n</ul>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 860,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a784358f40caf816",
+        "type": "http request",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.thingspeak.com/channels/2239002/feeds.json?api_key=20EMGP6E0ZMPG8N1&results=1&timezone=Asia%2FJakarta",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 410,
+        "y": 1120,
+        "wires": [
+            [
+                "442fb9fc8b679815"
+            ]
+        ]
+    },
+    {
+        "id": "b58a83eecc58d690",
+        "type": "inject",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 210,
+        "y": 1120,
+        "wires": [
+            [
+                "a784358f40caf816"
+            ]
+        ]
+    },
+    {
+        "id": "442fb9fc8b679815",
+        "type": "function",
+        "z": "9e081773b35459e7",
+        "name": "Control log list",
+        "func": "var logList = flow.get(\"logList\")\nvar topic1 = \"\", payload1 = \"\"\nvar topic2 = \"\", payload2 = \"\"\nvar topic3 = \"\", payload3 = \"\"\n\nvar time = msg.payload.feeds[0].created_at\ntime = time.replace(\"T\", \" \")\ntime = time.replace(\"+07:00\", \"\")\n\nif (msg.payload.feeds[0].field1 != flow.get(\"prevMode\"))\n{\n    topic1 = \"Mode\"\n    payload1 = msg.payload.feeds[0].field1\n    flow.set(\"prevMode\", payload1)\n}\n\n\nif (msg.payload.feeds[0].field2 != flow.get(\"prevTemperature\")) \n{\n    topic2 = \"Temperature\"\n    payload2 = msg.payload.feeds[0].field2\n    flow.set(\"prevTemperature\", payload2)\n}\n\n\nif (msg.payload.feeds[0].field3 != flow.get(\"prevHumid\")) \n{\n    topic3 = \"Humid\"\n    payload3 = msg.payload.feeds[0].field3\n    flow.set(\"prevHumid\", payload3)\n}\n\nif (topic1 != \"\")\n{\n    msg = {}\n    msg.topic = topic1\n    msg.payload = payload1\n    msg.time = time\n    logList.unshift(msg)\n}\n\nif (topic2 != \"\") \n{\n    msg = {}\n    msg.topic = topic2\n    msg.payload = payload2\n    msg.time = time\n    logList.unshift(msg)\n}\n\nif (topic3 != \"\") \n{\n    msg = {}\n    msg.topic = topic3\n    msg.payload = payload3\n    msg.time = time\n    logList.unshift(msg)\n}\n\nif (logList.length > 10) \n{\n    logList.shift();\n    logList.length = 10;\n}\n\nflow.set(\"logList\", logList)\nmsg = {}\nmsg.payload = logList\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 1120,
+        "wires": [
+            [
+                "d083c2d77f5d0ff7"
+            ]
+        ]
+    },
+    {
+        "id": "d27cc4243cbdc143",
+        "type": "ui_switch",
+        "z": "9e081773b35459e7",
+        "name": "",
+        "label": "Change Mode",
+        "tooltip": "",
+        "group": "74b93a847163c675",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 660,
+        "y": 620,
+        "wires": [
+            [
+                "cd79033ee89d1192"
+            ]
+        ]
+    },
+    {
+        "id": "78226ae8623c14a2",
+        "type": "simpletime",
+        "z": "9e081773b35459e7",
+        "name": "Time Sync",
+        "mydate": true,
+        "myymd": false,
+        "myyear": false,
+        "mymonth": false,
+        "mymonthn": false,
+        "mydom": false,
+        "mydoy": false,
+        "myday": false,
+        "myhourpm": false,
+        "myhour": false,
+        "mytime": true,
+        "mytimes": false,
+        "myminute": false,
+        "myminutes": false,
+        "mysecond": false,
+        "mymillis": false,
+        "myepoch": false,
+        "myrawdate": false,
+        "mypm": false,
+        "x": 1230,
+        "y": 920,
+        "wires": [
+            [
+                "57e1b649cb3f5370"
+            ]
+        ]
+    },
+    {
+        "id": "684fe45626d1bfbb",
+        "type": "mqtt in",
+        "z": "9e081773b35459e7",
+        "name": "MQTT Warning on SafetyMode",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/warning",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "256a9f3dc8f63770",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 920,
+        "wires": [
+            [
+                "2830517bd6e93490"
+            ]
+        ]
+    },
+    {
+        "id": "2830517bd6e93490",
+        "type": "switch",
+        "z": "9e081773b35459e7",
+        "name": "If true",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 920,
+        "wires": [
+            [
+                "534d9e7f8c192eea"
+            ]
+        ]
+    },
+    {
+        "id": "534d9e7f8c192eea",
+        "type": "change",
+        "z": "9e081773b35459e7",
+        "name": "Set Warning Message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "👤 Strangers in your room 👤",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "📟 🆘 Warning 🆘 📟",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 920,
+        "wires": [
+            [
+                "78226ae8623c14a2"
+            ]
+        ]
+    },
+    {
+        "id": "57e1b649cb3f5370",
+        "type": "function",
+        "z": "9e081773b35459e7",
+        "name": "Setting Messages",
+        "func": "var msg1 = { \"topic\": msg.topic, \"payload\": { \"chatId\": 955526463, \"type\": 'message', \"content\": msg.topic + '\\n\\n' + msg.payload + '\\n' + '⏰ ' + msg.mydate + ' ' + msg.mytime} };\nreturn msg1;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 920,
+        "wires": [
+            [
+                "712b61bb4035efcd"
+            ]
+        ]
+    },
+    {
+        "id": "712b61bb4035efcd",
+        "type": "telegram sender",
+        "z": "9e081773b35459e7",
+        "name": "Bot",
+        "bot": "9d8a37de4b024f67",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1650,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5cccab9e33d8833c",
+        "type": "mqtt in",
+        "z": "9e081773b35459e7",
+        "name": "Get Current Mode from ESP32",
+        "topic": "/GDrpD2J3jxvzQEy7vGOn/currentmode",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "256a9f3dc8f63770",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 820,
+        "wires": [
+            [
+                "df71c4da71c12f9b"
+            ]
+        ]
+    },
+    {
+        "id": "df71c4da71c12f9b",
+        "type": "switch",
+        "z": "9e081773b35459e7",
+        "name": "Check current mode",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 600,
+        "y": 820,
+        "wires": [
+            [
+                "9e2412c3bdd42dfc"
+            ],
+            [
+                "7d14661cc1a2dc7e"
+            ]
+        ]
+    },
+    {
+        "id": "9e2412c3bdd42dfc",
+        "type": "change",
+        "z": "9e081773b35459e7",
+        "name": "Mode = \"WorkingMode\"",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "⚙️ Mode: WorkingMode 📊",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "📟✅Change mode sucessfully ✅📟",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 780,
+        "wires": [
+            [
+                "78226ae8623c14a2",
+                "59f550e54f21320a"
+            ]
+        ]
+    },
+    {
+        "id": "7d14661cc1a2dc7e",
+        "type": "change",
+        "z": "9e081773b35459e7",
+        "name": "Mode = \"SafetyMode\"",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "⚙️ Mode: SafetyMode 🔐",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "📟✅Change mode sucessfully ✅📟",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 860,
+        "wires": [
+            [
+                "78226ae8623c14a2",
+                "59f550e54f21320a"
+            ]
+        ]
+    },
+    {
+        "id": "59f550e54f21320a",
+        "type": "ui_text",
+        "z": "9e081773b35459e7",
+        "group": "74b93a847163c675",
+        "order": 1,
+        "width": "7",
+        "height": "1",
+        "name": "",
+        "label": "Current Mode",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1260,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "b3e52787acfc1583",
+        "type": "inject",
+        "z": "9e081773b35459e7",
+        "name": "init button",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 460,
+        "y": 680,
+        "wires": [
+            [
+                "d27cc4243cbdc143"
+            ]
+        ]
+    },
+    {
+        "id": "256a9f3dc8f63770",
+        "type": "mqtt-broker",
+        "name": "Mqtt Server",
+        "broker": "broker.emqx.io",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "9d8a37de4b024f67",
+        "type": "telegram bot",
+        "botname": "Wokwi Notification",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "402d427a36fe3eec",
+        "type": "ui_group",
+        "name": "Information",
+        "tab": "24f18de847f4154f",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "246717df5a153ad3",
+        "type": "ui_group",
+        "name": "Login",
+        "tab": "82642d8d562eb90c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "92ae986910e4108e",
+        "type": "ui_group",
+        "name": "Humidity & Temperature",
+        "tab": "24f18de847f4154f",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a135664c974438de",
+        "type": "ui_group",
+        "name": "Group introduction",
+        "tab": "e0ef10a02802c01f",
+        "order": 5,
+        "disp": true,
+        "width": "27",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4c6bbdd0699d5a6e",
+        "type": "ui_group",
+        "name": "Logs",
+        "tab": "24f18de847f4154f",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "74b93a847163c675",
+        "type": "ui_group",
+        "name": "Mode",
+        "tab": "24f18de847f4154f",
+        "order": 3,
+        "disp": true,
+        "width": "7",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "24f18de847f4154f",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "82642d8d562eb90c",
+        "type": "ui_tab",
+        "name": "Login",
+        "icon": "login",
+        "order": 1,
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "e0ef10a02802c01f",
+        "type": "ui_tab",
+        "name": "About us",
+        "icon": "people",
+        "disabled": false,
+        "hidden": true
+    }
+]
