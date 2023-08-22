@@ -15,27 +15,18 @@ void callback(char* topic, byte* message, unsigned int length)
 
 
 // ========== [Define methods for MyDevice] ========== //
-void MyDevice::SetUp()
+MyDevice::MyDevice()
 {
-    dht.SetUp();
-    lcd.SetUp();
-    pir.SetUp();
-    relay.SetUp();
-
     ac = new DeviceIR({{1, 203}, {200, 112}});
     fan = new DeviceIR({{1, 112}, {200, 141}});
     tv = new DeviceIR({{1, 141}, {200, 203}});  
-
-    ac->SetUp();
-    fan->SetUp();
-    tv->SetUp();
 
     dMode = &deviceMode;
     
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, pw, 6);
 
-    client = PubSubClient(MQTTServer, 1883, callback, espClient);
+    client = new PubSubClient(MQTTServer, 1883, callback, espClient);
 
     DoOnceSafetyMode = DoOnceWorkingMode = 0;
     SendWarningMessage = 0;
@@ -56,6 +47,8 @@ MyDevice::~MyDevice()
     delete ac;
     delete fan;
     delete tv;
+
+    delete client;
 }
 
 const char* MyDevice::GetChannel(String param)
@@ -90,7 +83,6 @@ void MyDevice::ReconnectWifi()
             return;
         }
 
-        Serial.print(".");
         delay(1000);
     }
     Serial.println("Connected!");
@@ -103,7 +95,7 @@ void MyDevice::ReconnectMQTT()
 
     String clientId = "ESP32Client-" + String(random(0xffff), HEX);
 
-    while (!client.connected())
+    while (!client->connected())
     {   
         if (long(millis()) - startTime > 300000)
         {
@@ -114,10 +106,10 @@ void MyDevice::ReconnectMQTT()
         }
 
         Serial.print("Connecting to MQTT server... ");
-        if (client.connect(clientId.c_str()))
+        if (client->connect(clientId.c_str()))
         {
             Serial.println("Connected!");
-            client.subscribe(GetChannel("setmode"));
+            client->subscribe(GetChannel("setmode"));
         }
         else
         {
@@ -133,12 +125,12 @@ void MyDevice::Reconnect()
     ReconnectWifi();
     ReconnectMQTT();
 
-    client.loop();
+    client->loop();
 }
 
 void MyDevice::Sync(String param, String value)
 {
-   client.publish(GetChannel(param), value.c_str());
+   client->publish(GetChannel(param), value.c_str());
 }
 
 void MyDevice::SendRequestCloud(String param)
@@ -158,27 +150,24 @@ void MyDevice::SendRequestCloud(String param)
             return;
         }
 
-        Serial.println("Connecting to cloud... ");
+        Serial.print("Connecting to cloud... ");
         delay(1000);
+
+        if (HttpClient.connected()) Serial.println("Connected!");
     }
-    Serial.print("Connected!");
 
     HttpClient.print(String("GET /update?api_key=XLGHYLZHYRSMC4JJ") + param + " HTTP/1.1\r\n" +
                     "Host: api.thingspeak.com \r\n" +
                     "Connection: close\r\n\r\n");
-    Serial.println("Request sent!");
 }
 
 void MyDevice::SyncToServer()
 {
     if (!isReconnectWifi) return;
-    
-    String temperature = dht.GetTemperature();
-    String humid = dht.GetHumid();
 
-    Sync("temperature", temperature);
-    Sync("humid", humid);
-    SendRequestCloud("&field1=" + String(dMode->GetWorkingMode())+ "&field2=" + temperature + "&field3=" + humid);
+    Sync("temperature", dht.GetTemperature());
+    Sync("humid", dht.GetHumid());
+    SendRequestCloud("&field1=" + String(dMode->GetWorkingMode())+ "&field2=" + dht.GetTemperature() + "&field3=" + dht.GetHumid());
 }
 
 // ========== [Call another device's function] ========== //

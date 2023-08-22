@@ -27,7 +27,7 @@ class MyDevice
         const char* CloudServer = "api.thingspeak.com";
         const String main_channel = "/GDrpD2J3jxvzQEy7vGOn/";
         WiFiClient espClient;
-        PubSubClient client;
+        PubSubClient *client;
         
         const String ssid = "Wokwi-GUEST";
         const String pw = "";
@@ -46,7 +46,7 @@ class MyDevice
         bool isReconnectMQTT;
         bool isReconnectCloud;
     public:
-        void SetUp();
+        MyDevice();
         ~MyDevice();
         
         const char* GetChannel(String param);

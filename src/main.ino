@@ -1,17 +1,17 @@
-#include "my_device.h"
+#include "device/my_device.h"
 
-MyDevice md;
+MyDevice *md = NULL;
 
 void setup()
 {
     Serial.begin(115200);
-    md.SetUp();
+    md = new MyDevice();
 }
 
 void loop()
 {
-    md.updateDHT();
-    md.Reconnect();
-    md.SyncToServer();
-    md.ChooseSuitableMode();
+    md->updateDHT();
+    md->Reconnect();
+    md->SyncToServer();
+    md->ChooseSuitableMode();
 }

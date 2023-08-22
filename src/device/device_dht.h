@@ -11,13 +11,12 @@ class DeviceDHT
         TempAndHumidity data;
 
     public:
-        void SetUp()
+        DeviceDHT()
         {
             dht.setup(dht_pin, DHTesp::DHT22);
         }
 
-        ~DeviceDHT()
-        {}
+        ~DeviceDHT(){}
 
         void Update()
         {

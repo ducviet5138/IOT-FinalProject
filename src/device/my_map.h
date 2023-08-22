@@ -17,6 +17,12 @@ class MyMap
             m_values.clear();
         }
 
+        ~MyMap() 
+        {
+            m_keys.clear();
+            m_values.clear();
+        }
+
         void Add(String key, custom value)
         {
             m_keys.push_back(key);
@@ -28,12 +34,6 @@ class MyMap
             int i = 0;
             for ( ; i < m_keys.size(); i++) if (m_keys[i] == key) break;
             return m_values[i]; 
-        }
-
-        ~MyMap() 
-        {
-            m_keys.clear();
-            m_values.clear();
         }
 };
 

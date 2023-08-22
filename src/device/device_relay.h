@@ -17,16 +17,12 @@ class DeviceRelay
         {
             m_map.Add("light", relay_light_pin);
             m_map.Add("room", relay_room_pin);
-        }
 
-        void SetUp()
-        {
             pinMode(relay_light_pin, OUTPUT);
             pinMode(relay_room_pin, OUTPUT);
         }
 
-        ~DeviceRelay()
-        {}
+        ~DeviceRelay(){}
 
         void On(char* param)
         {

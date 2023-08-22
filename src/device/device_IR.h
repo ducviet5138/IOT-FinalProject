@@ -22,15 +22,11 @@ class DeviceIR
             }
 
             isOn = 0;
-        }
 
-        void SetUp()
-        {
             pinMode(ir_pin, OUTPUT);
         }
 
-        ~DeviceIR()
-        {}
+        ~DeviceIR(){}
 
         void TurnOn()
         {

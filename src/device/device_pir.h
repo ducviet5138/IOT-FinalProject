@@ -7,13 +7,12 @@ class DevicePIR
         const int pir_pin = 23;
 
     public:
-        void SetUp()
+        DevicePIR()
         {
             pinMode(pir_pin, INPUT);
         }
 
-        ~DevicePIR()
-        {}
+        ~DevicePIR(){}
 
         bool GetPersonStatus()
         {
