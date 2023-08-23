@@ -34,7 +34,7 @@ class DeviceLCD
             lcd.setCursor(0, 0);
             lcd.print("Temp: " + temperature + " " + String(char(223)) + "C ");
             lcd.setCursor(0, 1);
-            lcd.print("Humid: " + humid + " %");
+            lcd.print("Humid: " + humid + " % ");
         }
 };
 
