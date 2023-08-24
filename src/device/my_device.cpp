@@ -237,12 +237,12 @@ void MyDevice::HandleWorkingMode()
         lcdOn();
         lcdPrint();
 
-        if (dht.GetTemperature().toFloat() > 30) ac->TurnOn();
+        if (dht.GetTemperature().toFloat() > 30) ac->TurnOn(); 
         lastTimeInRoom = millis();
     } else 
     {
         lcdOff();
-        if (long(millis()) - lastTimeInRoom > 2000)
+        if (long(millis()) - lastTimeInRoom > 2000) // 2 mins but set to 2 secs for testing
         {
            relayOff((char*) "light");
            //if tv, fan are turned on, the ir will shine
@@ -251,7 +251,7 @@ void MyDevice::HandleWorkingMode()
         }
 
 
-        if (long(millis()) - lastTimeInRoom > 4000)
+        if (long(millis()) - lastTimeInRoom > 4000) // 30 mins but set to 4 secs for testing
         {
             //ac are turned on, the ir will shine
             ac->TurnOff();
