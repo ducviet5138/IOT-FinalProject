@@ -39,3 +39,5 @@ class DeviceLCD
 };
 
 #endif
+// The way to turn on/off LCD
+// Src: https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library/blob/master/LiquidCrystal_I2C.h
