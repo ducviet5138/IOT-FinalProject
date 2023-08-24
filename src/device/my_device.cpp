@@ -58,11 +58,9 @@ const char* MyDevice::GetChannel(String param)
 
 void MyDevice::UpdateReconnectStatus()
 {
-    long time = millis();
-
-    if (time - lastReconnectWifiTime > 300000) isReconnectWifi = 1;
-    if (time - lastReconnectMQTTTime > 300000) isReconnectMQTT = 1;
-    if (time - lastReconnectCloudTime > 300000) isReconnectCloud = 1;
+    if (long(millis()) - lastReconnectWifiTime > 300000) isReconnectWifi = 1;
+    if (long(millis()) - lastReconnectMQTTTime > 300000) isReconnectMQTT = 1;
+    if (long(millis()) - lastReconnectCloudTime > 300000) isReconnectCloud = 1;
 }
 
 void MyDevice::ReconnectWifi()
