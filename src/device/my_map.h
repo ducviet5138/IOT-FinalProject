@@ -38,3 +38,4 @@ class MyMap
 };
 
 #endif
+// Notice: 'map' is already appeared in Arduino
