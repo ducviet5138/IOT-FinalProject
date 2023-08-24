@@ -38,3 +38,4 @@ class DeviceRelay
 };
 
 #endif
+// 'map' is already appeared in Arduino
