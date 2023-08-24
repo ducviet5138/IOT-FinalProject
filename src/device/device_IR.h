@@ -5,7 +5,6 @@
 
 using namespace std;
 
-// Src: https://www.instructables.com/How-to-control-your-TV-with-an-Arduino/
 class DeviceIR
 {
     private:
@@ -62,5 +61,5 @@ class DeviceIR
         }
 };
 
-
 #endif
+// Src: https://www.instructables.com/How-to-control-your-TV-with-an-Arduino/
