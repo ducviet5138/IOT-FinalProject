@@ -15,3 +15,6 @@ void loop()
     md->SyncToServer();
     md->ChooseSuitableMode();
 }
+
+// Config: https://docs.wokwi.com/vscode/project-config
+// Example: https://github.com/wokwi/esp32-ntp-clock
