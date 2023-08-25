@@ -39,6 +39,9 @@ class DeviceLCD
 };
 
 #endif
+// Default pin SDA, SCL
+// Src: https://github.com/espressif/arduino-esp32/blob/master/variants/nano32/pins_arduino.h
+
 // The way to turn on/off LCD
 // Src: https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library/blob/master/LiquidCrystal_I2C.h
 
