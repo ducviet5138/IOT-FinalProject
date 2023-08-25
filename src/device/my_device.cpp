@@ -151,7 +151,7 @@ void MyDevice::SendRequestCloud(String param)
         Serial.print("Connecting to cloud... ");
         delay(1000);
 
-        if (HttpClient.connected()) Serial.println("Connected!");
+        if (HttpClient.connected()) Serial.print("Connected!");
     }
 
     HttpClient.print(String("GET /update?api_key=XLGHYLZHYRSMC4JJ") + param + " HTTP/1.1\r\n" +
