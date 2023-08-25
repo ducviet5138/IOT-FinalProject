@@ -19,6 +19,10 @@ void loop()
 // Config: https://docs.wokwi.com/vscode/project-config
 // Example: https://github.com/wokwi/esp32-ntp-clock
 
+<<<<<<< HEAD
 
 //chat id (Việt): 955526463
 //chat id (Quân): 5011947142
+=======
+// Telegram token: 6370226403:AAFalsUvcL8HUX592rCplIo4qq4AhxEYo-w
+>>>>>>> refs/remotes/origin/main
